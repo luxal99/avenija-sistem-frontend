@@ -1,0 +1,23 @@
+mat-icon{
+    font-size: 40px !important;
+}
+
+.menu-btn{
+    background: none;
+    border: none;
+    padding: 2em;
+}
+
+mat-drawer {
+    padding: 10em 2em 0 2em;
+    width: 20%;
+    background-color: #282828;
+}
+.option-menu{
+    padding-top: 5em;
+}
+
+h3{
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}

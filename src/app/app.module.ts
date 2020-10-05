@@ -10,11 +10,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material';
 import { MaterialModule } from './material.module';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AdminComponent } from './admin/admin.component';
+import { ClientComponent } from './client/client.component';
+import { EstateOverviewComponent } from './admin/estate-overview/estate-overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    ClientComponent,
+    EstateOverviewComponent
   ],
   imports: [
     BrowserModule,

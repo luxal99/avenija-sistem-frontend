@@ -1,0 +1,13 @@
+<mat-drawer-container class="example-container" hasBackdrop="false" fullscreen>
+    <mat-drawer #drawer mode="side" opened>
+        <img src="../../assets/img/white_logo.png" alt="" class="img-fluid">
+        <div class="option-menu">
+            <h3>Nekretnine</h3>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      
+      <button (click)="drawer.toggle()" class="menu-btn"><mat-icon>toc</mat-icon></button>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  
