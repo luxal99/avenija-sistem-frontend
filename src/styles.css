@@ -3,3 +3,24 @@
 mat-drawer-content{
     background-color: #f3f4f7 !important;
 }
+
+mat-step-header .mat-step-icon-selected {
+    background-color: #00c3f6 !important;
+    color: #282828;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+.mat-step-header .mat-step-icon {
+     background-color: #00c3f6;
+
+    font-family: 'Poppins', sans-serif;
+     color: #282828;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: #00c3f6;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #00c3f6;
+}

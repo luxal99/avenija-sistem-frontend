@@ -1,1 +1,67 @@
-<p>add-estate-dialog works!</p>
+<div class="add-estate-dialog">
+    <h1>Dodavanje nekretnine</h1>
+
+    <button mat-raised-button  id="toggle-linear">
+      </button>
+      <mat-horizontal-stepper  #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            
+
+            <h4>Tip</h4>
+            <div class="divider"></div>
+           <div class="radio-button-div">
+            <h5>Transakcija</h5>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Option 1</mat-radio-button>
+                <mat-radio-button style="margin-left: 1em;" value="2">Option 2</mat-radio-button>
+              </mat-radio-group>
+           </div>
+
+           <div>
+
+            <h4>Kategorija</h4>
+            <div class="divider"></div>
+            <mat-form-field appearance="fill" style="margin-top: 1em;">
+                
+                <mat-label>Kategorija</mat-label>
+                <mat-select [formControl]="pokemonControl">
+                  <mat-option>-- None --</mat-option>
+                  <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
+                                [disabled]="group.disabled">
+                    <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+                      {{pokemon.viewValue}}
+                    </mat-option>
+                  </mat-optgroup>
+                </mat-select>
+              </mat-form-field>
+           </div>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+          <form [formGroup]="secondFormGroup"></form>
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput  placeholder="Ex. 1 Main St, New York, NY"
+                     required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+      
+</div>

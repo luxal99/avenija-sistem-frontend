@@ -1,0 +1,30 @@
+.add-estate-dialog{
+    padding: 5em 2em 5em 2em;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+.radio-button-div {
+    padding-top: .5em; display: inline-flex;
+
+}
+h4{
+    padding-top: 2em;
+    font-weight: bold;
+}
+
+.divider {
+    width: 30%;
+    background-color: #e1e1e1;
+    height: 1px;
+}
+h4,h5{
+
+    font-family: 'Poppins', sans-serif;
+}
+mat-radio-group {
+     margin-left: 2em;
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background:none}
