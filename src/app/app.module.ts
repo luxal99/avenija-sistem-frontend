@@ -34,6 +34,7 @@ import { EstateOverviewComponent } from './admin/estate-overview/estate-overview
   providers: [HttpClientModule,
     {provide:LocationStrategy,useClass:HashLocationStrategy}
   ],
+  entryComponents:[EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

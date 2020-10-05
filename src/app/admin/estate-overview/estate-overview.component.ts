@@ -9,7 +9,7 @@ export class EstateOverviewComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
   }
 
 }
