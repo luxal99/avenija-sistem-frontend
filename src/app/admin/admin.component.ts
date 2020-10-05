@@ -22,4 +22,12 @@ export class AdminComponent implements OnInit {
     const factory = this.resolver.resolveComponentFactory(EstateOverviewComponent)
     this.entry.createComponent(factory);
   }
+
+
+  async loadOption (){
+    this.entry.clear();
+    const { OptionComponent } = await import('./option/option.component');
+    const factory = this.resolver.resolveComponentFactory(OptionComponent)
+    this.entry.createComponent(factory);
+  }
 }

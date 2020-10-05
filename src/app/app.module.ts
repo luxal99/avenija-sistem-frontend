@@ -14,6 +14,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
 import { EstateOverviewComponent } from './admin/estate-overview/estate-overview.component';
 import { AddEstateDialogComponent } from './admin/estate-overview/add-estate-dialog/add-estate-dialog.component';
+import { OptionComponent } from './admin/option/option.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddEstateDialogComponent } from './admin/estate-overview/add-estate-dia
     AdminComponent,
     ClientComponent,
     EstateOverviewComponent,
-    AddEstateDialogComponent
+    AddEstateDialogComponent,
+    OptionComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { AddEstateDialogComponent } from './admin/estate-overview/add-estate-dia
   providers: [HttpClientModule,
     {provide:LocationStrategy,useClass:HashLocationStrategy}
   ],
-  entryComponents:[AddEstateDialogComponent,EstateOverviewComponent],
+  entryComponents:[AddEstateDialogComponent,OptionComponent,EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
