@@ -1,1 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+
+mat-drawer-content{
+    background-color: #f3f4f7 !important;
+}

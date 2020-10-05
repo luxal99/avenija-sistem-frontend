@@ -13,6 +13,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
 import { EstateOverviewComponent } from './admin/estate-overview/estate-overview.component';
+import { AddEstateDialogComponent } from './admin/estate-overview/add-estate-dialog/add-estate-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EstateOverviewComponent } from './admin/estate-overview/estate-overview
     HomeComponent,
     AdminComponent,
     ClientComponent,
-    EstateOverviewComponent
+    EstateOverviewComponent,
+    AddEstateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { EstateOverviewComponent } from './admin/estate-overview/estate-overview
   providers: [HttpClientModule,
     {provide:LocationStrategy,useClass:HashLocationStrategy}
   ],
-  entryComponents:[EstateOverviewComponent],
+  entryComponents:[AddEstateDialogComponent,EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
