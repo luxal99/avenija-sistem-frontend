@@ -79,3 +79,19 @@ mat-form-field {
 ::ng-deep.mat-form-field-ripple {
     background-color: #eee !important;
 }
+
+.about-div{
+    padding: 10em 5em 10em 5em;
+}
+
+.about-div h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+      padding-top: 3em;
+}
+
+.about-p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      color: #999;
+}
