@@ -28,6 +28,8 @@ export class OptionComponent implements OnInit {
   listOfEstateCategories: Array<EstateCategory> = [];
   listOfEstateSubCategories: Array<EstateSubCategory> = [];
   listOfEstateTypes: Array<EstateType> = [];
+  listOfEquipment;
+  
 
   constructor(private cityService: CityService,
     private partOfCityService: PartOfCityService,
