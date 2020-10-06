@@ -2,7 +2,9 @@
     "context": [
         "/user",
         "/estateCategory",
-        "/estateSubCategory"
+        "/estateSubCategory",
+        "/city",
+        "/partOfCity"
         ],
     "target": "http://localhost:8080",
     "secure": false

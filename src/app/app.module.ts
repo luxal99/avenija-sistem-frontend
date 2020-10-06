@@ -15,6 +15,8 @@ import { ClientComponent } from './client/client.component';
 import { EstateOverviewComponent } from './admin/estate-overview/estate-overview.component';
 import { AddEstateDialogComponent } from './admin/estate-overview/add-estate-dialog/add-estate-dialog.component';
 import { OptionComponent } from './admin/option/option.component';
+import { AddCityDialogComponent } from './admin/option/add-city-dialog/add-city-dialog.component';
+import { AddPartOfCityDialogComponent } from './admin/option/add-part-of-city-dialog/add-part-of-city-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { OptionComponent } from './admin/option/option.component';
     ClientComponent,
     EstateOverviewComponent,
     AddEstateDialogComponent,
-    OptionComponent
+    OptionComponent,
+    AddCityDialogComponent,
+    AddPartOfCityDialogComponent
   ],
   imports: [
     BrowserModule,

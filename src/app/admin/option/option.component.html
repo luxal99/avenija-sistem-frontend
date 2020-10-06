@@ -1,1 +1,69 @@
-<p>option works!</p>
+<div class="option">
+    <mat-tab-group mat-stretch-tabs animationDuration="300ms">
+        <mat-tab label="Lokacija" style="height: 100%;"> 
+           <div class="row">
+               <div class="col-sm">
+                <div style="margin-top: 2em;">
+                    <button class="big-blue-btn">Dodaj grad</button>
+                </div>
+                <table mat-table [dataSource]="listOfCities" class="mat-elevation-z8">
+    
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id">
+                      <th mat-header-cell *matHeaderCellDef> Id </th>
+                      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="title">
+                      <th mat-header-cell *matHeaderCellDef> Naziv grada </th>
+                      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                    </ng-container>
+                  
+                  
+                    <tr mat-header-row *matHeaderRowDef="cityColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: cityColumns;"></tr>
+                  </table>
+               </div>
+               <div class="col-sm">
+                <div style="margin-top: 2em;">
+                  <button class="big-blue-btn">Dodaj deo grada</button>
+              </div>
+              <table mat-table [dataSource]="listOfPartsOfCities" class="mat-elevation-z8">
+  
+                  <!--- Note that these columns can be defined in any order.
+                        The actual rendered columns are set as a property on the row definition" -->
+                
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                  </ng-container>
+                
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef> Naziv dela grada </th>
+                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                  </ng-container>
+                
+                  <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef> Naziv grada </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id_city.title}} </td>
+                  </ng-container>
+                
+                  <tr mat-header-row *matHeaderRowDef="partOfCityColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: partOfCityColumns;"></tr>
+                </table>
+               </div>
+           </div>
+              
+              
+        </mat-tab>
+        <mat-tab label="Second"> Content 2 </mat-tab>
+        <mat-tab label="Third"> Content 3 </mat-tab>
+      </mat-tab-group>
+      
+</div>

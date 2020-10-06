@@ -7,13 +7,3 @@
       padding-right: 5em;
  }
 
- .add-estate-btn{
-    background-color: #00c3f6;
-    border: 0 !important;
-    color: #fff;
-    padding: 1em 2em 1em 2em;
-    font-family: 'Poppins', sans-serif;
-    -webkit-box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
- }
