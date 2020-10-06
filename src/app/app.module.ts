@@ -24,7 +24,7 @@ import { AddEquipmentDialogComponent } from './admin/option/add-equipment-dialog
 import { AddAccessoriesDialogComponent } from './admin/option/add-accessories-dialog/add-accessories-dialog.component';
 import { AddHeatingDialogComponent } from './admin/option/add-heating-dialog/add-heating-dialog.component';
 import { FooterComponent } from './footer/footer.component';
-import { RegistrationComponent } from './home/registration/registration.component';
+import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { RegistrationComponent } from './home/registration/registration.componen
     AddAccessoriesDialogComponent,
     AddHeatingDialogComponent,
     FooterComponent,
-    RegistrationComponent
+    RegistrationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +58,9 @@ import { RegistrationComponent } from './home/registration/registration.componen
   providers: [HttpClientModule,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
-  entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent, AddPartOfCityDialogComponent, AddEstateDialogComponent, OptionComponent, EstateOverviewComponent],
+  entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
+     AddPartOfCityDialogComponent, 
+     AddEstateDialogComponent, OptionComponent,RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
