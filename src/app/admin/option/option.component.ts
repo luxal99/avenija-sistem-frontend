@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { City } from 'src/app/models/CIty';
+import { Equipment } from 'src/app/models/Equipment';
 import { EstateCategory } from 'src/app/models/EstateCategory';
 import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
 import { EstateType } from 'src/app/models/EstateType';
@@ -28,8 +29,8 @@ export class OptionComponent implements OnInit {
   listOfEstateCategories: Array<EstateCategory> = [];
   listOfEstateSubCategories: Array<EstateSubCategory> = [];
   listOfEstateTypes: Array<EstateType> = [];
-  listOfEquipment;
-  
+  listOfEquipment: Array<Equipment> = [];
+
 
   constructor(private cityService: CityService,
     private partOfCityService: PartOfCityService,
@@ -77,6 +78,9 @@ export class OptionComponent implements OnInit {
     })
   }
 
+  getEquipments (){
+    
+  }
   openAddCityDialog() {
     const dialogRef = this.dialog.open(AddCityDialogComponent, {
       width: 'auto'
