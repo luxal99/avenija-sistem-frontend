@@ -1,1 +1,64 @@
-<p>registration-dialog works!</p>
+
+  <mat-horizontal-stepper  #stepper>
+    <mat-step [stepControl]="userInfoForm">
+      <form [formGroup]="userInfoForm">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Ime i prezime</mat-label>
+                <input matInput formControlName="full_name">
+                <mat-icon matSuffix>attach_money</mat-icon>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-icon matSuffix>attach_money</mat-icon>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Telefon</mat-label>
+                <input matInput formControlName="telephone">
+                <mat-icon matSuffix>attach_money</mat-icon>
+              </mat-form-field>
+        </div>
+        
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="userForm" label="Fill out your address">
+      <form [formGroup]="userForm">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Korisnicko ime</mat-label>
+                <input matInput formControlName="username">
+                <mat-icon matSuffix>attach_money</mat-icon>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Šifra</mat-label>
+                <input matInput formControlName="password">
+                <mat-icon matSuffix>attach_money</mat-icon>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Potvrda šifre</mat-label>
+                <input matInput formControlName="password_confirm">
+                <mat-icon matSuffix>attach_money</mat-icon>
+              </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+  
