@@ -1,1 +1,21 @@
-<p>add-part-of-city-dialog works!</p>
+<form [formGroup]="addPartOfCityForm">
+    <mat-form-field appearance="fill" >
+        <mat-label>Naziv dela grada</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Grad</mat-label>
+            <mat-select formControlName="id_city" >
+              <mat-option *ngFor="let city of listOfCities" [value]="city">
+                {{city.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+
+      <div class="text-center">
+          <button class="big-blue-btn" mat-dialog-close (click)="save()">Sacuvaj</button>
+      </div>
+</form>

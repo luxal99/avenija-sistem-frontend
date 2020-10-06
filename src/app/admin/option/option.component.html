@@ -4,7 +4,7 @@
            <div class="row">
                <div class="col-sm">
                 <div style="margin-top: 2em;">
-                    <button class="big-blue-btn">Dodaj grad</button>
+                    <button class="big-blue-btn" (click)="openAddCityDialog()">Dodaj grad</button>
                 </div>
                 <table mat-table [dataSource]="listOfCities" class="mat-elevation-z8">
     
@@ -30,7 +30,7 @@
                </div>
                <div class="col-sm">
                 <div style="margin-top: 2em;">
-                  <button class="big-blue-btn">Dodaj deo grada</button>
+                  <button class="big-blue-btn" (click)="openAddPartOfCityDialog()">Dodaj deo grada</button>
               </div>
               <table mat-table [dataSource]="listOfPartsOfCities" class="mat-elevation-z8">
   

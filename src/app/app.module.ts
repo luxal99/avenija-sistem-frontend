@@ -42,7 +42,7 @@ import { AddPartOfCityDialogComponent } from './admin/option/add-part-of-city-di
   providers: [HttpClientModule,
     {provide:LocationStrategy,useClass:HashLocationStrategy}
   ],
-  entryComponents:[AddEstateDialogComponent,OptionComponent,EstateOverviewComponent],
+  entryComponents:[AddCityDialogComponent,AddPartOfCityDialogComponent,AddEstateDialogComponent,OptionComponent,EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
