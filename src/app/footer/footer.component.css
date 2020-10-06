@@ -1,0 +1,15 @@
+.contact {
+    background-color: #282828;
+    padding: 5em 10em 5em 10em;
+}
+
+h4{
+    color: #fff;
+}
+
+h5 {
+    color: #00c3f6;
+    font-weight: 300;
+}
+
+h4, h5 {  font-family: 'Poppins', sans-serif;}
