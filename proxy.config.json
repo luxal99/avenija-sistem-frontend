@@ -5,7 +5,12 @@
         "/estateSubCategory",
         "/city",
         "/partOfCity",
-        "/estateType"
+        "/estateType",
+        "/transaction",
+        "/equipment",
+        "/heating",
+        "/accessories"
+
         ],
     "target": "http://localhost:8080",
     "secure": false

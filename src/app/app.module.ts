@@ -20,6 +20,9 @@ import { AddPartOfCityDialogComponent } from './admin/option/add-part-of-city-di
 import { AddEstateCategoryDialogComponent } from './admin/option/add-estate-category-dialog/add-estate-category-dialog.component';
 import { AddEstateSubCategoryDialogComponent } from './admin/option/add-estate-sub-category-dialog/add-estate-sub-category-dialog.component';
 import { AddEstateTypeDialogComponent } from './admin/option/add-estate-type-dialog/add-estate-type-dialog.component';
+import { AddEquipmentDialogComponent } from './admin/option/add-equipment-dialog/add-equipment-dialog.component';
+import { AddAccessoriesDialogComponent } from './admin/option/add-accessories-dialog/add-accessories-dialog.component';
+import { AddHeatingDialogComponent } from './admin/option/add-heating-dialog/add-heating-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { AddEstateTypeDialogComponent } from './admin/option/add-estate-type-dia
     AddPartOfCityDialogComponent,
     AddEstateCategoryDialogComponent,
     AddEstateSubCategoryDialogComponent,
-    AddEstateTypeDialogComponent
+    AddEstateTypeDialogComponent,
+    AddEquipmentDialogComponent,
+    AddAccessoriesDialogComponent,
+    AddHeatingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +52,9 @@ import { AddEstateTypeDialogComponent } from './admin/option/add-estate-type-dia
     AppRoutingModule
   ],
   providers: [HttpClientModule,
-    {provide:LocationStrategy,useClass:HashLocationStrategy}
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
-  entryComponents:[AddCityDialogComponent,AddEstateTypeDialogComponent,AddEstateCategoryDialogComponent,AddEstateSubCategoryDialogComponent,AddPartOfCityDialogComponent,AddEstateDialogComponent,OptionComponent,EstateOverviewComponent],
+  entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent, AddPartOfCityDialogComponent, AddEstateDialogComponent, OptionComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

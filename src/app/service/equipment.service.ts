@@ -6,5 +6,5 @@ import { FactoryService } from './factory.service';
   providedIn: 'root'
 })
 export class EquipmentService extends FactoryService<Equipment> {
-  route = "equipment"
+  route = 'equipment'
 }
