@@ -1,0 +1,10 @@
+<form [formGroup]="addEstateCategoryForm">
+    <mat-form-field appearance="fill" >
+        <mat-label>Naziv kategorije</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <div class="text-center">
+          <button class="big-blue-btn" mat-dialog-close (click)="save()">Sacuvaj</button>
+      </div>
+</form>

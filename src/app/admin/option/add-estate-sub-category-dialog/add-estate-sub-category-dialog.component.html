@@ -1,0 +1,21 @@
+<form [formGroup]="addEstateSubCategoryForm">
+    <mat-form-field appearance="fill" >
+        <mat-label>Naziv potkategorije</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Kategorija</mat-label>
+            <mat-select formControlName="id_estate_category" >
+              <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory">
+                {{estateCategory.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+
+      <div class="text-center">
+          <button class="big-blue-btn" mat-dialog-close (click)="save()">Sacuvaj</button>
+      </div>
+</form>

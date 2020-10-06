@@ -4,7 +4,8 @@
         "/estateCategory",
         "/estateSubCategory",
         "/city",
-        "/partOfCity"
+        "/partOfCity",
+        "/estateType"
         ],
     "target": "http://localhost:8080",
     "secure": false

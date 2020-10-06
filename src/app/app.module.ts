@@ -17,6 +17,9 @@ import { AddEstateDialogComponent } from './admin/estate-overview/add-estate-dia
 import { OptionComponent } from './admin/option/option.component';
 import { AddCityDialogComponent } from './admin/option/add-city-dialog/add-city-dialog.component';
 import { AddPartOfCityDialogComponent } from './admin/option/add-part-of-city-dialog/add-part-of-city-dialog.component';
+import { AddEstateCategoryDialogComponent } from './admin/option/add-estate-category-dialog/add-estate-category-dialog.component';
+import { AddEstateSubCategoryDialogComponent } from './admin/option/add-estate-sub-category-dialog/add-estate-sub-category-dialog.component';
+import { AddEstateTypeDialogComponent } from './admin/option/add-estate-type-dialog/add-estate-type-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { AddPartOfCityDialogComponent } from './admin/option/add-part-of-city-di
     AddEstateDialogComponent,
     OptionComponent,
     AddCityDialogComponent,
-    AddPartOfCityDialogComponent
+    AddPartOfCityDialogComponent,
+    AddEstateCategoryDialogComponent,
+    AddEstateSubCategoryDialogComponent,
+    AddEstateTypeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,7 @@ import { AddPartOfCityDialogComponent } from './admin/option/add-part-of-city-di
   providers: [HttpClientModule,
     {provide:LocationStrategy,useClass:HashLocationStrategy}
   ],
-  entryComponents:[AddCityDialogComponent,AddPartOfCityDialogComponent,AddEstateDialogComponent,OptionComponent,EstateOverviewComponent],
+  entryComponents:[AddCityDialogComponent,AddEstateTypeDialogComponent,AddEstateCategoryDialogComponent,AddEstateSubCategoryDialogComponent,AddPartOfCityDialogComponent,AddEstateDialogComponent,OptionComponent,EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

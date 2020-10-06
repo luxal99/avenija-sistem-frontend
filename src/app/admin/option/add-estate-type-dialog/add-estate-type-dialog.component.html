@@ -1,0 +1,10 @@
+<form [formGroup]="addEstateTypeForm">
+    <mat-form-field appearance="fill" >
+        <mat-label>Naziv tipa namestenosti</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <div class="text-center">
+          <button class="big-blue-btn" mat-dialog-close (click)="save()">Sacuvaj</button>
+      </div>
+</form>

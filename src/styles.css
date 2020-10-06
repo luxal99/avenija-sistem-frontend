@@ -35,3 +35,16 @@ mat-step-header .mat-step-icon-selected {
     -moz-box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
  }
+
+.mat-form-field-ripple {
+    background-color: #eee !important;
+}
+
+.mat-focused .mat-form-field-label {
+    color: #282828 !important;
+}
+
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: #00c3f6;
+    height: 2px; 
+  }
