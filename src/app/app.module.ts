@@ -24,6 +24,7 @@ import { AddEquipmentDialogComponent } from './admin/option/add-equipment-dialog
 import { AddAccessoriesDialogComponent } from './admin/option/add-accessories-dialog/add-accessories-dialog.component';
 import { AddHeatingDialogComponent } from './admin/option/add-heating-dialog/add-heating-dialog.component';
 import { FooterComponent } from './footer/footer.component';
+import { RegistrationComponent } from './home/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FooterComponent } from './footer/footer.component';
     AddEquipmentDialogComponent,
     AddAccessoriesDialogComponent,
     AddHeatingDialogComponent,
-    FooterComponent
+    FooterComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
