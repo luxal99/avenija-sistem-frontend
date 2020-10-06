@@ -1,4 +1,73 @@
-<mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi">
-  </mat-form-field>
+<mat-drawer-container class="example-container" hasBackdrop="false" fullscreen>
+  <mat-drawer #drawer mode="side">
+      <img src="../../assets/img/white_logo.png" alt="" class="img-fluid">
+      <div class="option-menu">
+      </div>
+  </mat-drawer>
+  <mat-drawer-content>
+<div class="header">
+  <nav>
+    <div class="row">
+      <div class="col-sm-7">
+        <img src="../../assets/img/white_logo.png" width="500px" alt="" class="img-fluid">
+      </div>
+      <div class="col-sm">
+
+      <div class="text-right" style="padding-right: 4em;">
+        <h5>018 257018</h5>
+      </div>
+    <div class="menu-div">
+     <a><h5>Izdavanja</h5></a>
+     <a><h5>Prodaja</h5></a>
+     <a><h5>Kontakt</h5></a>
+     <button class="reg-btn">Registracija</button>
+
+     <button class="login-btn">Login</button>
+    </div>
+      </div>
+    </div>
+  </nav>
+  <div class="text-center text-header-div">
+    <h2>Lorem ipsum</h2>
+    <h1>Dolor nunc lorem ipsum</h1>
+  </div>
+  <div class="search-div text-center">
+    <div class="row">
+      <div class="col-sm">
+        <mat-form-field appearance="fill">
+          <mat-label>Grad</mat-label>
+          <input matInput>
+
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field appearance="fill">
+          <mat-label>Usluga</mat-label>
+          <input matInput>
+          <mat-icon matSuffix>attach_money</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field appearance="fill">
+          <mat-label>Nekretnina</mat-label>
+          <input matInput>
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field appearance="fill">
+          <mat-label>Struktura</mat-label>
+          <input matInput>
+          <mat-icon matSuffix>home</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <button class="search-btn">Pretrazi</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+  </mat-drawer-content>
+</mat-drawer-container>

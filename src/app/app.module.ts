@@ -23,6 +23,7 @@ import { AddEstateTypeDialogComponent } from './admin/option/add-estate-type-dia
 import { AddEquipmentDialogComponent } from './admin/option/add-equipment-dialog/add-equipment-dialog.component';
 import { AddAccessoriesDialogComponent } from './admin/option/add-accessories-dialog/add-accessories-dialog.component';
 import { AddHeatingDialogComponent } from './admin/option/add-heating-dialog/add-heating-dialog.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AddHeatingDialogComponent } from './admin/option/add-heating-dialog/add
     AddEstateTypeDialogComponent,
     AddEquipmentDialogComponent,
     AddAccessoriesDialogComponent,
-    AddHeatingDialogComponent
+    AddHeatingDialogComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
