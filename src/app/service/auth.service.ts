@@ -11,7 +11,7 @@ export class AuthService implements CanActivate {
   constructor(private http: HttpClient,private router:Router) { }
 
   auth(user) {
-    return this.http.post("/user/auth", user, { responseType: 'text' })
+    return this.http.post("/user/auth", user, { responseType: 'json' })
   }
 
   findUserByHash(token) {

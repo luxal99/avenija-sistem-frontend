@@ -48,3 +48,13 @@ mat-step-header .mat-step-icon-selected {
     background: #00c3f6;
     height: 2px; 
   }
+
+  ::-webkit-scrollbar {
+    height: 1em;
+    background-color: #121212;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #00c3f6;
+    border-radius: 10px;
+}/* You can add global styles to this file, and also import other style files */
