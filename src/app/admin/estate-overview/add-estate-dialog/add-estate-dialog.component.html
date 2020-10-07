@@ -1,10 +1,7 @@
 <div class="add-estate-dialog">
     <h1>Dodavanje nekretnine</h1>
-
-    <button mat-raised-button  id="toggle-linear">
-      </button>
       <mat-horizontal-stepper  #stepper>
-        <mat-step [stepControl]="firstFormGroup">
+        <mat-step >
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Fill out your name</ng-template>
             
@@ -12,10 +9,8 @@
             <h4>Tip</h4>
             <div class="divider"></div>
            <div class="radio-button-div">
-            <h5>Transakcija</h5>
-            <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1">Option 1</mat-radio-button>
-                <mat-radio-button style="margin-left: 1em;" value="2">Option 2</mat-radio-button>
+            <mat-radio-group aria-label="Select an option" *ngFor="let transaction of listOfTransaction" formControlName="id_transaction_type">
+                <mat-radio-button value="{{transaction}}">{{transaction.title}}</mat-radio-button>
               </mat-radio-group>
            </div>
 
@@ -26,33 +21,55 @@
             <mat-form-field appearance="fill" style="margin-top: 1em;">
                 
                 <mat-label>Kategorija</mat-label>
-                <mat-select [formControl]="pokemonControl">
+                <mat-select formControlName="id_estate_sub_category">
                   <mat-option>-- None --</mat-option>
-                  <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
-                                [disabled]="group.disabled">
-                    <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
-                      {{pokemon.viewValue}}
+                  <mat-optgroup *ngFor="let estateCategory of listOfEstateCategories" [label]="estateCategory.title">
+                    <mat-option *ngFor="let estateSubCategory of estateCategory.listOfEstateSubCategories" [value]="estateSubCategory">
+                      {{estateSubCategory.title}}
                     </mat-option>
                   </mat-optgroup>
                 </mat-select>
               </mat-form-field>
            </div>
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-raised-button matStepperNext style="width: 20%;border-radius: 0 !important;">Dalje</button>
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-          <form [formGroup]="secondFormGroup"></form>
-            <mat-form-field>
-              <mat-label>Address</mat-label>
-              <input matInput  placeholder="Ex. 1 Main St, New York, NY"
-                     required>
+        <mat-step label="Fill out your address">
+          <form [formGroup]="locationForm" style="margin-top: 2em;">
+          <div style="display: inline-flex;width: 100%;">
+            <mat-form-field appearance="fill" style="width: 50%;">
+              <mat-label>Grad</mat-label>
+              <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city">
+                <mat-option *ngFor="let city of listOfCities" [value]="city" >
+                  {{city.title}}
+                </mat-option>
+              </mat-select>
+
             </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 50%;margin-left: 1em;">
+              <mat-label>Deo grada</mat-label>
+              <mat-select formControlName="id_part_of_city">
+                <mat-option *ngFor="let partOfCity of listOfPartsOfCities" [value]="partOfCity">
+                  {{partOfCity.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Adresa</mat-label>
+                <input matInput formControlName="address">
+                <mat-icon matSuffix>location_city</mat-icon>
+              </mat-form-field>
+        </div>
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
             </div>
+          </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
