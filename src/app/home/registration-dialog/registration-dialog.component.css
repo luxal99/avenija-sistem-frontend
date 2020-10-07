@@ -9,9 +9,8 @@ mat-form-field {
 .reg-btn{
     border: 0 !important;
     color: #fff;
-    -webkit-box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
     background-color: #00c3f6;
-    padding: .5em 2em .5em 2em;
+
+    font-family: 'Poppins', sans-serif;
+    padding: .3em 3em .3em 3em;
 }

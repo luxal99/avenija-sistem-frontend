@@ -1,0 +1,22 @@
+<div style="padding: 2em">
+    <form [formGroup]="userForm">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Korisnicko ime</mat-label>
+                <input matInput formControlName="username">
+                <mat-icon matSuffix>account_circle</mat-icon>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Šifra</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+        </div>
+    
+        <div>
+          <button class="login-btn" mat-button (click)="auth()" [disabled]="!userForm.valid">Sačuvaj</button>
+        </div>
+      </form>
+</div>

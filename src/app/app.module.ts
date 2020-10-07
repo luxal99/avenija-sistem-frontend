@@ -25,6 +25,7 @@ import { AddAccessoriesDialogComponent } from './admin/option/add-accessories-di
 import { AddHeatingDialogComponent } from './admin/option/add-heating-dialog/add-heating-dialog.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
+import { LoginDialogComponent } from './home/login-dialog/login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RegistrationDialogComponent } from './home/registration-dialog/registra
     AddAccessoriesDialogComponent,
     AddHeatingDialogComponent,
     FooterComponent,
-    RegistrationDialogComponent
+    RegistrationDialogComponent,
+    LoginDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,7 @@ import { RegistrationDialogComponent } from './home/registration-dialog/registra
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
      AddPartOfCityDialogComponent, 
-     AddEstateDialogComponent, OptionComponent,RegistrationDialogComponent, EstateOverviewComponent],
+     AddEstateDialogComponent,LoginDialogComponent, OptionComponent,RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

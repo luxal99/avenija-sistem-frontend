@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
 
 @Component({
@@ -22,5 +23,12 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+  openLoginDialog() {
+    const dialogRef = this.dialog.open(LoginDialogComponent, {
+      width: 'auto'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 }

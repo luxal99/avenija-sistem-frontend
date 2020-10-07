@@ -26,7 +26,7 @@
         </div>
         
         <div>
-          <button mat-button matStepperNext>Dalje</button>
+          <button mat-button matStepperNext [disabled]="!userInfoForm.valid">Dalje</button>
         </div>
       </form>
     </mat-step>
@@ -55,7 +55,7 @@
         </div>
         <div>
           <button mat-button matStepperPrevious>Nazad</button>
-          <button class="reg-btn" (click)="register()">Sačuvaj</button>
+          <button class="reg-btn" mat-button (click)="register()" [disabled]="!userForm.valid">Sačuvaj</button>
         </div>
       </form>
     </mat-step>
