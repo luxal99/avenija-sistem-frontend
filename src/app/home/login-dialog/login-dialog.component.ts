@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -16,7 +17,7 @@ export class LoginDialogComponent implements OnInit {
     password: new FormControl("", Validators.required)
   })
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router:Router) { }
 
   ngOnInit() {
   }
@@ -25,8 +26,14 @@ export class LoginDialogComponent implements OnInit {
   auth() {
     let user =new User(this.userForm.get("username").value, this.userForm.get("password").value);
     this.authService.auth(user).subscribe(resp => {
-      console.log(resp);
-      
+      localStorage.setItem("token",resp['token'])
+
+      if(resp['role'].title === 'ADMIN'){
+        this.router.navigate(['/admin'])
+      }else if (resp['role'].title === 'CLIENT'){
+          
+      }
+
     })
   }
 }
