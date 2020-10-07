@@ -2,60 +2,60 @@
   <mat-horizontal-stepper  #stepper>
     <mat-step [stepControl]="userInfoForm">
       <form [formGroup]="userInfoForm">
-        <ng-template matStepLabel>Fill out your name</ng-template>
+        <ng-template matStepLabel>Lični podaci</ng-template>
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Ime i prezime</mat-label>
                 <input matInput formControlName="full_name">
-                <mat-icon matSuffix>attach_money</mat-icon>
+                <mat-icon matSuffix>contact_mail</mat-icon>
               </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email">
-                <mat-icon matSuffix>attach_money</mat-icon>
+                <mat-icon matSuffix>email</mat-icon>
               </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Telefon</mat-label>
-                <input matInput formControlName="telephone">
-                <mat-icon matSuffix>attach_money</mat-icon>
+                <input matInput type="number" formControlName="telephone">
+                <mat-icon matSuffix>local_phone</mat-icon>
               </mat-form-field>
         </div>
         
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext>Dalje</button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="userForm" label="Fill out your address">
+    <mat-step [stepControl]="userForm" label="Korisnički podaci">
       <form [formGroup]="userForm">
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Korisnicko ime</mat-label>
                 <input matInput formControlName="username">
-                <mat-icon matSuffix>attach_money</mat-icon>
+                <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Šifra</mat-label>
-                <input matInput formControlName="password">
-                <mat-icon matSuffix>attach_money</mat-icon>
+                <input matInput type="password" formControlName="password">
+                <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Potvrda šifre</mat-label>
-                <input matInput formControlName="password_confirm">
+                <input matInput type="password" formControlName="password_confirm">
                 <mat-icon matSuffix>attach_money</mat-icon>
               </mat-form-field>
         </div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Nazad</button>
+          <button class="reg-btn" (click)="register()">Sačuvaj</button>
         </div>
       </form>
     </mat-step>
