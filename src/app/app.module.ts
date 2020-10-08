@@ -27,12 +27,9 @@ import { FooterComponent } from './footer/footer.component';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 import { LoginDialogComponent } from './home/login-dialog/login-dialog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { AngularFireModule } from "@angular/fire";
+import { AngularFireModule } from "angularfire2";
 import {
-  AngularFireStorageModule,
-  AngularFireStorageReference,
-  AngularFireUploadTask
-} from "@angular/fire/storage";
+  AngularFireStorageModule} from "angularfire2/storage";
 @NgModule({
   declarations: [
     AppComponent,

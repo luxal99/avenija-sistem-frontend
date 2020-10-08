@@ -108,40 +108,6 @@
           </div>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Podaci o ceni,povrsini i namestenosti</ng-template>
-       <form [formGroup]="thirdStepForm">
-        <div>
-          <mat-form-field appearance="fill" style="width: 100%;margin-top: 2em;">
-              <mat-label>Cena</mat-label>
-              <input matInput formControlName="price">
-              <mat-icon matSuffix>attach_money</mat-icon>
-            </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="fill" style="width: 100%;">
-            <mat-label>Površina</mat-label>
-            <input matInput formControlName="quadrature">
-            <mat-icon matSuffix>crop_din</mat-icon>
-          </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="fill" style="width: 100%;">
-        <mat-label>Tip izgradjenosti</mat-label>
-        <mat-select formControlName="id_estate_type">
-          <mat-option *ngFor="let estateType of listOfEstateTypes" [value]="estateType" >
-            {{estateType.title}}
-          </mat-option>
-        </mat-select>
-
-      </mat-form-field>
-  </div>
-       </form>
-          <div>
-            <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
-            <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
-          </div>
-        </mat-step>
-        <mat-step>
         <form [formGroup]="accessoriesForm">
             <ng-template matStepLabel>Opremljenost</ng-template>
             <mat-form-field appearance="fill" style="width: 100%;">
@@ -225,15 +191,20 @@
       </div>
     </mat-step>
     <mat-step label="Slike">
-      <form [formGroup]="fileUploadForm">
+      <form [formGroup]="imageForm">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="customFile"  #uploadInput name="image" (change)="onFileSelect($event)">
+          <input type="file" class="custom-file-input" id="customFile" (change)="addFiles($event.target.files)">
           <label class="custom-file-label" for="customFile">Izabei fajl</label>
+        </div>
+        <div class="row">
+          <div class="col-sm-3" *ngFor="let image of fileUploadList">
+            <img src="{{image.mozFullPath}}" alt="" class="img-fluid">
+          </div>
         </div>
         <div style="margin-top: 2em;">
           <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
       
-          <button mat-button class="blue-btn" style="margin-left: 2em;">Sačuvaj</button>
+          <button mat-button class="blue-btn" style="margin-left: 2em;" (click)="uploadFiles()">Sačuvaj</button>
         </div>
       </form>
     </mat-step>

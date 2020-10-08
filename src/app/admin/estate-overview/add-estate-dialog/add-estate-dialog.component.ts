@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSlideToggle, MatSnackBar } from '@angular/material';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { Accessories } from 'src/app/models/Accessories';
 import { City } from 'src/app/models/CIty';
@@ -21,8 +21,9 @@ import { HeatingService } from 'src/app/service/heating.service';
 import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ElementRef } from '@angular/core';
+import { Image } from 'src/app/models/Image';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireStorage } from '@angular/fire/storage';
 @Component({
   selector: 'app-add-estate-dialog',
   templateUrl: './add-estate-dialog.component.html',
@@ -33,9 +34,13 @@ export class AddEstateDialogComponent implements OnInit {
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
 
-  @ViewChild('fileUpload', { static: false }) uploadInput: ElementRef;
-  fileUploadForm: FormGroup;
-  fileInputLabel: string
+  @ViewChild('toggle', { static: false }) toggle: MatSlideToggle;
+
+  editorData = '';
+  description = '';
+
+  percentage: number = 0;
+  isReady = 'Nije spremno';
 
   listOfTransaction: Array<Transaction> = [];
   listOfCities: Array<City> = []
@@ -46,6 +51,8 @@ export class AddEstateDialogComponent implements OnInit {
   listOfEquipment: Array<Equipment> = [];
   listOfAccessories: Array<Accessories> = [];
   listOfHeating: Array<Heating> = [];
+  listOfImages: Array<Image> = [];
+  fileUploadList: Array<File> = [];
 
   firstFormGroup = new FormGroup({
     id_transaction_type: new FormControl("", Validators.required),
@@ -78,6 +85,9 @@ export class AddEstateDialogComponent implements OnInit {
     title: new FormControl("", Validators.required)
   })
 
+  imageForm = new FormGroup({
+    isUploaded: new FormControl("", Validators.required)
+  })
 
   constructor(private transactionService: TransactionService,
     private cityService: CityService,
@@ -85,6 +95,8 @@ export class AddEstateDialogComponent implements OnInit {
     private heatingService: HeatingService,
     private http: HttpClient,
     private formBuilder: FormBuilder,
+    public _snackBar: MatSnackBar,
+    private afStorage: AngularFireStorage,
     private accessoriesService: AccessoriesService,
     private partOfCityService: PartOfCityService,
     private estateTypeService: EstateTypeService,
@@ -103,12 +115,42 @@ export class AddEstateDialogComponent implements OnInit {
     this.getEquipments()
   }
 
-  onFileSelect(event) {
-    console.log(event.target.files);
-    
-    const file = event.target.files[0];
-    this.fileInputLabel = file.name;
-    this.fileUploadForm.get('uploadedImage').setValue(file);
+  addFiles(event) {
+    for (let index = 0; index < event.length; index++) {
+      if (event[index].size / 1000 > 700) {
+        this.openSnackBar("Prevelik fajl", "DONE");
+      } else {
+
+        const element = event[index];
+        this.fileUploadList.push(element);
+      }
+    }
+  }
+
+  uploadFiles() {
+
+    for (const file of this.fileUploadList) {
+      this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
+        this.percentage = data
+      });
+    }
+
+    setTimeout(() => {
+
+      for (const fileName of this.fileUploadList) {
+        const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
+          var image = new Image()
+          image.url = data;
+          this.listOfImages.push(image);
+
+          this.toggle.writeValue(true);
+          this.isReady = 'Spremno je';
+          document.getElementById('toggle').style.color = "#4BB543";
+
+        });
+      }
+    }, 1500 * this.fileUploadList.length)
+
   }
 
   async filterPartOfCity() {
@@ -176,6 +218,13 @@ export class AddEstateDialogComponent implements OnInit {
     this.transactionService.getAll().subscribe(resp => {
       this.listOfTransaction = resp as Array<Transaction>
     })
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }
