@@ -27,6 +27,12 @@ import { FooterComponent } from './footer/footer.component';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 import { LoginDialogComponent } from './home/login-dialog/login-dialog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AngularFireModule } from "@angular/fire";
+import {
+  AngularFireStorageModule,
+  AngularFireStorageReference,
+  AngularFireUploadTask
+} from "@angular/fire/storage";
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +61,19 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     MatIconModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule, CKEditorModule
+    AppRoutingModule,
+    CKEditorModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAz8PX_PdPZo7WmWuxLYVMDiJUOozl0Fn4",
+      authDomain: "soy-smile-249718.firebaseapp.com",
+      databaseURL: "https://soy-smile-249718.firebaseio.com",
+      projectId: "soy-smile-249718",
+      storageBucket: "soy-smile-249718.appspot.com",
+      messagingSenderId: "870517553704",
+      appId: "1:870517553704:web:d238ce266071d519f8131d",
+      measurementId: "G-JGV7HTSL0B"
+    }),
   ],
   providers: [HttpClientModule,
     { provide: LocationStrategy, useClass: HashLocationStrategy }

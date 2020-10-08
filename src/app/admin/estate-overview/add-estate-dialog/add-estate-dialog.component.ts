@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { Accessories } from 'src/app/models/Accessories';
@@ -21,6 +21,8 @@ import { HeatingService } from 'src/app/service/heating.service';
 import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-add-estate-dialog',
   templateUrl: './add-estate-dialog.component.html',
@@ -30,6 +32,10 @@ export class AddEstateDialogComponent implements OnInit {
 
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
+
+  @ViewChild('fileUpload', { static: false }) uploadInput: ElementRef;
+  fileUploadForm: FormGroup;
+  fileInputLabel: string
 
   listOfTransaction: Array<Transaction> = [];
   listOfCities: Array<City> = []
@@ -53,19 +59,23 @@ export class AddEstateDialogComponent implements OnInit {
   });
 
   thirdStepForm = new FormGroup({
-    price: new FormControl("",Validators.required),
-    quadrature: new FormControl("",Validators.required),
-    id_estate_type: new FormControl("",Validators.required)
+    price: new FormControl("", Validators.required),
+    quadrature: new FormControl("", Validators.required),
+    id_estate_type: new FormControl("", Validators.required)
   })
 
   accessoriesForm = new FormGroup({
-    id_equipment: new FormControl("",Validators.required),
-    id_heating:new FormControl("",Validators.required),
-    floor: new FormControl("",Validators.required),
-    max_floor : new FormControl("",Validators.required),
-    rooms: new FormControl("",Validators.required),
-    num_of_bathrooms: new FormControl("",Validators.required),
-    accesory: new FormControl("",Validators.required)
+    id_equipment: new FormControl("", Validators.required),
+    id_heating: new FormControl("", Validators.required),
+    floor: new FormControl("", Validators.required),
+    max_floor: new FormControl("", Validators.required),
+    rooms: new FormControl("", Validators.required),
+    num_of_bathrooms: new FormControl("", Validators.required),
+    accesory: new FormControl("", Validators.required)
+  })
+
+  titleForm = new FormGroup({
+    title: new FormControl("", Validators.required)
   })
 
 
@@ -73,6 +83,8 @@ export class AddEstateDialogComponent implements OnInit {
     private cityService: CityService,
     private equipmentService: EquipmentService,
     private heatingService: HeatingService,
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
     private accessoriesService: AccessoriesService,
     private partOfCityService: PartOfCityService,
     private estateTypeService: EstateTypeService,
@@ -91,12 +103,20 @@ export class AddEstateDialogComponent implements OnInit {
     this.getEquipments()
   }
 
+  onFileSelect(event) {
+    console.log(event.target.files);
+    
+    const file = event.target.files[0];
+    this.fileInputLabel = file.name;
+    this.fileUploadForm.get('uploadedImage').setValue(file);
+  }
+
   async filterPartOfCity() {
 
     this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
     let city: City = this.locationForm.get("id_city").value;
     this.listOfPartsOfCities = this.listOfPartsOfCities.filter(x => x.id_city.id === city.id)
-  
+
   }
 
   getCities() {

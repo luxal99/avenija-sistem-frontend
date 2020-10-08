@@ -1,6 +1,6 @@
 <div class="add-estate-dialog">
     <h1>Dodavanje nekretnine</h1>
-      <mat-horizontal-stepper  #stepper>
+      <mat-horizontal-stepper  #stepper animationDuration="30">
         <mat-step >
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Tip i kategorija</ng-template>
@@ -207,10 +207,36 @@
     </mat-step>
     <mat-step label="Naziv i opis">
       <div>
+     <form [formGroup]="titleForm">
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Naziv</mat-label>
+            <input matInput formControlName="title">
+            <mat-icon matSuffix>format_align_right</mat-icon>
+          </mat-form-field>
+        </div>
+      </form>
         <ckeditor #editor [editor]="Editor"></ckeditor>
+        <div style="margin-top: 2em;">
+          <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
+      
+          <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+        </div>
       </div>
     </mat-step>
-    <mat-step label="Slike"></mat-step>
+    <mat-step label="Slike">
+      <form [formGroup]="fileUploadForm">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile"  #uploadInput name="image" (change)="onFileSelect($event)">
+          <label class="custom-file-label" for="customFile">Izabei fajl</label>
+        </div>
+        <div style="margin-top: 2em;">
+          <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
+      
+          <button mat-button class="blue-btn" style="margin-left: 2em;">Sačuvaj</button>
+        </div>
+      </form>
+    </mat-step>
       </mat-horizontal-stepper>
       
 </div>
