@@ -26,7 +26,7 @@ import { AddHeatingDialogComponent } from './admin/option/add-heating-dialog/add
 import { FooterComponent } from './footer/footer.component';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 import { LoginDialogComponent } from './home/login-dialog/login-dialog.component';
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,14 +55,14 @@ import { LoginDialogComponent } from './home/login-dialog/login-dialog.component
     MatIconModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule, CKEditorModule
   ],
   providers: [HttpClientModule,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
-     AddPartOfCityDialogComponent, 
-     AddEstateDialogComponent,LoginDialogComponent, OptionComponent,RegistrationDialogComponent, EstateOverviewComponent],
+    AddPartOfCityDialogComponent,
+    AddEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { Accessories } from 'src/app/models/Accessories';
 import { City } from 'src/app/models/CIty';
 import { Equipment } from 'src/app/models/Equipment';
@@ -19,13 +20,16 @@ import { EstateTypeService } from 'src/app/service/estate-type.service';
 import { HeatingService } from 'src/app/service/heating.service';
 import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { TransactionService } from 'src/app/service/transaction.service';
-
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-add-estate-dialog',
   templateUrl: './add-estate-dialog.component.html',
   styleUrls: ['./add-estate-dialog.component.css']
 })
 export class AddEstateDialogComponent implements OnInit {
+
+  @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
+  public Editor = ClassicEditor;
 
   listOfTransaction: Array<Transaction> = [];
   listOfCities: Array<City> = []
@@ -46,7 +50,24 @@ export class AddEstateDialogComponent implements OnInit {
     id_city: new FormControl("", Validators.required),
     id_part_of_city: new FormControl("", Validators.required),
     address: new FormControl("", Validators.required)
+  });
+
+  thirdStepForm = new FormGroup({
+    price: new FormControl("",Validators.required),
+    quadrature: new FormControl("",Validators.required),
+    id_estate_type: new FormControl("",Validators.required)
   })
+
+  accessoriesForm = new FormGroup({
+    id_equipment: new FormControl("",Validators.required),
+    id_heating:new FormControl("",Validators.required),
+    floor: new FormControl("",Validators.required),
+    max_floor : new FormControl("",Validators.required),
+    rooms: new FormControl("",Validators.required),
+    num_of_bathrooms: new FormControl("",Validators.required),
+    accesory: new FormControl("",Validators.required)
+  })
+
 
   constructor(private transactionService: TransactionService,
     private cityService: CityService,
@@ -74,8 +95,8 @@ export class AddEstateDialogComponent implements OnInit {
 
     this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
     let city: City = this.locationForm.get("id_city").value;
-
     this.listOfPartsOfCities = this.listOfPartsOfCities.filter(x => x.id_city.id === city.id)
+  
   }
 
   getCities() {

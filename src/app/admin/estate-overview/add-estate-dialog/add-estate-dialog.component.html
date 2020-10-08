@@ -3,7 +3,7 @@
       <mat-horizontal-stepper  #stepper>
         <mat-step >
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
+            <ng-template matStepLabel>Tip i kategorija</ng-template>
             
 
             <h4>Tip</h4>
@@ -18,7 +18,7 @@
 
             <h4>Kategorija</h4>
             <div class="divider"></div>
-            <mat-form-field appearance="fill" style="margin-top: 1em;">
+            <mat-form-field appearance="fill" style="margin-top: 1em;width: 100%;">
                 
                 <mat-label>Kategorija</mat-label>
                 <mat-select formControlName="id_estate_sub_category">
@@ -32,11 +32,11 @@
               </mat-form-field>
            </div>
             <div>
-              <button mat-raised-button matStepperNext style="width: 20%;border-radius: 0 !important;">Dalje</button>
+              <button mat-button matStepperNext class="blue-btn">Napred</button>
             </div>
           </form>
         </mat-step>
-        <mat-step label="Fill out your address">
+        <mat-step label="Lokacija">
           <form [formGroup]="locationForm" style="margin-top: 2em;">
           <div style="display: inline-flex;width: 100%;">
             <mat-form-field appearance="fill" style="width: 50%;">
@@ -66,19 +66,151 @@
               </mat-form-field>
         </div>
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
+              <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
             </div>
           </form>
         </mat-step>
+
+
         <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
+          <ng-template matStepLabel>Podaci o ceni,povrsini i namestenosti</ng-template>
+       <form [formGroup]="thirdStepForm">
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;margin-top: 2em;">
+              <mat-label>Cena</mat-label>
+              <input matInput formControlName="price">
+              <mat-icon matSuffix>attach_money</mat-icon>
+            </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Površina</mat-label>
+            <input matInput formControlName="quadrature">
+            <mat-icon matSuffix>crop_din</mat-icon>
+          </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Tip izgradjenosti</mat-label>
+        <mat-select formControlName="id_estate_type">
+          <mat-option *ngFor="let estateType of listOfEstateTypes" [value]="estateType" >
+            {{estateType.title}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+  </div>
+       </form>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
+            <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
           </div>
         </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Podaci o ceni,povrsini i namestenosti</ng-template>
+       <form [formGroup]="thirdStepForm">
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;margin-top: 2em;">
+              <mat-label>Cena</mat-label>
+              <input matInput formControlName="price">
+              <mat-icon matSuffix>attach_money</mat-icon>
+            </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Površina</mat-label>
+            <input matInput formControlName="quadrature">
+            <mat-icon matSuffix>crop_din</mat-icon>
+          </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Tip izgradjenosti</mat-label>
+        <mat-select formControlName="id_estate_type">
+          <mat-option *ngFor="let estateType of listOfEstateTypes" [value]="estateType" >
+            {{estateType.title}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+  </div>
+       </form>
+          <div>
+            <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
+            <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+          </div>
+        </mat-step>
+        <mat-step>
+        <form [formGroup]="accessoriesForm">
+            <ng-template matStepLabel>Opremljenost</ng-template>
+            <mat-form-field appearance="fill" style="width: 100%;">
+             <mat-label>Tip opremljenost</mat-label>
+             <mat-select formControlName="id_equipment">
+               <mat-option *ngFor="let equipment of listOfEquipment" [value]="equipment" >
+                 {{equipment.title}}
+               </mat-option>
+             </mat-select>
+     
+           </mat-form-field>
+ <div>
+   <mat-form-field appearance="fill" style="width: 100%;">
+     <mat-label>Broj kupatila</mat-label>
+     <input matInput formControlName="num_of_bathrooms">
+     <mat-icon matSuffix>pool</mat-icon>
+   </mat-form-field>
+ </div>
+ <div>
+   <mat-form-field appearance="fill" style="width: 100%;">
+     <mat-label>Sprat</mat-label>
+     <input matInput formControlName="floor">
+     <mat-icon matSuffix>format_list_numbered</mat-icon>
+   </mat-form-field>
+ </div>
+ <div>
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Broj soba</mat-label>
+    <input matInput formControlName="rooms">
+    <mat-icon matSuffix>king_bed</mat-icon>
+  </mat-form-field>
+</div>
+ <div>
+   <mat-form-field appearance="fill" style="width: 100%;">
+     <mat-label>Broj spratova u zgradi</mat-label>
+     <input matInput formControlName="max_floor">
+     <mat-icon matSuffix>format_list_numbered</mat-icon>
+   </mat-form-field>
+ </div>
+ <div>
+   <mat-form-field appearance="fill" style="width: 100%;">
+     <mat-label>Tip grejanja</mat-label>
+     <mat-select formControlName="id_heating">
+       <mat-option *ngFor="let heating of listOfHeating" [value]="heating" >
+         {{heating.title}}
+       </mat-option>
+     </mat-select>
+ 
+   </mat-form-field>
+ 
+ </div>
+           <section *ngFor="let acc of listOfAccessories">
+             <mat-checkbox class="example-margin" formControlName="accesory">{{acc.title}}</mat-checkbox>
+           </section>
+ 
+ 
+   <div style="margin-top: 2em;">
+     <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
+ 
+     <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+   </div>
+        </form>
+    </mat-step>
+    <mat-step label="Naziv i opis">
+      <div>
+        <ckeditor #editor [editor]="Editor"></ckeditor>
+      </div>
+    </mat-step>
+    <mat-step label="Slike"></mat-step>
       </mat-horizontal-stepper>
       
 </div>

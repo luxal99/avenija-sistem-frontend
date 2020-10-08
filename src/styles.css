@@ -58,3 +58,7 @@ mat-step-header .mat-step-icon-selected {
     background: #00c3f6;
     border-radius: 10px;
 }/* You can add global styles to this file, and also import other style files */
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background{
+    background-color: #00c3f6;
+}

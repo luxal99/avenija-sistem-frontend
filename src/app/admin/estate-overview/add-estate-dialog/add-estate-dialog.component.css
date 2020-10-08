@@ -1,14 +1,14 @@
-.add-estate-dialog{
+.add-estate-dialog {
     padding: 5em 2em 5em 2em;
-
     font-family: 'Poppins', sans-serif;
 }
 
 .radio-button-div {
-    padding-top: .5em; display: inline-flex;
-
+    padding-top: .5em;
+    display: inline-flex;
 }
-h4{
+
+h4 {
     padding-top: 2em;
     font-weight: bold;
 }
@@ -18,13 +18,33 @@ h4{
     background-color: #e1e1e1;
     height: 1px;
 }
-h4,h5{
 
+h4, h5 {
     font-family: 'Poppins', sans-serif;
 }
+
 mat-radio-group {
-     margin-left: 1em;
+    margin-left: 1em;
 }
 
 ::ng-deep.mat-form-field-appearance-fill .mat-form-field-underline::before {
-    background:none}
+    background: none
+}
+
+.blue-btn {
+    width: 20%;
+    border: 0 !important;
+    background-color: #00c3f6;
+    border-radius: 0 !important;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+.silver-btn{
+    width: 20%;
+    border: 0 !important;
+    background-color: #f3f4f7;
+    border-radius: 0 !important;
+    font-family: 'Poppins', sans-serif;
+    color: #00c3f6;
+}
