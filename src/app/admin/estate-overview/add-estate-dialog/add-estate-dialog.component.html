@@ -160,7 +160,7 @@
  
  </div>
            <section *ngFor="let acc of listOfAccessories">
-             <mat-checkbox class="example-margin" formControlName="accesory">{{acc.title}}</mat-checkbox>
+             <mat-checkbox class="example-margin" formControlName="accesory" (change)="addAccessories($event,acc)">{{acc.title}}</mat-checkbox>
            </section>
  
  

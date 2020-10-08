@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatSlideToggle, MatSnackBar } from '@angular/material';
+import { MatCheckboxChange, MatDialog, MatSlideToggle, MatSnackBar } from '@angular/material';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { Accessories } from 'src/app/models/Accessories';
 import { City } from 'src/app/models/CIty';
@@ -54,6 +54,7 @@ export class AddEstateDialogComponent implements OnInit {
   listOfHeating: Array<Heating> = [];
   listOfImages: Array<Image> = [];
   fileUploadList: Array<File> = [];
+  listOfSelectedAccessories = new Set<Accessories>();
 
   firstFormGroup = new FormGroup({
     id_transaction_type: new FormControl("", Validators.required),
@@ -130,6 +131,10 @@ export class AddEstateDialogComponent implements OnInit {
     this.uploadFiles();
   }
 
+  addAccessories($event: MatCheckboxChange, accessories: Accessories) {
+    var c = (($event.checked)) ? this.listOfSelectedAccessories.add(accessories) : this.listOfSelectedAccessories.delete(accessories);
+  }
+
   uploadFiles() {
 
     var totalUploadSize = 0;
@@ -189,7 +194,7 @@ export class AddEstateDialogComponent implements OnInit {
 
   deletePhoto(photo) {
     var index = this.listOfImages.indexOf(photo);
-    this.listOfImages.splice(index,1)
+    this.listOfImages.splice(index, 1)
   }
 
 
