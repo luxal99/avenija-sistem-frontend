@@ -27,9 +27,9 @@ import { FooterComponent } from './footer/footer.component';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 import { LoginDialogComponent } from './home/login-dialog/login-dialog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { AngularFireModule } from "angularfire2";
-import {
-  AngularFireStorageModule} from "angularfire2/storage";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import {NgxImageCompressService} from 'ngx-image-compress';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +72,7 @@ import {
       measurementId: "G-JGV7HTSL0B"
     }),
   ],
-  providers: [HttpClientModule,
+  providers: [HttpClientModule,NgxImageCompressService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,

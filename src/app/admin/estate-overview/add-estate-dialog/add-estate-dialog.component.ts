@@ -24,6 +24,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Image } from 'src/app/models/Image';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireStorage } from '@angular/fire/storage';
+
 @Component({
   selector: 'app-add-estate-dialog',
   templateUrl: './add-estate-dialog.component.html',
@@ -125,13 +126,26 @@ export class AddEstateDialogComponent implements OnInit {
         this.fileUploadList.push(element);
       }
     }
+
+    this.uploadFiles();
   }
 
   uploadFiles() {
 
+    var totalUploadSize = 0;
+    console.log(this.fileUploadList);
+
+
     for (const file of this.fileUploadList) {
+
+      totalUploadSize += file.size / 1000;
       this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
         this.percentage = data
+
+
+        console.log(totalUploadSize);
+
+
       });
     }
 
@@ -141,17 +155,23 @@ export class AddEstateDialogComponent implements OnInit {
         const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
           var image = new Image()
           image.url = data;
+          console.log(data);
+
           this.listOfImages.push(image);
 
-          this.toggle.writeValue(true);
-          this.isReady = 'Spremno je';
-          document.getElementById('toggle').style.color = "#4BB543";
+          // this.toggle.writeValue(true);
+          // this.isReady = 'Spremno je';
+          // document.getElementById('toggle').style.color = "#4BB543";
 
         });
+
       }
-    }, 1500 * this.fileUploadList.length)
+    }, 2 * totalUploadSize)
+
+    console.log(totalUploadSize);
 
   }
+
 
   async filterPartOfCity() {
 
@@ -165,6 +185,11 @@ export class AddEstateDialogComponent implements OnInit {
     this.cityService.getAll().subscribe(resp => {
       this.listOfCities = resp as Array<City>
     })
+  }
+
+  deletePhoto(photo) {
+    var index = this.listOfImages.indexOf(photo);
+    this.listOfImages.splice(index,1)
   }
 
 

@@ -193,12 +193,15 @@
     <mat-step label="Slike">
       <form [formGroup]="imageForm">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="customFile" (change)="addFiles($event.target.files)">
+          <input type="file" class="custom-file-input" multiple id="customFile" (change)="addFiles($event.target.files)">
           <label class="custom-file-label" for="customFile">Izabei fajl</label>
         </div>
         <div class="row">
-          <div class="col-sm-3" *ngFor="let image of fileUploadList">
-            <img src="{{image.mozFullPath}}" alt="" class="img-fluid">
+          <div class="col-sm-2" *ngFor="let image of listOfImages" style="margin-top: 2em;">
+            <img src="{{image.url}}" alt="" class="img-fluid">
+            <div class="text-center">
+              <button class="silver-btn" mat-button style="margin-top: 1em;width: 90%;" (click)="deletePhoto()">Obrisi</button>
+            </div>
           </div>
         </div>
         <div style="margin-top: 2em;">
