@@ -4,11 +4,13 @@
         "/estateCategory",
         "/estateSubCategory",
         "/city",
+        "/estate",
         "/partOfCity",
         "/estateType",
         "/transaction",
         "/equipment",
         "/heating",
+        "/location",
         "/accessories"
 
         ],

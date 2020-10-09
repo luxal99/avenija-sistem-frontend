@@ -10,7 +10,7 @@
             <div class="divider"></div>
            <div class="radio-button-div">
             <mat-radio-group aria-label="Select an option" *ngFor="let transaction of listOfTransaction" formControlName="id_transaction_type">
-                <mat-radio-button value="{{transaction}}">{{transaction.title}}</mat-radio-button>
+                <mat-radio-button [value]="transaction">{{transaction.title}}</mat-radio-button>
               </mat-radio-group>
            </div>
 
@@ -207,7 +207,7 @@
         <div style="margin-top: 2em;">
           <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
       
-          <button mat-button class="blue-btn" style="margin-left: 2em;" (click)="uploadFiles()">Sačuvaj</button>
+          <button mat-button class="blue-btn" style="margin-left: 2em;" (click)="save()">Sačuvaj</button>
         </div>
       </form>
     </mat-step>

@@ -5,6 +5,7 @@ import { EstateType } from './EstateType';
 import { Heating } from './Heating';
 import { Image } from './Image';
 import { Transaction } from './Transaction';
+import {Location} from './Location'
 
 export class Estate {
 
@@ -27,6 +28,6 @@ export class Estate {
     id_equipment: Equipment;
     id_location: Location;
 
-    listOfAccessories: Accessories[];
+    listOfAccessories: Set<Accessories>;
     listOfImages:Image[]
 }

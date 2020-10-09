@@ -25,6 +25,10 @@ import { Image } from 'src/app/models/Image';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Estate } from 'src/app/models/Estate';
+import { LocationService } from 'src/app/service/location.service';
+import { ImageService } from 'src/app/service/image.service';
+import { Location } from 'src/app/models/Location';
+import { EstateService } from 'src/app/service/estate.service';
 
 @Component({
   selector: 'app-add-estate-dialog',
@@ -98,6 +102,8 @@ export class AddEstateDialogComponent implements OnInit {
     private heatingService: HeatingService,
     private http: HttpClient,
     private formBuilder: FormBuilder,
+    private locationService: LocationService,
+    private estateService: EstateService,
     public _snackBar: MatSnackBar,
     private afStorage: AngularFireStorage,
     private accessoriesService: AccessoriesService,
@@ -139,7 +145,6 @@ export class AddEstateDialogComponent implements OnInit {
   uploadFiles() {
 
     var totalUploadSize = 0;
-    console.log(this.fileUploadList);
 
 
     for (const file of this.fileUploadList) {
@@ -148,8 +153,6 @@ export class AddEstateDialogComponent implements OnInit {
       this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
         this.percentage = data
 
-
-        console.log(totalUploadSize);
 
 
       });
@@ -161,8 +164,6 @@ export class AddEstateDialogComponent implements OnInit {
         const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
           var image = new Image()
           image.url = data;
-          console.log(data);
-
           this.listOfImages.push(image);
 
           // this.toggle.writeValue(true);
@@ -173,8 +174,6 @@ export class AddEstateDialogComponent implements OnInit {
 
       }
     }, 2 * totalUploadSize)
-
-    console.log(totalUploadSize);
 
   }
 
@@ -260,7 +259,7 @@ export class AddEstateDialogComponent implements OnInit {
 
 
   save() {
-    
+
     let estate = new Estate();
 
     estate.title = this.titleForm.get("title").value;
@@ -279,6 +278,17 @@ export class AddEstateDialogComponent implements OnInit {
     estate.id_estate_type = this.thirdStepForm.get("id_estate_type").value;
     estate.id_equipment = this.accessoriesForm.get("id_equipment").value;
 
+    this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe(resp => {
+      estate.id_location = resp as Location
+    });
+
+    estate.listOfImages = this.listOfImages;
+    estate.listOfAccessories = this.listOfSelectedAccessories;
+
+    this.estateService.save(estate).subscribe(resp => {
+      console.log(resp);
+
+    })
 
   }
 }
