@@ -124,7 +124,7 @@ export class AddEstateDialogComponent implements OnInit {
     this.getEquipments()
   }
 
-  addFiles(event) {
+  async addFiles(event) {
     for (let index = 0; index < event.length; index++) {
       if (event[index].size / 1000 > 700) {
         this.openSnackBar("Prevelik fajl", "DONE");
@@ -135,7 +135,8 @@ export class AddEstateDialogComponent implements OnInit {
       }
     }
 
-    this.uploadFiles();
+    await this.uploadFiles();
+
   }
 
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
@@ -158,6 +159,8 @@ export class AddEstateDialogComponent implements OnInit {
       });
     }
 
+    this.disableSpinner(totalUploadSize * 2);
+
     setTimeout(() => {
 
       for (const fileName of this.fileUploadList) {
@@ -175,8 +178,18 @@ export class AddEstateDialogComponent implements OnInit {
       }
     }, 2 * totalUploadSize)
 
+  
+
   }
 
+
+  disableSpinner(timeOut){
+    document.getElementById('spinner').style.display = 'block'
+
+    setTimeout(() => {
+      document.getElementById('spinner').style.display = 'none'
+    },timeOut);
+  }
 
   async filterPartOfCity() {
 
