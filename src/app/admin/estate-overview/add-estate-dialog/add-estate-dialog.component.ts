@@ -24,6 +24,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Image } from 'src/app/models/Image';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Estate } from 'src/app/models/Estate';
 
 @Component({
   selector: 'app-add-estate-dialog',
@@ -80,7 +81,7 @@ export class AddEstateDialogComponent implements OnInit {
     max_floor: new FormControl("", Validators.required),
     rooms: new FormControl("", Validators.required),
     num_of_bathrooms: new FormControl("", Validators.required),
-    accesory: new FormControl("", Validators.required)
+    accesory: new FormControl("", Validators.required),
   })
 
   titleForm = new FormGroup({
@@ -257,4 +258,27 @@ export class AddEstateDialogComponent implements OnInit {
     });
   }
 
+
+  save() {
+    
+    let estate = new Estate();
+
+    estate.title = this.titleForm.get("title").value;
+    estate.description = this.editorComponent.editorInstance.getData();
+    estate.price = this.thirdStepForm.get("price").value;
+    estate.quadrature = this.thirdStepForm.get("quadrature").value;
+    estate.num_of_bathrooms = this.accessoriesForm.get("num_of_bathrooms").value;
+    estate.floor = this.accessoriesForm.get("floor").value;
+    estate.max_floor = this.accessoriesForm.get("max_floor").value;
+    estate.rooms = this.accessoriesForm.get("rooms").value;
+    estate.parking = true;
+
+    estate.id_estate_sub_category = this.firstFormGroup.get("id_estate_sub_category").value;
+    estate.id_transaction_type = this.firstFormGroup.get("id_transaction_type").value;
+    estate.id_heating = this.accessoriesForm.get("id_heating").value;
+    estate.id_estate_type = this.thirdStepForm.get("id_estate_type").value;
+    estate.id_equipment = this.accessoriesForm.get("id_equipment").value;
+
+
+  }
 }
