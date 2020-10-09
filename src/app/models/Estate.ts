@@ -28,6 +28,6 @@ export class Estate {
     id_equipment: Equipment;
     id_location: Location;
 
-    listOfAccessories: Set<Accessories>;
+    listOfAccessories: Accessories[];
     listOfImages:Image[]
 }

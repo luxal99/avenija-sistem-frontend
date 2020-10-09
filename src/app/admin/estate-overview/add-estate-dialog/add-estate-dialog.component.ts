@@ -100,8 +100,6 @@ export class AddEstateDialogComponent implements OnInit {
     private cityService: CityService,
     private equipmentService: EquipmentService,
     private heatingService: HeatingService,
-    private http: HttpClient,
-    private formBuilder: FormBuilder,
     private locationService: LocationService,
     private estateService: EstateService,
     public _snackBar: MatSnackBar,
@@ -109,7 +107,8 @@ export class AddEstateDialogComponent implements OnInit {
     private accessoriesService: AccessoriesService,
     private partOfCityService: PartOfCityService,
     private estateTypeService: EstateTypeService,
-    private dialog: MatDialog, private estateCategoryService: EstateCategoryService,
+    private dialog: MatDialog,
+     private estateCategoryService: EstateCategoryService,
     private estateSubCategoryService: EstateSubCategoryService) { }
 
   ngOnInit() {
@@ -178,17 +177,17 @@ export class AddEstateDialogComponent implements OnInit {
       }
     }, 2 * totalUploadSize)
 
-  
+
 
   }
 
 
-  disableSpinner(timeOut){
+  disableSpinner(timeOut) {
     document.getElementById('spinner').style.display = 'block'
 
     setTimeout(() => {
       document.getElementById('spinner').style.display = 'none'
-    },timeOut);
+    }, timeOut);
   }
 
   async filterPartOfCity() {
@@ -202,6 +201,8 @@ export class AddEstateDialogComponent implements OnInit {
   getCities() {
     this.cityService.getAll().subscribe(resp => {
       this.listOfCities = resp as Array<City>
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
@@ -215,12 +216,16 @@ export class AddEstateDialogComponent implements OnInit {
     this.partOfCityService.getAll().subscribe(resp => {
       this.listOfPartsOfCities = resp as Array<PartOfCity>
       localStorage.setItem("POC", JSON.stringify(this.listOfPartsOfCities))
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
   getEstateCategories() {
     this.estateCategoryService.getAll().subscribe(resp => {
       this.listOfEstateCategories = resp as Array<EstateCategory>
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
@@ -228,18 +233,24 @@ export class AddEstateDialogComponent implements OnInit {
   getEstateSubCategories() {
     this.estateSubCategoryService.getAll().subscribe(resp => {
       this.listOfEstateSubCategories = resp as Array<EstateSubCategory>
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
   getEstateTypes() {
     this.estateTypeService.getAll().subscribe(resp => {
       this.listOfEstateTypes = resp as Array<EstateType>
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
   getEquipments() {
     this.equipmentService.getAll().subscribe(resp => {
       this.listOfEquipment = resp as Array<Equipment>
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
@@ -247,6 +258,8 @@ export class AddEstateDialogComponent implements OnInit {
   getAccessories() {
     this.accessoriesService.getAll().subscribe(resp => {
       this.listOfAccessories = resp as Array<Accessories>
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
@@ -254,12 +267,16 @@ export class AddEstateDialogComponent implements OnInit {
   getHeating() {
     this.heatingService.getAll().subscribe(resp => {
       this.listOfHeating = resp as Array<Heating>
+    },err =>{
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
   getAllTransaction() {
     this.transactionService.getAll().subscribe(resp => {
       this.listOfTransaction = resp as Array<Transaction>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
 
@@ -293,15 +310,17 @@ export class AddEstateDialogComponent implements OnInit {
 
     this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe(resp => {
       estate.id_location = resp as Location
+      estate.listOfImages = this.listOfImages;
+      estate.listOfAccessories = Array.from(this.listOfSelectedAccessories);
+
+
+      this.estateService.save(estate).subscribe(resp => {
+      }, err => {
+        this.openSnackBar("Dogodila se greska", "AGAIN")
+      })
     });
 
-    estate.listOfImages = this.listOfImages;
-    estate.listOfAccessories = this.listOfSelectedAccessories;
 
-    this.estateService.save(estate).subscribe(resp => {
-      console.log(resp);
-
-    })
 
   }
 }
