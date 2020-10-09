@@ -4,3 +4,42 @@
     </div>
     <div class="swiper-pagination"></div>
   </swiper>
+
+  <div class="estate-info">
+      <h3>{{data.title}}</h3>
+
+      <div>
+       <div class="row">
+         <div class="col-sm">
+          <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{data.id_location.id_part_of_city.id_city.title}} | {{data.id_location.id_part_of_city.title}}</h5>
+          <h5><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{data.id_location.address}}</h5>
+          <h5><i class="fa fa-building-o" aria-hidden="true" style="color: #00c3f6;"></i> {{data.quadrature}}m2</h5>
+          
+         </div>
+         <div class="col-sm">
+          <h5> <i class="fa fa-bath" style="color: #00c3f6;"></i> {{data.num_of_bathrooms}}</h5>
+          <h5><i class="fa fa-street-view" aria-hidden="true" style="color: #00c3f6;"></i> Sprat {{data.floor}}/{{data.max_floor}}</h5>
+          <h5><i class="fa fa-bed" aria-hidden="true" style="color: #00c3f6;"></i> {{data.rooms}}</h5>
+          
+         </div>
+       </div>
+         <h3 style="padding:2em 0 2em 0;">Cena: {{data.price}}€</h3> 
+         <h4 style="padding-bottom: .5em;">Opis</h4>
+         <mat-divider></mat-divider>
+         <p [innerHTML]="data.description"></p>
+         <h4 style="padding-top: 1em;">Informacije o nekretnini</h4> 
+         <mat-divider></mat-divider>  
+         <h5 style="padding-top: 1em;"><span style="font-weight: bold;"><i class="fa fa-circle" style="color: #00c3f6;" aria-hidden="true"></i>
+          Transakcija</span>: {{data.id_transaction_type.title}}</h5>               
+         <h5 style="padding-top: 1em;"><span style="font-weight: bold;"><i class="fa fa-circle" style="color: #00c3f6;" aria-hidden="true"></i> Potkategorija nekretnine</span>: {{data.id_estate_sub_category.title}}</h5>               
+         <h5 style="padding-top: 1em;"><span style="font-weight: bold;"><i class="fa fa-circle" style="color: #00c3f6;" aria-hidden="true"></i> Tip grejanja</span>: {{data.id_heating.title}}</h5>               
+         <h5 style="padding-top: 1em;"><span style="font-weight: bold;"><i class="fa fa-circle" style="color: #00c3f6;" aria-hidden="true"></i> Nivo opremljenosti</span>: {{data.id_equipment.title}}</h5>               
+         <h5 style="padding-top: 1em;"><span style="font-weight: bold;"><i class="fa fa-circle" style="color: #00c3f6;" aria-hidden="true"></i> Nivo gradnje</span>: {{data.id_estate_type.title}}</h5>                
+         <h4 style="padding-top: 1em;">Dodatna oprema</h4> 
+         <mat-divider></mat-divider>
+         <div *ngFor="let acc of data.listOfAccessories" style="display: inline-flex;">
+          <h5 style="padding-top: 1em;"><i class="fa fa-circle" style="color: #00c3f6;margin-left: .5em;" aria-hidden="true"></i> {{acc.title}}</h5>               
+        
+         </div>     
+      </div>
+  </div>

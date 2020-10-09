@@ -4,6 +4,19 @@
     color: white;
 }
 
+h3,h4 {
+    font-weight: bold;
+     font-family: 'Poppins', sans-serif;
+}
+
+h5,p{
+
+    font-family: 'Poppins', sans-serif;
+}
+
+p { font-size: 20px;
+padding-top: .5em;}
+
 
 .slider-img {
     width: 600px;
@@ -11,4 +24,12 @@
 .swiper-slide{
     width: 600px !important;
     height: 300px !important;
+}
+
+.estate-info{
+    padding:5em;
+}
+
+mat-divider {
+    border-top-color: #00c3f6;
 }
