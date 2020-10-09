@@ -32,7 +32,9 @@
     "hammerjs": "^2.0.8",
     "material-design-icons": "^3.0.1",
     "ngx-image-compress": "^8.0.4",
+    "ngx-useful-swiper": "^10.0.1",
     "rxjs": "~6.4.0",
+    "swiper": "^6.3.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

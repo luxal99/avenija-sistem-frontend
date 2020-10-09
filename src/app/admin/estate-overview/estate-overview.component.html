@@ -4,7 +4,7 @@
             <h1>Nekretnine</h1>    
         </div>
         <div class="col-sm text-right">
-            <button class="big-blue-btn" (click)="openAddWorkOrderDialog()">Dodaj nekretninu</button>
+            <button class="big-blue-btn" (click)="openAddEstateDialog()">Dodaj nekretninu</button>
             
         </div>
     </div>
@@ -35,7 +35,7 @@
 
                             <div style="display: inline-flex;">
                                 <button class="edit-btn">Izmeni</button>
-                                <button class="overview-btn">Pregled</button>
+                                <button class="overview-btn" (click)="openEstateOverviewDialog(estate)">Pregled</button>
                             </div>
                             </div>
                         </div>

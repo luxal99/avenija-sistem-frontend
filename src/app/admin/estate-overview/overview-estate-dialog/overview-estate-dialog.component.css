@@ -1,0 +1,14 @@
+.img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+
+.slider-img {
+    width: 600px;
+}
+.swiper-slide{
+    width: 600px !important;
+    height: 300px !important;
+}

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { Estate } from 'src/app/models/Estate';
+
+import Swiper, { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-overview-estate-dialog',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewEstateDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Estate) { }
 
   ngOnInit() {
+    console.log(this.data);
+
+  }
+
+config: SwiperOptions = {
+    slidesPerView: 2,
+    spaceBetween: 100,
+    slidesPerGroup: 1,
+    loop: true,
+    loopFillGroupWithBlank: false,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    }
   }
 
 }

@@ -1,1 +1,6 @@
-<p>overview-estate-dialog works!</p>
+<swiper [config]="config">
+    <div class="swiper-wrapper">
+      <img class="swiper-slide" *ngFor="let image of data.listOfImages" [src]="image.url" />
+    </div>
+    <div class="swiper-pagination"></div>
+  </swiper>

@@ -28,8 +28,9 @@ import { RegistrationDialogComponent } from './home/registration-dialog/registra
 import { LoginDialogComponent } from './home/login-dialog/login-dialog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AngularFireModule } from '@angular/fire';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import {NgxImageCompressService} from 'ngx-image-compress';
+import { NgxImageCompressService } from 'ngx-image-compress';
 import { OverviewEstateDialogComponent } from './admin/estate-overview/overview-estate-dialog/overview-estate-dialog.component';
 import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-dialog/edit-estate-dialog.component';
 @NgModule({
@@ -61,6 +62,7 @@ import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-d
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,
+    NgxUsefulSwiperModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CKEditorModule,
@@ -76,12 +78,12 @@ import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-d
       measurementId: "G-JGV7HTSL0B"
     }),
   ],
-  providers: [HttpClientModule,NgxImageCompressService,
+  providers: [HttpClientModule, NgxImageCompressService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
     AddPartOfCityDialogComponent,
-    AddEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
+    AddEstateDialogComponent, OverviewEstateDialogComponent, EditEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
