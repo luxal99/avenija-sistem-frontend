@@ -30,6 +30,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {NgxImageCompressService} from 'ngx-image-compress';
+import { OverviewEstateDialogComponent } from './admin/estate-overview/overview-estate-dialog/overview-estate-dialog.component';
+import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-dialog/edit-estate-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,9 @@ import {NgxImageCompressService} from 'ngx-image-compress';
     AddHeatingDialogComponent,
     FooterComponent,
     RegistrationDialogComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    OverviewEstateDialogComponent,
+    EditEstateDialogComponent
   ],
   imports: [
     BrowserModule,

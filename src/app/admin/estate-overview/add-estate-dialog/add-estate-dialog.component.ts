@@ -108,7 +108,7 @@ export class AddEstateDialogComponent implements OnInit {
     private partOfCityService: PartOfCityService,
     private estateTypeService: EstateTypeService,
     private dialog: MatDialog,
-     private estateCategoryService: EstateCategoryService,
+    private estateCategoryService: EstateCategoryService,
     private estateSubCategoryService: EstateSubCategoryService) { }
 
   ngOnInit() {
@@ -124,13 +124,17 @@ export class AddEstateDialogComponent implements OnInit {
   }
 
   async addFiles(event) {
+    console.log(this.fileUploadList);
+    
     for (let index = 0; index < event.length; index++) {
       if (event[index].size / 1000 > 700) {
         this.openSnackBar("Prevelik fajl", "DONE");
       } else {
-
         const element = event[index];
-        this.fileUploadList.push(element);
+        var elementIndex = this.fileUploadList.indexOf(element);
+        if (elementIndex === -1) {
+          this.fileUploadList.push(element);
+        }
       }
     }
 
@@ -143,22 +147,16 @@ export class AddEstateDialogComponent implements OnInit {
   }
 
   uploadFiles() {
-
     var totalUploadSize = 0;
-
-
     for (const file of this.fileUploadList) {
 
       totalUploadSize += file.size / 1000;
       this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
         this.percentage = data
-
-
-
       });
     }
 
-    this.disableSpinner(totalUploadSize * 2);
+    this.disableSpinner(totalUploadSize * 6);
 
     setTimeout(() => {
 
@@ -168,16 +166,15 @@ export class AddEstateDialogComponent implements OnInit {
           image.url = data;
           this.listOfImages.push(image);
 
-          // this.toggle.writeValue(true);
-          // this.isReady = 'Spremno je';
-          // document.getElementById('toggle').style.color = "#4BB543";
-
         });
 
       }
-    }, 2 * totalUploadSize)
 
 
+
+    this.fileUploadList = [];
+
+    }, 5 * totalUploadSize)
 
   }
 
@@ -201,7 +198,7 @@ export class AddEstateDialogComponent implements OnInit {
   getCities() {
     this.cityService.getAll().subscribe(resp => {
       this.listOfCities = resp as Array<City>
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -216,7 +213,7 @@ export class AddEstateDialogComponent implements OnInit {
     this.partOfCityService.getAll().subscribe(resp => {
       this.listOfPartsOfCities = resp as Array<PartOfCity>
       localStorage.setItem("POC", JSON.stringify(this.listOfPartsOfCities))
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -224,7 +221,7 @@ export class AddEstateDialogComponent implements OnInit {
   getEstateCategories() {
     this.estateCategoryService.getAll().subscribe(resp => {
       this.listOfEstateCategories = resp as Array<EstateCategory>
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -233,7 +230,7 @@ export class AddEstateDialogComponent implements OnInit {
   getEstateSubCategories() {
     this.estateSubCategoryService.getAll().subscribe(resp => {
       this.listOfEstateSubCategories = resp as Array<EstateSubCategory>
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -241,7 +238,7 @@ export class AddEstateDialogComponent implements OnInit {
   getEstateTypes() {
     this.estateTypeService.getAll().subscribe(resp => {
       this.listOfEstateTypes = resp as Array<EstateType>
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -249,7 +246,7 @@ export class AddEstateDialogComponent implements OnInit {
   getEquipments() {
     this.equipmentService.getAll().subscribe(resp => {
       this.listOfEquipment = resp as Array<Equipment>
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -258,7 +255,7 @@ export class AddEstateDialogComponent implements OnInit {
   getAccessories() {
     this.accessoriesService.getAll().subscribe(resp => {
       this.listOfAccessories = resp as Array<Accessories>
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -267,7 +264,7 @@ export class AddEstateDialogComponent implements OnInit {
   getHeating() {
     this.heatingService.getAll().subscribe(resp => {
       this.listOfHeating = resp as Array<Heating>
-    },err =>{
+    }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
   }
@@ -315,6 +312,7 @@ export class AddEstateDialogComponent implements OnInit {
 
 
       this.estateService.save(estate).subscribe(resp => {
+        this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
       }, err => {
         this.openSnackBar("Dogodila se greska", "AGAIN")
       })

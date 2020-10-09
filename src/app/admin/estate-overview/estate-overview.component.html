@@ -5,6 +5,43 @@
         </div>
         <div class="col-sm text-right">
             <button class="big-blue-btn" (click)="openAddWorkOrderDialog()">Dodaj nekretninu</button>
+            
+        </div>
+    </div>
+    <div class="estate-container">
+        <div class="estate-item text-left" *ngFor="let estate of listOfEstates">
+            <div class="row">
+                <div class="col-sm-2">
+                    <img [src]="estate.listOfImages[0].url" alt="" class="img-fluid">
+                </div>
+                <div class="col-sm" style="background-color: #fff;">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4 style="padding-top: 1em;">{{estate.title}}</h4>
+                        </div>
+                        <div class="col-sm text-right">
+                            <h5 style="padding-top: 1em;">{{estate.id_transaction_type.title}}</h5>
+                            <h4 style="font-weight: bold;">{{estate.price}}€</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-sm">
+                               <h6> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_location.id_part_of_city.id_city.title}} | {{estate.id_location.id_part_of_city.title}}</h6>
+                                <h6><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.id_location.address}}</h6>
+                                <h6><i class="fa fa-building-o" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.quadrature}}m2</h6>
+                            </div>
+                            <div class="col-sm text-right">
+
+                            <div style="display: inline-flex;">
+                                <button class="edit-btn">Izmeni</button>
+                                <button class="overview-btn">Pregled</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

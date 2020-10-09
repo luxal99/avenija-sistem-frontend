@@ -1,9 +1,32 @@
- h1{
+ h1,h4,h6,h5{
      font-family: 'Poppins', sans-serif;
  }
 
+ 
  .estate {
       padding-left: 5em;
       padding-right: 5em;
  }
 
+.estate-container {
+    padding-top: 5em;
+}
+
+.overview-btn {
+    padding: .5em 3em .5em 3em;
+    color: #fff;
+    margin-top: 1.5em;
+    border: 0 !important;
+    background-color: #00c3f6;
+    font-family: 'Poppins', sans-serif;
+}
+
+.edit-btn {
+    padding: .5em 3em .5em 3em;
+    margin-right: 1em;
+    color: #fff;
+    margin-top: 1.5em;
+    border: 0 !important;
+    background-color: #282828;
+    font-family: 'Poppins', sans-serif;
+}
