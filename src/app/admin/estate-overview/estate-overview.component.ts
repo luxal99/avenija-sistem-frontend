@@ -20,6 +20,11 @@ export class EstateOverviewComponent implements OnInit {
 
   }
 
+  deleteEstate(estate: Estate) {
+    this.estateService.delete(estate.id).subscribe(resp => {
+      this.getAllEstates();
+    })
+  }
   getAllEstates() {
     this.estateService.getAll().subscribe(resp => {
       this.listOfEstates = resp as Array<Estate>

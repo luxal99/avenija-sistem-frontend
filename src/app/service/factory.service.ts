@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FactoryService<T> {
-  
+
   protected route: string;
 
   constructor(protected http: HttpClient) { }
@@ -14,12 +14,16 @@ export class FactoryService<T> {
     return this.http.post(`/${this.route}`, entity, { responseType: 'json' });
   }
 
+  delete(id: number) {
+    return this.http.delete(`/${this.route}/` + id, { responseType: 'text' })
+  }
+
   findById(id) {
     return this.http.get(`/${this.route}/` + id, { responseType: 'json' })
   }
 
-  update(entity:T){
-    return this.http.put(`/${this.route}`,entity,{responseType:'text'})
+  update(entity: T) {
+    return this.http.put(`/${this.route}`, entity, { responseType: 'text' })
   }
 
   getAll() {

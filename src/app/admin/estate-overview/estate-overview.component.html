@@ -10,6 +10,8 @@
     </div>
     <div class="estate-container">
         <div class="estate-item text-left" *ngFor="let estate of listOfEstates">
+            <div class="text-right">
+                <button mat-icon-button (click)="deleteEstate(estate)"><mat-icon>close</mat-icon></button></div>
             <div class="row">
                 <div class="col-sm-2">
                     <img [src]="estate.listOfImages[0].url" alt="" class="img-fluid">
