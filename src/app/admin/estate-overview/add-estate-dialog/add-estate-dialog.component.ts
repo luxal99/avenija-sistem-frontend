@@ -22,11 +22,9 @@ import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Image } from 'src/app/models/Image';
-import { HttpClient } from '@angular/common/http';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Estate } from 'src/app/models/Estate';
 import { LocationService } from 'src/app/service/location.service';
-import { ImageService } from 'src/app/service/image.service';
 import { Location } from 'src/app/models/Location';
 import { EstateService } from 'src/app/service/estate.service';
 
@@ -40,7 +38,6 @@ export class AddEstateDialogComponent implements OnInit {
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
 
-  @ViewChild('toggle', { static: false }) toggle: MatSlideToggle;
 
   editorData = '';
   description = '';
@@ -125,7 +122,7 @@ export class AddEstateDialogComponent implements OnInit {
 
   async addFiles(event) {
     console.log(this.fileUploadList);
-    
+
     for (let index = 0; index < event.length; index++) {
       if (event[index].size / 1000 > 700) {
         this.openSnackBar("Prevelik fajl", "DONE");
@@ -163,16 +160,20 @@ export class AddEstateDialogComponent implements OnInit {
       for (const fileName of this.fileUploadList) {
         const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
           var image = new Image()
+          image.title = fileName.name;
           image.url = data;
           this.listOfImages.push(image);
 
+        }, err => {
+          console.log(fileName);
+          
         });
 
       }
 
 
 
-    this.fileUploadList = [];
+      this.fileUploadList = [];
 
     }, 5 * totalUploadSize)
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { Estate } from 'src/app/models/Estate';
 import { EstateService } from 'src/app/service/estate.service';
 import { AddEstateDialogComponent } from './add-estate-dialog/add-estate-dialog.component';
+import { EditEstateDialogComponent } from './edit-estate-dialog/edit-estate-dialog.component';
 import { OverviewEstateDialogComponent } from './overview-estate-dialog/overview-estate-dialog.component';
 
 @Component({
@@ -46,6 +47,16 @@ export class EstateOverviewComponent implements OnInit {
 
   openEstateOverviewDialog(estate) {
     const dialogRef = this.dialog.open(OverviewEstateDialogComponent, {
+      minWidth: '60%',
+      position: { right: '0' },
+      height: '100vh',
+      data: estate
+
+    });
+  }
+
+  openEstateEditDiloag(estate) {
+    const dialogRef = this.dialog.open(EditEstateDialogComponent, {
       minWidth: '60%',
       position: { right: '0' },
       height: '100vh',
