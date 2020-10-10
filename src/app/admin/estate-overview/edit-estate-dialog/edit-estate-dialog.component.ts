@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatCheckboxChange, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { MatCheckbox, MatCheckboxChange, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { Accessories } from 'src/app/models/Accessories';
 import { City } from 'src/app/models/CIty';
 import { Equipment } from 'src/app/models/Equipment';
 import { Estate } from 'src/app/models/Estate';
-import {Location} from 'src/app/models/Location'
+import { Location } from 'src/app/models/Location'
 import { EstateCategory } from 'src/app/models/EstateCategory';
 import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
 import { EstateType } from 'src/app/models/EstateType';
@@ -26,7 +26,8 @@ import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-
+import { Image } from 'src/app/models/Image'
+import { AccessoriesDTO } from 'src/app/models/AccessoriesDTO';
 @Component({
   selector: 'app-edit-estate-dialog',
   templateUrl: './edit-estate-dialog.component.html',
@@ -36,6 +37,10 @@ export class EditEstateDialogComponent implements OnInit {
 
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
+
+  @ViewChild('checkBox', { static: false }) checkBox: MatCheckbox;
+
+
 
   firstFormGroup = new FormGroup({
     id_transaction_type: new FormControl("", Validators.required),
@@ -73,6 +78,14 @@ export class EditEstateDialogComponent implements OnInit {
     isUploaded: new FormControl("", Validators.required)
   })
 
+  selectedSubCategory;
+  selectedCity;
+  selectedPartOfCity;
+  selectedHeating;
+  selectedEstateType;
+  selectedEquipment;
+  selectedAccessories: Array<AccessoriesDTO> = []
+
   listOfTransaction: Array<Transaction> = [];
   listOfCities: Array<City> = []
   listOfPartsOfCities: Array<PartOfCity> = [];
@@ -86,7 +99,7 @@ export class EditEstateDialogComponent implements OnInit {
   fileUploadList: Array<File> = [];
   listOfSelectedAccessories = new Set<Accessories>();
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Estate,  private transactionService: TransactionService,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Estate, private transactionService: TransactionService,
     private cityService: CityService,
     private equipmentService: EquipmentService,
     private heatingService: HeatingService,
@@ -101,221 +114,278 @@ export class EditEstateDialogComponent implements OnInit {
     private estateCategoryService: EstateCategoryService,
     private estateSubCategoryService: EstateSubCategoryService) { }
 
-  
 
-    ngOnInit() {
-      this.getAllTransaction()
-      this.getCities();
-      this.getPartsOfCities();
-      this.getEstateCategories();
-      this.getEstateSubCategories();
-      this.getEstateTypes();
-      this.getAccessories();
-      this.getHeating();
-      this.getEquipments()
+
+  ngOnInit() {
+    this.setValuesToForm();
+    this.getAllTransaction()
+    this.getCities();
+    this.getPartsOfCities();
+    this.getEstateCategories();
+    this.getEstateSubCategories();
+    this.getEstateTypes();
+    this.getAccessories();
+    this.getHeating();
+    this.getEquipments()
+
+  }
+
+  async addFiles(event) {
+    for (let index = 0; index < event.length; index++) {
+      if (event[index].size / 1000 > 700) {
+        this.openSnackBar("Prevelik fajl", "DONE");
+      } else {
+        const element = event[index];
+        var elementIndex = this.fileUploadList.indexOf(element);
+        if (elementIndex === -1) {
+          this.fileUploadList.push(element);
+        }
+      }
     }
-  
-    async addFiles(event) {
-      console.log(this.fileUploadList);
-  
-      for (let index = 0; index < event.length; index++) {
-        if (event[index].size / 1000 > 700) {
-          this.openSnackBar("Prevelik fajl", "DONE");
-        } else {
-          const element = event[index];
-          var elementIndex = this.fileUploadList.indexOf(element);
-          if (elementIndex === -1) {
-            this.fileUploadList.push(element);
+
+    await this.uploadFiles();
+
+  }
+
+
+  addAccessories($event: MatCheckboxChange, accessories: Accessories) {
+    var c = (($event.checked)) ? this.listOfSelectedAccessories.add(accessories) : this.listOfSelectedAccessories.delete(accessories);
+  }
+
+  uploadFiles() {
+    var totalUploadSize = 0;
+    for (const file of this.fileUploadList) {
+
+      totalUploadSize += file.size / 1000;
+      this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
+
+      });
+    }
+
+    this.disableSpinner(totalUploadSize * 6);
+
+    setTimeout(() => {
+
+      for (const fileName of this.fileUploadList) {
+        const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
+          var image = new Image()
+          image.title = fileName.name;
+          image.url = data;
+          this.listOfImages.push(image);
+
+        }, err => {
+          console.log(fileName);
+
+        });
+
+      }
+
+
+
+      this.fileUploadList = [];
+
+    }, 5 * totalUploadSize)
+
+  }
+
+
+  disableSpinner(timeOut) {
+    document.getElementById('spinner').style.display = 'block'
+
+    setTimeout(() => {
+      document.getElementById('spinner').style.display = 'none'
+    }, timeOut);
+  }
+
+  async filterPartOfCity() {
+
+    this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
+    let city = new City();
+    city.id = this.locationForm.get("id_city").value;
+    this.listOfPartsOfCities = this.listOfPartsOfCities.filter(x => x.id_city.id === city.id)
+
+  }
+
+  getCities() {
+    this.cityService.getAll().subscribe(resp => {
+      this.listOfCities = resp as Array<City>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  deletePhoto(photo) {
+    var index = this.listOfImages.indexOf(photo);
+    this.listOfImages.splice(index, 1)
+  }
+
+
+  getPartsOfCities() {
+    this.partOfCityService.getAll().subscribe(resp => {
+      this.listOfPartsOfCities = resp as Array<PartOfCity>
+      localStorage.setItem("POC", JSON.stringify(this.listOfPartsOfCities))
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  getEstateCategories() {
+    this.estateCategoryService.getAll().subscribe(resp => {
+      this.listOfEstateCategories = resp as Array<EstateCategory>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+
+  getEstateSubCategories() {
+    this.estateSubCategoryService.getAll().subscribe(resp => {
+      this.listOfEstateSubCategories = resp as Array<EstateSubCategory>
+
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  getEstateTypes() {
+    this.estateTypeService.getAll().subscribe(resp => {
+      this.listOfEstateTypes = resp as Array<EstateType>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  getEquipments() {
+    this.equipmentService.getAll().subscribe(resp => {
+      this.listOfEquipment = resp as Array<Equipment>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+
+  getAccessories() {
+    this.accessoriesService.getAll().subscribe(resp => {
+      this.listOfAccessories = resp as Array<Accessories>
+
+
+      for (const acc of this.listOfAccessories) {
+        const x = new AccessoriesDTO(acc, false)
+        for (const accInEstate of this.data.listOfAccessories) {
+          if (acc.id === accInEstate.id) {
+              x.checked = true
+          } else if (acc.id !== accInEstate.id) {
+
           }
         }
+        this.selectedAccessories.push(x)
       }
-  
-      await this.uploadFiles();
-  
-    }
-  
-    addAccessories($event: MatCheckboxChange, accessories: Accessories) {
-      var c = (($event.checked)) ? this.listOfSelectedAccessories.add(accessories) : this.listOfSelectedAccessories.delete(accessories);
-    }
-  
-    uploadFiles() {
-      var totalUploadSize = 0;
-      for (const file of this.fileUploadList) {
-  
-        totalUploadSize += file.size / 1000;
-        this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
-          this.percentage = data
-        });
-      }
-  
-      this.disableSpinner(totalUploadSize * 6);
-  
-      setTimeout(() => {
-  
-        for (const fileName of this.fileUploadList) {
-          const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
-            var image = new Image()
-            image.title = fileName.name;
-            image.url = data;
-            this.listOfImages.push(image);
-  
-          }, err => {
-            console.log(fileName);
-            
-          });
-  
-        }
-  
-  
-  
-        this.fileUploadList = [];
-  
-      }, 5 * totalUploadSize)
-  
-    }
-  
-  
-    disableSpinner(timeOut) {
-      document.getElementById('spinner').style.display = 'block'
-  
-      setTimeout(() => {
-        document.getElementById('spinner').style.display = 'none'
-      }, timeOut);
-    }
-  
-    async filterPartOfCity() {
-  
-      this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
-      let city: City = this.locationForm.get("id_city").value;
-      this.listOfPartsOfCities = this.listOfPartsOfCities.filter(x => x.id_city.id === city.id)
-  
-    }
-  
-    getCities() {
-      this.cityService.getAll().subscribe(resp => {
-        this.listOfCities = resp as Array<City>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-    deletePhoto(photo) {
-      var index = this.listOfImages.indexOf(photo);
-      this.listOfImages.splice(index, 1)
-    }
-  
-  
-    getPartsOfCities() {
-      this.partOfCityService.getAll().subscribe(resp => {
-        this.listOfPartsOfCities = resp as Array<PartOfCity>
-        localStorage.setItem("POC", JSON.stringify(this.listOfPartsOfCities))
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-    getEstateCategories() {
-      this.estateCategoryService.getAll().subscribe(resp => {
-        this.listOfEstateCategories = resp as Array<EstateCategory>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-  
-    getEstateSubCategories() {
-      this.estateSubCategoryService.getAll().subscribe(resp => {
-        this.listOfEstateSubCategories = resp as Array<EstateSubCategory>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-    getEstateTypes() {
-      this.estateTypeService.getAll().subscribe(resp => {
-        this.listOfEstateTypes = resp as Array<EstateType>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-    getEquipments() {
-      this.equipmentService.getAll().subscribe(resp => {
-        this.listOfEquipment = resp as Array<Equipment>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-  
-    getAccessories() {
-      this.accessoriesService.getAll().subscribe(resp => {
-        this.listOfAccessories = resp as Array<Accessories>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-  
-    getHeating() {
-      this.heatingService.getAll().subscribe(resp => {
-        this.listOfHeating = resp as Array<Heating>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-    getAllTransaction() {
-      this.transactionService.getAll().subscribe(resp => {
-        this.listOfTransaction = resp as Array<Transaction>
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    }
-  
-  
-    openSnackBar(message: string, action: string) {
-      this._snackBar.open(message, action, {
-        duration: 2000,
-      });
-    }
-  
-  
-    save() {
-  
-      let estate = new Estate();
-  
-      estate.title = this.titleForm.get("title").value;
-      estate.description = this.editorComponent.editorInstance.getData();
-      estate.price = this.thirdStepForm.get("price").value;
-      estate.quadrature = this.thirdStepForm.get("quadrature").value;
-      estate.num_of_bathrooms = this.accessoriesForm.get("num_of_bathrooms").value;
-      estate.floor = this.accessoriesForm.get("floor").value;
-      estate.max_floor = this.accessoriesForm.get("max_floor").value;
-      estate.rooms = this.accessoriesForm.get("rooms").value;
-      estate.parking = true;
-  
-      estate.id_estate_sub_category = this.firstFormGroup.get("id_estate_sub_category").value;
-      estate.id_transaction_type = this.firstFormGroup.get("id_transaction_type").value;
-      estate.id_heating = this.accessoriesForm.get("id_heating").value;
-      estate.id_estate_type = this.thirdStepForm.get("id_estate_type").value;
-      estate.id_equipment = this.accessoriesForm.get("id_equipment").value;
-  
-      this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe(resp => {
-        estate.id_location = resp as Location
-        estate.listOfImages = this.listOfImages;
-        estate.listOfAccessories = Array.from(this.listOfSelectedAccessories);
-  
-  
-        this.estateService.save(estate).subscribe(resp => {
-          this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
-        }, err => {
-          this.openSnackBar("Dogodila se greska", "AGAIN")
-        })
-      });
-  
-  
-  
-    }
 
+      console.log(this.selectedAccessories);
+
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+
+  getHeating() {
+    this.heatingService.getAll().subscribe(resp => {
+      this.listOfHeating = resp as Array<Heating>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  getAllTransaction() {
+    this.transactionService.getAll().subscribe(resp => {
+      this.listOfTransaction = resp as Array<Transaction>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+
+  setValuesToForm() {
+    this.firstFormGroup.get("id_transaction_type").setValue(this.data.id_transaction_type);
+    this.firstFormGroup.get("id_estate_sub_category").setValue(this.data.id_estate_sub_category);
+    this.locationForm.get("address").setValue(this.data.id_location.address)
+    this.thirdStepForm.get("quadrature").setValue(this.data.quadrature)
+    this.thirdStepForm.get("price").setValue(this.data.price);
+    this.titleForm.get("title").setValue(this.data.title);
+    this.accessoriesForm.get("floor").setValue(this.data.floor);
+    this.accessoriesForm.get("max_floor").setValue(this.data.max_floor);
+    this.accessoriesForm.get("num_of_bathrooms").setValue(this.data.num_of_bathrooms);
+    this.accessoriesForm.get("rooms").setValue(this.data.rooms)
+
+
+    this.selectedSubCategory = this.data.id_estate_sub_category.id;
+    this.selectedCity = this.data.id_location.id_part_of_city.id_city.id;
+    this.selectedCity = this.data.id_location.id_part_of_city.id_city.id;
+    this.selectedPartOfCity = this.data.id_location.id_part_of_city.id;
+    this.selectedEstateType = this.data.id_estate_type.id;
+    this.selectedEquipment = this.data.id_equipment.id;
+    this.selectedHeating = this.data.id_heating.id;
+
+    setTimeout(() => {
+      this.setDescription();
+
+
+    }, 100);
+
+
+  }
+
+  save() {
+
+    let estate = new Estate();
+
+    estate.title = this.titleForm.get("title").value;
+    estate.description = this.editorComponent.editorInstance.getData();
+    estate.price = this.thirdStepForm.get("price").value;
+    estate.quadrature = this.thirdStepForm.get("quadrature").value;
+    estate.num_of_bathrooms = this.accessoriesForm.get("num_of_bathrooms").value;
+    estate.floor = this.accessoriesForm.get("floor").value;
+    estate.max_floor = this.accessoriesForm.get("max_floor").value;
+    estate.rooms = this.accessoriesForm.get("rooms").value;
+    estate.parking = true;
+
+    estate.id_estate_sub_category = this.firstFormGroup.get("id_estate_sub_category").value;
+    estate.id_transaction_type = this.firstFormGroup.get("id_transaction_type").value;
+    estate.id_heating = this.accessoriesForm.get("id_heating").value;
+    estate.id_estate_type = this.thirdStepForm.get("id_estate_type").value;
+    estate.id_equipment = this.accessoriesForm.get("id_equipment").value;
+
+    this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe(resp => {
+      estate.id_location = resp as Location
+      estate.listOfImages = this.listOfImages;
+      estate.listOfAccessories = Array.from(this.listOfSelectedAccessories);
+
+
+      this.estateService.save(estate).subscribe(resp => {
+        this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
+      }, err => {
+        this.openSnackBar("Dogodila se greska", "AGAIN")
+      })
+    });
+
+
+
+  }
+
+  test() {
+
+    console.log(this.checkBox);
+  }
+
+  setDescription() {
+    this.editorComponent.editorInstance.setData(this.data.description);
+  }
 }
