@@ -5,8 +5,8 @@
 <div class="estate-container">
     <h1 style="padding-top: 1em;">Filtrirane nekretnine</h1>
     <mat-divider></mat-divider>
-    <div class="row" style="padding-top: 5em;">
-        <div class="col-sm-6" *ngFor="let estate of filteredEstate">
+    <div class="row" >
+        <div class="col-sm-6" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
             <img [src]="estate.listOfImages[0].url" width="500px" height="300px" alt="">
            <div class="row">
                <div class="col-sm-6">

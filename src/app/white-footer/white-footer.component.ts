@@ -11,11 +11,37 @@ import { RegistrationDialogComponent } from '../home/registration-dialog/registr
 })
 export class WhiteFooterComponent implements OnInit {
 
-  constructor(private dialog:MatDialog) { }
+  constructor(private dialog:MatDialog,private router:Router) { }
 
   ngOnInit() {
   }
 
+
+  searchOnSell(){
+    let filter =
+    {
+      id_city: "",
+      id_transaction_type: {id:1},
+      id_estate_category: "",
+      id_estate_sub_category: ""
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
+    location.reload();
+  }
+
+  searchOnRent (){
+    let filter =
+    {
+      id_city: "",
+      id_transaction_type: {id:2},
+      id_estate_category: "",
+      id_estate_sub_category: ""
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
+    location.reload();
+  }
   openRegistrationDialog() {
     const dialogRef = this.dialog.open(RegistrationDialogComponent, {
       width: 'auto'

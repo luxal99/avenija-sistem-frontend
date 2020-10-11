@@ -10,4 +10,7 @@ export class Filter {
     id_transaction_type: Transaction;
     id_estate_category:EstateCategory;
     id_estate_sub_category: EstateSubCategory;
+
+    constructor(){
+    }
 }

@@ -12,8 +12,8 @@
         <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 257018</h5>
       </div>
     <div class="menu-div">
-     <a><h5 class="nav-li">Izdavanja</h5></a>
-     <a><h5 class="nav-li">Prodaja</h5></a>
+      <a><h5 (click)="searchOnRent()" class="nav-li">Izdavanje</h5></a>
+     <a (click)="searchOnSell()"><h5 class="nav-li">Prodaja</h5></a>
      <a><h5 class="nav-li">Kontakt</h5></a>
      <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
 
