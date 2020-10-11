@@ -158,17 +158,16 @@
    </mat-form-field>
  
  </div>
-           <section *ngFor="let acc of selectedAccessories">
-             <mat-checkbox class="example-margin" formControlName="accesory" checked="true" (change)="addAccessories($event,acc)">{{acc.accessories.title}}</mat-checkbox>
-           </section>
- 
- 
+</form>
+   <section *ngFor="let acc of selectedAccessories">
+            <mat-checkbox class="example-margin"  [checked]="acc.checked" (change)="addAccessories($event,acc.accessories)">{{acc.accessories.title}}</mat-checkbox>
+   </section>
    <div style="margin-top: 2em;">
      <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
  
      <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
    </div>
-        </form>
+        
     </mat-step>
     <mat-step label="Naziv i opis">
       <div>
@@ -200,7 +199,7 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-2" *ngFor="let image of listOfImages" style="margin-top: 2em;">
+          <div class="col-sm-2" *ngFor="let image of data.listOfImages" style="margin-top: 2em;">
             <img src="{{image.url}}" alt="" class="img-fluid">
             <div class="text-center">
               <button class="silver-btn" mat-button style="margin-top: 1em;width: 90%;" (click)="deletePhoto()">Obrisi</button>
@@ -210,7 +209,7 @@
         <div style="margin-top: 2em;">
           <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>
       
-          <button mat-button class="blue-btn" mat-dialog-close style="margin-left: 2em;" (click)="save()">Sačuvaj</button>
+          <button mat-button class="blue-btn" mat-dialog-close style="margin-left: 2em;" (click)="update()">Sačuvaj</button>
         </div>
       </form>
     </mat-step>

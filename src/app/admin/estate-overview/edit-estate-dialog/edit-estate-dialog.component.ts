@@ -97,7 +97,7 @@ export class EditEstateDialogComponent implements OnInit {
   listOfHeating: Array<Heating> = [];
   listOfImages: Array<Image> = [];
   fileUploadList: Array<File> = [];
-  listOfSelectedAccessories = new Set<Accessories>();
+  listOfSelectedAccessories:Array<Accessories>=[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Estate, private transactionService: TransactionService,
     private cityService: CityService,
@@ -149,7 +149,18 @@ export class EditEstateDialogComponent implements OnInit {
 
 
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
-    var c = (($event.checked)) ? this.listOfSelectedAccessories.add(accessories) : this.listOfSelectedAccessories.delete(accessories);
+    
+    var index = this.listOfSelectedAccessories.indexOf(accessories)
+    console.log(index);
+    
+    if($event.checked && index === -1){
+      this.listOfSelectedAccessories.push(accessories)
+    }else{
+      this.listOfSelectedAccessories.splice(index,1)
+    }
+
+    console.log(this.listOfSelectedAccessories);
+    
   }
 
   uploadFiles() {
@@ -174,14 +185,10 @@ export class EditEstateDialogComponent implements OnInit {
           this.listOfImages.push(image);
 
         }, err => {
-          console.log(fileName);
 
         });
 
       }
-
-
-
       this.fileUploadList = [];
 
     }, 5 * totalUploadSize)
@@ -268,21 +275,17 @@ export class EditEstateDialogComponent implements OnInit {
     this.accessoriesService.getAll().subscribe(resp => {
       this.listOfAccessories = resp as Array<Accessories>
 
-
       for (const acc of this.listOfAccessories) {
-        const x = new AccessoriesDTO(acc, false)
-        for (const accInEstate of this.data.listOfAccessories) {
-          if (acc.id === accInEstate.id) {
-              x.checked = true
-          } else if (acc.id !== accInEstate.id) {
-
-          }
+        const accDto = new AccessoriesDTO(acc, false);
+        var index = this.data.listOfAccessories.findIndex(x => x.id === acc.id);
+        
+        if (index !== -1) {
+          accDto.checked = true
         }
-        this.selectedAccessories.push(x)
+
+        this.selectedAccessories.push(accDto)
       }
-
-      console.log(this.selectedAccessories);
-
+      
     }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
@@ -334,58 +337,25 @@ export class EditEstateDialogComponent implements OnInit {
     this.selectedEquipment = this.data.id_equipment.id;
     this.selectedHeating = this.data.id_heating.id;
 
+    this.listOfSelectedAccessories = this.data.listOfAccessories
+
     setTimeout(() => {
       this.setDescription();
-
 
     }, 100);
 
 
   }
 
-  save() {
-
-    let estate = new Estate();
-
-    estate.title = this.titleForm.get("title").value;
-    estate.description = this.editorComponent.editorInstance.getData();
-    estate.price = this.thirdStepForm.get("price").value;
-    estate.quadrature = this.thirdStepForm.get("quadrature").value;
-    estate.num_of_bathrooms = this.accessoriesForm.get("num_of_bathrooms").value;
-    estate.floor = this.accessoriesForm.get("floor").value;
-    estate.max_floor = this.accessoriesForm.get("max_floor").value;
-    estate.rooms = this.accessoriesForm.get("rooms").value;
-    estate.parking = true;
-
-    estate.id_estate_sub_category = this.firstFormGroup.get("id_estate_sub_category").value;
-    estate.id_transaction_type = this.firstFormGroup.get("id_transaction_type").value;
-    estate.id_heating = this.accessoriesForm.get("id_heating").value;
-    estate.id_estate_type = this.thirdStepForm.get("id_estate_type").value;
-    estate.id_equipment = this.accessoriesForm.get("id_equipment").value;
-
-    this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe(resp => {
-      estate.id_location = resp as Location
-      estate.listOfImages = this.listOfImages;
-      estate.listOfAccessories = Array.from(this.listOfSelectedAccessories);
 
 
-      this.estateService.save(estate).subscribe(resp => {
-        this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
-      }, err => {
-        this.openSnackBar("Dogodila se greska", "AGAIN")
-      })
-    });
-
-
-
-  }
-
-  test() {
-
-    console.log(this.checkBox);
+  update() {
+    console.log(this.listOfSelectedAccessories);
+    
   }
 
   setDescription() {
     this.editorComponent.editorInstance.setData(this.data.description);
   }
+
 }
