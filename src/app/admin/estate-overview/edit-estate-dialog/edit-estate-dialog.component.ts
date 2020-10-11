@@ -222,7 +222,7 @@ export class EditEstateDialogComponent implements OnInit {
   }
 
   deletePhoto(photo) {
-    var index = this.listOfImages.indexOf(photo);
+    let index = this.listOfImages.indexOf(photo);
     this.listOfImages.splice(index, 1)
   }
 
