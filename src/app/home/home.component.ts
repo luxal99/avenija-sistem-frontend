@@ -66,6 +66,15 @@ export class HomeComponent implements OnInit {
   }
 
 
+  async filterPartOfCity() {
+
+    this.listOfEstateSubCategories = JSON.parse(localStorage.getItem("ESC"))
+    let id_estate_category: EstateCategory = this.searchForm.get("id_estate_category").value;
+    this.listOfEstateSubCategories = this.listOfEstateSubCategories.filter(x => x.id_estate_category.id === id_estate_category.id)
+
+  }
+
+
   getCities() {
     this.cityService.getAll().subscribe(resp => {
       this.listOfCities = resp as Array<City>
@@ -86,6 +95,7 @@ export class HomeComponent implements OnInit {
   getEstateSubCategories() {
     this.estateSubCategoryService.getAll().subscribe(resp => {
       this.listOfEstateSubCategories = resp as Array<EstateSubCategory>
+      localStorage.setItem("ESC",JSON.stringify(this.listOfEstateSubCategories))
     }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
@@ -103,6 +113,30 @@ export class HomeComponent implements OnInit {
     this.estateService.getAll().subscribe(resp => {
       this.listOfEstates = resp as Array<Estate>
     })
+  }
+
+  searchOnSell(){
+    let filter =
+    {
+      id_city: this.searchForm.get("id_city").value,
+      id_transaction_type: {id:1},
+      id_estate_category: this.searchForm.get("id_estate_category").value,
+      id_estate_sub_category: this.searchForm.get("id_estate_sub_category").value
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
+  }
+
+  searchOnRent (){
+    let filter =
+    {
+      id_city: this.searchForm.get("id_city").value,
+      id_transaction_type: {id:2},
+      id_estate_category: this.searchForm.get("id_estate_category").value,
+      id_estate_sub_category: this.searchForm.get("id_estate_sub_category").value
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
   }
 
   search() {
