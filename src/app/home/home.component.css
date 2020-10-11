@@ -143,3 +143,18 @@ h4, h5 {
     line-height: 5px;
     margin-left: 0;
 }
+
+.big-estate{
+    padding-top: 10em;
+    padding-bottom: 10em;
+}
+.big-estate-btn {
+    font-weight: bold;
+    background-color: rgba(0,195,246,0.1);
+    padding: 1em;
+    color: #00c3f6;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
