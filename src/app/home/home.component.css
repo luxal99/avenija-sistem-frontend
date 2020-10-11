@@ -12,13 +12,9 @@ h5 {
     color: #fff;
 }
 
-.estate-binding h1 {
-    padding-top: 10%;
-    font-weight: bold;
-}
 
 nav {
-    padding: 2em;
+    padding: 3em;
 }
 
 .header {
@@ -157,4 +153,18 @@ h4, h5 {
     margin-bottom: 2em;
     text-transform: uppercase;
     letter-spacing: 3px;
+}
+
+.estate-binding h1 {
+    padding-top: 10%;
+    font-weight: bold;
+}
+
+.slider-btn {
+    margin-top: 2em;
+    width: 50%;
+    background-color: #00c3f6;
+    color: #fff;
+border: 0 !;
+    font-family: 'Poppins', sans-serif;
 }

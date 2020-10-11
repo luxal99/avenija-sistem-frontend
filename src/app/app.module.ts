@@ -33,6 +33,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { OverviewEstateDialogComponent } from './admin/estate-overview/overview-estate-dialog/overview-estate-dialog.component';
 import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-dialog/edit-estate-dialog.component';
+import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-overview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,9 @@ import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-d
     RegistrationDialogComponent,
     LoginDialogComponent,
     OverviewEstateDialogComponent,
-    EditEstateDialogComponent
+    EditEstateDialogComponent,
+    EstatePageOverviewComponent
+    
   ],
   imports: [
     BrowserModule,
