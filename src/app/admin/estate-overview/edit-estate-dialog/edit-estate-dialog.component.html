@@ -31,7 +31,7 @@
               </mat-form-field>
            </div>
             <div>
-              <button mat-button matStepperNext class="blue-btn" (click)="test()">Napred</button>
+              <button mat-button matStepperNext class="blue-btn">Napred</button>
             </div>
           </form>
         </mat-step>
@@ -199,7 +199,7 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-2" *ngFor="let image of data.listOfImages" style="margin-top: 2em;">
+          <div class="col-sm-2" *ngFor="let image of listOfImages" style="margin-top: 2em;">
             <img src="{{image.url}}" alt="" class="img-fluid">
             <div class="text-center">
               <button class="silver-btn" mat-button style="margin-top: 1em;width: 90%;" (click)="deletePhoto()">Obrisi</button>

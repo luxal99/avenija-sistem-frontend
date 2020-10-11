@@ -9,4 +9,5 @@ export class EstateSubCategory {
         this.title = title;
         this.id_estate_category = id_estate_category;
     }
+    
 }

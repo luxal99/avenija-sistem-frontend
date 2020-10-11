@@ -97,7 +97,7 @@ export class EditEstateDialogComponent implements OnInit {
   listOfHeating: Array<Heating> = [];
   listOfImages: Array<Image> = [];
   fileUploadList: Array<File> = [];
-  listOfSelectedAccessories:Array<Accessories>=[];
+  listOfSelectedAccessories: Array<Accessories> = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Estate, private transactionService: TransactionService,
     private cityService: CityService,
@@ -149,18 +149,18 @@ export class EditEstateDialogComponent implements OnInit {
 
 
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
-    
+
     var index = this.listOfSelectedAccessories.indexOf(accessories)
     console.log(index);
-    
-    if($event.checked && index === -1){
+
+    if ($event.checked && index === -1) {
       this.listOfSelectedAccessories.push(accessories)
-    }else{
-      this.listOfSelectedAccessories.splice(index,1)
+    } else {
+      this.listOfSelectedAccessories.splice(index, 1)
     }
 
     console.log(this.listOfSelectedAccessories);
-    
+
   }
 
   uploadFiles() {
@@ -278,14 +278,14 @@ export class EditEstateDialogComponent implements OnInit {
       for (const acc of this.listOfAccessories) {
         const accDto = new AccessoriesDTO(acc, false);
         var index = this.data.listOfAccessories.findIndex(x => x.id === acc.id);
-        
+
         if (index !== -1) {
           accDto.checked = true
         }
 
         this.selectedAccessories.push(accDto)
       }
-      
+
     }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
@@ -338,6 +338,7 @@ export class EditEstateDialogComponent implements OnInit {
     this.selectedHeating = this.data.id_heating.id;
 
     this.listOfSelectedAccessories = this.data.listOfAccessories
+    this.listOfImages = this.data.listOfImages
 
     setTimeout(() => {
       this.setDescription();
@@ -350,8 +351,40 @@ export class EditEstateDialogComponent implements OnInit {
 
 
   update() {
-    console.log(this.listOfSelectedAccessories);
-    
+
+    let estate = new Estate();
+    let estateSubCategory = new EstateSubCategory();
+    let heating = new Heating();
+    let estateType = new EstateType();
+    let equipment = new Equipment();
+
+
+    estateSubCategory.id = this.firstFormGroup.get("id_estate_sub_category").value;
+    heating.id = this.accessoriesForm.get("id_heating").value;
+    estateType.id = this.thirdStepForm.get("id_estate_type").value;
+    equipment.id = this.accessoriesForm.get("id_equipment").value;
+
+    estate.title = this.titleForm.get("title").value;
+    estate.description = this.editorComponent.editorInstance.getData();
+    estate.price = this.thirdStepForm.get("price").value;
+    estate.quadrature = this.thirdStepForm.get("quadrature").value;
+    estate.num_of_bathrooms = this.accessoriesForm.get("num_of_bathrooms").value;
+    estate.floor = this.accessoriesForm.get("floor").value;
+    estate.max_floor = this.accessoriesForm.get("max_floor").value;
+    estate.rooms = this.accessoriesForm.get("rooms").value;
+    estate.parking = true;
+
+    estate.id_estate_sub_category = estateSubCategory;
+    estate.id_transaction_type = this.firstFormGroup.get("id_transaction_type").value;
+    estate.id_heating = heating;
+    estate.id_estate_type = estateType;
+    estate.id_equipment = equipment;
+
+    estate.listOfImages = this.listOfImages;
+    estate.listOfAccessories = this.listOfSelectedAccessories;
+
+
+    console.log(estate);
   }
 
   setDescription() {
