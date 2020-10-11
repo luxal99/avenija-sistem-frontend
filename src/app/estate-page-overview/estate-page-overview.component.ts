@@ -31,6 +31,7 @@ export class EstatePageOverviewComponent implements OnInit {
   constructor(private route: ActivatedRoute, private dialog: MatDialog, private estateService: EstateService) { }
 
   ngOnInit() {
+    window.scrollTo(0,0)
     this.findEstate();
   }
 
@@ -40,7 +41,6 @@ export class EstatePageOverviewComponent implements OnInit {
   }
   findEstate() {
     this.route.params.subscribe(params => {
-      console.log(params);
       this.estateService.findById(Number.parseInt(params.id)).subscribe(resp => {
       
         this.estate = resp as Estate;
@@ -52,20 +52,4 @@ export class EstatePageOverviewComponent implements OnInit {
     this.estate = JSON.parse(localStorage.getItem("estate"))
   }
 
-  openRegistrationDialog() {
-    const dialogRef = this.dialog.open(RegistrationDialogComponent, {
-      width: 'auto'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
-  openLoginDialog() {
-    const dialogRef = this.dialog.open(LoginDialogComponent, {
-      width: 'auto'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
 }

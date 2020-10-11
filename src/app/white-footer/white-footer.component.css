@@ -1,0 +1,43 @@
+.menu-div {
+    display: inline-flex;
+}
+h1,p{
+
+}
+.nav-li {
+    margin-left: 1em;
+    padding-top: .5em;
+    color: #282828;
+}
+
+
+nav {
+    padding: 3em 2em 3em 2em;
+    background-color: #fff !important;
+}
+
+
+.estate-info h5 {
+    margin-left: 0 !important;
+}
+
+
+.reg-btn, .login-btn {
+    border: 0 !important;
+    -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    padding: .6em 3em .6em 3em;
+}
+
+.reg-btn {
+    background-color: #00c3f6;
+    color: #fff;
+    margin-left: 2em;
+}
+
+.login-btn {
+    margin-left: 2em;
+    background-color: #282828;
+    color: #fff;
+}

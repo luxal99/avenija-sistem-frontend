@@ -1,28 +1,7 @@
 <mat-drawer-container>
     <mat-drawer></mat-drawer>
     <mat-drawer-content>
-        <nav>
-            <div class="row">
-              <div class="col-sm-7">
-              <a [routerLink]="['/']" routerLinkActive="router-link-active" >
-                <img src="../../assets/img/logo.png" width="300px" alt="" class="img-fluid"></a>
-              </div>
-              <div class="col-sm">
-        
-              <div class="text-right" style="padding-right: 3em;">
-                <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 257018</h5>
-              </div>
-            <div class="menu-div">
-             <a><h5 class="nav-li">Izdavanja</h5></a>
-             <a><h5 class="nav-li">Prodaja</h5></a>
-             <a><h5 class="nav-li">Kontakt</h5></a>
-             <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
-        
-             <button class="login-btn" (click)="openLoginDialog()">Login</button>
-            </div>
-              </div>
-            </div>
-          </nav>
+        <app-white-footer></app-white-footer>
           <swiper [config]="config">
             <div class="swiper-wrapper">
               <img class="swiper-slide slider-img" *ngFor="let image of estate.listOfImages" [src]="image.url" />

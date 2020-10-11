@@ -34,6 +34,8 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { OverviewEstateDialogComponent } from './admin/estate-overview/overview-estate-dialog/overview-estate-dialog.component';
 import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-dialog/edit-estate-dialog.component';
 import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-overview.component';
+import { FilterPageComponent } from './filter-page/filter-page.component';
+import { WhiteFooterComponent } from './white-footer/white-footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,9 @@ import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-
     LoginDialogComponent,
     OverviewEstateDialogComponent,
     EditEstateDialogComponent,
-    EstatePageOverviewComponent
+    EstatePageOverviewComponent,
+    FilterPageComponent,
+    WhiteFooterComponent
     
   ],
   imports: [

@@ -32,40 +32,54 @@
     <h1>Dolor nunc lorem ipsum</h1>
   </div>
   <div class="search-div text-center">
-    <div class="row">
-      <div class="col-sm">
-        <mat-form-field appearance="fill">
-          <mat-label>Grad</mat-label>
-          <input matInput>
+    <div class="row text-center" >
+   <form [formGroup]="searchForm" style="display: inline-flex;width: 100%;">
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+        <mat-label>Grad</mat-label>
+        <mat-select formControlName="id_city">
+          <mat-option *ngFor="let city of listOfCities" [value]="city">
+            {{city.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+        <mat-label>Usluga</mat-label>
+        <mat-select formControlName="id_transaction_type">
+          <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
+            {{transaction.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+        <mat-label>Tip nekretnine</mat-label>
+        <mat-select formControlName="id_estate_category">
+          <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory">
+            {{estateCategory.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+        <mat-label>Potkategorija nekretnine</mat-label>
+        <mat-select formControlName="id_estate_sub_category">
+          <mat-option *ngFor="let estateSubCategory of listOfEstateSubCategories" [value]="estateSubCategory">
+            {{estateSubCategory.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+   </form>
 
-          <mat-icon matSuffix>location_on</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="col-sm">
-        <mat-form-field appearance="fill">
-          <mat-label>Usluga</mat-label>
-          <input matInput>
-          <mat-icon matSuffix>attach_money</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="col-sm">
-        <mat-form-field appearance="fill">
-          <mat-label>Nekretnina</mat-label>
-          <input matInput>
-          <mat-icon matSuffix>location_city</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="col-sm">
-        <mat-form-field appearance="fill">
-          <mat-label>Struktura</mat-label>
-          <input matInput>
-          <mat-icon matSuffix>home</mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="col-sm">
-        <button class="search-btn">Pretrazi</button>
-      </div>
-
+    </div>
+    <div class="col-sm">
+      <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>
     </div>
   </div>
 </div>

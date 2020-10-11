@@ -1,0 +1,29 @@
+<app-white-footer></app-white-footer>
+<div class="header">
+
+</div>
+<div class="estate-container">
+    <h1 style="padding-top: 1em;">Filtrirane nekretnine</h1>
+    <mat-divider></mat-divider>
+    <div class="row" style="padding-top: 5em;">
+        <div class="col-sm-6" *ngFor="let estate of filteredEstate">
+            <img [src]="estate.listOfImages[0].url" width="500px" height="300px" alt="">
+           <div class="row">
+               <div class="col-sm-6">
+                <h3 class="text-left">{{estate.title}}</h3>
+                <div style="display: inline-flex;">
+                    <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_location.id_part_of_city.id_city.title}} | {{estate.id_location.id_part_of_city.title}}</h5>
+                <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.id_location.address}}</h5>
+                </div>
+                <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate.price}}€</h4>
+            </div>
+               <div class="col-sm"></div>
+           </div>
+            <div class="text-left">
+                <button mat-button routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active"  class="estate-btn">Pogledaj više</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

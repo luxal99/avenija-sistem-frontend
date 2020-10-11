@@ -1,5 +1,5 @@
  h1,h4,h6,h5{
-     font-family: 'Poppins', sans-serif;
+ 
  }
 
  
@@ -23,7 +23,7 @@
     margin-top: 1.5em;
     border: 0 !important;
     background-color: #00c3f6;
-    font-family: 'Poppins', sans-serif;
+
 }
 
 .edit-btn {
@@ -33,6 +33,6 @@
     margin-top: 1.5em;
     border: 0 !important;
     background-color: #282828;
-    font-family: 'Poppins', sans-serif;
+
 }
 

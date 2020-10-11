@@ -1,6 +1,6 @@
 .add-estate-dialog {
     padding: 5em 2em 5em 2em;
-    font-family: 'Poppins', sans-serif;
+
 }
 
 .radio-button-div {
@@ -20,7 +20,7 @@ h4 {
 }
 
 h4, h5 {
-    font-family: 'Poppins', sans-serif;
+
 }
 
 mat-radio-group {
@@ -36,7 +36,7 @@ mat-radio-group {
     border: 0 !important;
     background-color: #00c3f6;
     border-radius: 0 !important;
-    font-family: 'Poppins', sans-serif;
+
     color: #fff;
 }
 
@@ -45,6 +45,6 @@ mat-radio-group {
     border: 0 !important;
     background-color: #f3f4f7;
     border-radius: 0 !important;
-    font-family: 'Poppins', sans-serif;
+
     color: #00c3f6;
 }

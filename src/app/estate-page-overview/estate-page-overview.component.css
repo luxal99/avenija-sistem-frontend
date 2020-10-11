@@ -1,58 +1,17 @@
-.menu-div {
-    display: inline-flex;
-}
-h1,p{
-
-    font-family: 'Poppins', sans-serif;
-}
-.nav-li {
-    margin-left: 1em;
-    font-family: 'Poppins', sans-serif;
-    color: #282828;
-}
-
-
-nav {
-    padding: 3em 2em 3em 2em;
-    background-color: #fff !important;
-}
-
 
 .estate-info h5 {
     margin-left: 0 !important;
 }
 
-
-.reg-btn, .login-btn {
-    border: 0 !important;
-    font-family: 'Poppins', sans-serif;
-    -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
-    padding: .6em 3em .6em 3em;
-}
-
-.reg-btn {
-    background-color: #00c3f6;
-    color: #fff;
-    margin-left: 2em;
-}
-
-.login-btn {
-    margin-left: 2em;
-    background-color: #282828;
-    color: #fff;
-}
-
 .header h2 {
     color: #282828;
-    font-family: 'Poppins', sans-serif;
+
     line-height: 3px;
 }
 
 
 h1,h4,h6,h5{
-    font-family: 'Poppins', sans-serif;
+
 }
 
 
@@ -109,7 +68,7 @@ h1,h4,h6,h5{
 .contact-btn {
     width: 48%;
     background-color: #00c3f6;
-    font-family: 'Poppins', sans-serif;
+
 }
 
 .favorite-btn {
@@ -118,5 +77,5 @@ h1,h4,h6,h5{
     background-color: #282828;
     color: #fff;
 
-    font-family: 'Poppins', sans-serif;
+
 }
