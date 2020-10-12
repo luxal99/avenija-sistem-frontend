@@ -114,9 +114,10 @@ export class OptionComponent implements OnInit {
       this.listOfHeating = resp as Array<Heating>
     })
   }
-  openAddCityDialog() {
+  openAddCityDialog(city?) {
     const dialogRef = this.dialog.open(AddCityDialogComponent, {
-      width: 'auto'
+      width: 'auto',
+      data:city
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -198,12 +199,12 @@ export class OptionComponent implements OnInit {
   }
 
 
-  cityColumns: string[] = ['id', 'title'];
-  partOfCityColumns: string[] = ['id', 'title', 'city'];
-  estateCategoryColumns: string[] = ['id', 'title'];
-  estateTypeColumns: string[] = ['id', 'title'];
-  estateSubCategoryColumns: string[] = ['id', 'title', 'estate_category'];
-  accColumns: string[] = ['id', 'title'];
-  eqColumns: string[] = ['id', 'title'];
-  heatingColumns: string[] = ['id', 'title'];
+  cityColumns: string[] = ['id', 'title','option'];
+  partOfCityColumns: string[] = ['id', 'title', 'city','option'];
+  estateCategoryColumns: string[] = ['id', 'title','option'];
+  estateTypeColumns: string[] = ['id', 'title','option'];
+  estateSubCategoryColumns: string[] = ['id', 'title', 'estate_category','option'];
+  accColumns: string[] = ['id', 'title','option'];
+  eqColumns: string[] = ['id', 'title','option'];
+  heatingColumns: string[] = ['id', 'title','option'];
 }
