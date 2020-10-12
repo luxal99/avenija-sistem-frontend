@@ -203,6 +203,9 @@
           <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
             <div class="example-box" *ngFor="let image of listOfImages" cdkDrag>
               <img [src]="image.url" height="200px" alt="" class="img-fluid">
+              <div class="text-center">
+                <button class="silver-btn" mat-button style="margin-top: 1em;width: 90%;" (click)="deletePhoto(image)">Obrisi</button>
+              </div>
             </div>
           </div>
           
