@@ -199,12 +199,14 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-2" *ngFor="let image of listOfImages" style="margin-top: 2em;">
-            <img src="{{image.url}}" alt="" class="img-fluid">
-            <div class="text-center">
-              <button class="silver-btn" mat-button style="margin-top: 1em;width: 90%;" (click)="deletePhoto(image)">Obrisi</button>
+
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let image of listOfImages" cdkDrag>
+              <img [src]="image.url" height="200px" alt="" class="img-fluid">
             </div>
           </div>
+          
+        
         </div>
         <div style="margin-top: 2em;">
           <button mat-button matStepperPrevious  class="silver-btn">Nazad</button>

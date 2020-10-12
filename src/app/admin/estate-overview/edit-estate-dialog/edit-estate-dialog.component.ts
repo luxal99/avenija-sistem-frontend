@@ -28,6 +28,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { Image } from 'src/app/models/Image'
 import { AccessoriesDTO } from 'src/app/models/AccessoriesDTO';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-edit-estate-dialog',
   templateUrl: './edit-estate-dialog.component.html',
@@ -195,6 +196,9 @@ export class EditEstateDialogComponent implements OnInit {
 
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.listOfImages, event.previousIndex, event.currentIndex);
+  }
 
   disableSpinner(timeOut) {
     document.getElementById('spinner').style.display = 'block'
@@ -365,6 +369,8 @@ export class EditEstateDialogComponent implements OnInit {
     heating.id = this.accessoriesForm.get("id_heating").value;
     estateType.id = this.thirdStepForm.get("id_estate_type").value;
     equipment.id = this.accessoriesForm.get("id_equipment").value;
+    
+    // Location
     id_part_of_city.id = this.locationForm.get("id_part_of_city").value;
     id_location.id = this.data.id_location.id;
     id_location.id_part_of_city = id_part_of_city
@@ -397,8 +403,6 @@ export class EditEstateDialogComponent implements OnInit {
 
       img.id_estate = estate
     })
-    
-    console.log(estate);
     
     this.estateService.update(estate).subscribe(resp=>{
       console.log(resp);
