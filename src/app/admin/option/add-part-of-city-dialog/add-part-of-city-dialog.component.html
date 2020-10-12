@@ -7,8 +7,8 @@
       <div>
         <mat-form-field appearance="fill">
             <mat-label>Grad</mat-label>
-            <mat-select formControlName="id_city" >
-              <mat-option *ngFor="let city of listOfCities" [value]="city">
+            <mat-select formControlName="id_city" [(ngModel)]="selectedCity">
+              <mat-option *ngFor="let city of listOfCities" [value]="city.id">
                 {{city.title}}
               </mat-option>
             </mat-select>

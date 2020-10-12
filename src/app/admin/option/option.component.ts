@@ -126,9 +126,10 @@ export class OptionComponent implements OnInit {
     });
   }
 
-  openAddPartOfCityDialog() {
+  openAddPartOfCityDialog(partOfCity) {
     const dialogRef = this.dialog.open(AddPartOfCityDialogComponent, {
-      width: 'auto'
+      width: 'auto',
+      data:partOfCity
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -149,9 +150,10 @@ export class OptionComponent implements OnInit {
     });
   }
 
-  openAddEstateSubCategoryDialog() {
+  openAddEstateSubCategoryDialog(estateSubCategory) {
     const dialogRef = this.dialog.open(AddEstateSubCategoryDialogComponent, {
-      width: 'auto'
+      width: 'auto',
+      data: estateSubCategory
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -196,7 +198,7 @@ export class OptionComponent implements OnInit {
   openAddHeatingDialog(heating) {
     const dialogRef = this.dialog.open(AddHeatingDialogComponent, {
       width: 'auto',
-      data:heating
+      data: heating
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { City } from 'src/app/models/CIty';
 import { EstateCategory } from 'src/app/models/EstateCategory';
 import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
 import { EstateType } from 'src/app/models/EstateType';
@@ -21,10 +23,20 @@ export class AddEstateSubCategoryDialogComponent implements OnInit {
     id_estate_category: new FormControl("",Validators.required)
   })
 
-  constructor(private estateCategoryService:EstateCategoryService,private estateSubCategoryService:EstateSubCategoryService) { }
+  selectedEstateCategory;
+
+  constructor(private estateCategoryService:EstateCategoryService,
+    private estateSubCategoryService:EstateSubCategoryService,
+    @Inject(MAT_DIALOG_DATA) public data: City) { }
 
   ngOnInit() {
+    this.setValue();
     this.getAllEstateCategories();
+  }
+
+  setValue() {
+    if (this.data.id)
+      this.addEstateSubCategoryForm.get("title").setValue(this.data.title)
   }
 
   getAllEstateCategories(){
