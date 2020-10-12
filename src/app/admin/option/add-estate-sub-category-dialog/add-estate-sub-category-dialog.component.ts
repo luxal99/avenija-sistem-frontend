@@ -4,9 +4,9 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { City } from 'src/app/models/CIty';
 import { EstateCategory } from 'src/app/models/EstateCategory';
 import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
-import { EstateType } from 'src/app/models/EstateType';
 import { EstateCategoryService } from 'src/app/service/estate-category.service';
 import { EstateSubCategoryService } from 'src/app/service/estate-sub-category.service';
+
 
 @Component({
   selector: 'app-add-estate-sub-category-dialog',
@@ -16,18 +16,18 @@ import { EstateSubCategoryService } from 'src/app/service/estate-sub-category.se
 export class AddEstateSubCategoryDialogComponent implements OnInit {
 
 
-  listOfEstateCategories:Array<EstateCategory> = [];
+  listOfEstateCategories: Array<EstateCategory> = [];
 
   addEstateSubCategoryForm = new FormGroup({
-    title: new FormControl("",Validators.required),
-    id_estate_category: new FormControl("",Validators.required)
+    title: new FormControl("", Validators.required),
+    id_estate_category: new FormControl("", Validators.required)
   })
 
   selectedEstateCategory;
 
-  constructor(private estateCategoryService:EstateCategoryService,
-    private estateSubCategoryService:EstateSubCategoryService,
-    @Inject(MAT_DIALOG_DATA) public data: City) { }
+  constructor(private estateCategoryService: EstateCategoryService,
+    private estateSubCategoryService: EstateSubCategoryService,
+    @Inject(MAT_DIALOG_DATA) public data: EstateSubCategory) { }
 
   ngOnInit() {
     this.setValue();
@@ -36,23 +36,40 @@ export class AddEstateSubCategoryDialogComponent implements OnInit {
 
   setValue() {
     if (this.data.id)
+      this.selectedEstateCategory = this.data.id_estate_category.id
       this.addEstateSubCategoryForm.get("title").setValue(this.data.title)
   }
 
-  getAllEstateCategories(){
-    this.estateCategoryService.getAll().subscribe(resp=>{
+  getAllEstateCategories() {
+    this.estateCategoryService.getAll().subscribe(resp => {
       this.listOfEstateCategories = resp as Array<EstateCategory>
     })
   }
-  save(){
-    this.estateSubCategoryService.save(
-      new EstateSubCategory(
+  save() {
+
+    if (this.data.id) {
+
+      const estateSubCategory = new EstateSubCategory(
         this.addEstateSubCategoryForm.get("title").value,
         this.addEstateSubCategoryForm.get("id_estate_category").value
       )
-    ).subscribe(resp=>{
 
-    })
+      estateSubCategory.id = this.data.id
 
+      this.estateSubCategoryService.update(estateSubCategory).subscribe(resp => {
+
+      })
+
+    } else {
+      this.estateSubCategoryService.save(
+        new EstateSubCategory(
+          this.addEstateSubCategoryForm.get("title").value,
+          this.addEstateSubCategoryForm.get("id_estate_category").value
+        )
+      ).subscribe(resp => {
+
+      })
+
+    }
   }
 }

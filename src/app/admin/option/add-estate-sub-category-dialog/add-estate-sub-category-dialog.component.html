@@ -7,8 +7,8 @@
       <div>
         <mat-form-field appearance="fill">
             <mat-label>Kategorija</mat-label>
-            <mat-select formControlName="id_estate_category" >
-              <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory">
+            <mat-select formControlName="id_estate_category" [(ngModel)]="selectedEstateCategory">
+              <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory.id">
                 {{estateCategory.title}}
               </mat-option>
             </mat-select>
