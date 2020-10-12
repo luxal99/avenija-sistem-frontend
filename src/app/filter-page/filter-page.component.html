@@ -1,13 +1,65 @@
 <app-white-footer></app-white-footer>
 <div class="header">
-
+    <div class="search-div">
+        <h3>Napredna pretraga</h3>
+        <mat-divider></mat-divider>
+        <form [formGroup]="searchForm">
+            <div class="row" style="margin-top: 1em;">
+                <div class="col-sm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cena od</mat-label>
+                        <input matInput formControlName="priceFrom">
+                        <mat-icon matSuffix>attach_money</mat-icon>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cena do</mat-label>
+                        <input matInput formControlName="priceTo">
+                        <mat-icon matSuffix>attach_money</mat-icon>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Grad</mat-label>
+                        <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
+                          <mat-option *ngFor="let city of listOfCities" [value]="city.id" >
+                            {{city.title}}
+                          </mat-option>
+                        </mat-select>
+          
+                      </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Deo grada</mat-label>
+                        <mat-select formControlName="id_part_of_city">
+                          <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity">
+                            {{partOfCity.title}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+    
+            
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <button mat-button class="search-btn" (click)="filter()">Pretraži</button>
+                </div>
+                <div class="col-sm">
+                    <button mat-button class="reset-btn" (click)="getAllEstates()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="estate-container">
-    <h1 style="padding-top: 1em;">Filtrirane nekretnine</h1>
+    <h1 style="padding-top: 5em;">Filtrirane nekretnine</h1>
     <mat-divider></mat-divider>
     <div class="row" >
         <div class="col-sm-6" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
-            <img [src]="estate.listOfImages[0].url" width="500px" height="300px" alt="">
+            <img [src]="estate.listOfImages[0].url" width="100%" height="60%" alt="">
            <div class="row">
                <div class="col-sm-6">
                 <h3 class="text-left">{{estate.title}}</h3>

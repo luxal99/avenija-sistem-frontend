@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { City } from '../models/CIty';
 import { Estate } from '../models/Estate';
 import { Filter } from '../models/Filter';
+import { PartOfCity } from '../models/PartOfCity';
+import { CityService } from '../service/city.service';
 import { EstateService } from '../service/estate.service';
+import { PartOfCityService } from '../service/part-of-city.service';
 
 @Component({
   selector: 'app-filter-page',
@@ -11,19 +17,93 @@ import { EstateService } from '../service/estate.service';
 export class FilterPageComponent implements OnInit {
 
 
+  searchForm = new FormGroup({
+    priceFrom: new FormControl("", Validators.required),
+    priceTo: new FormControl("", Validators.required),
+    id_city: new FormControl("", Validators.required),
+    id_part_of_city: new FormControl("", Validators.required)
+  })
+
+  selectedCity;
+
   listOfEstates: Array<Estate> = [];
   filteredEstate: Array<Estate> = []
-  constructor(private estateService: EstateService) { }
+  listOfCities: Array<City> = []
+  listOfPartsOfCities: Array<PartOfCity> = [];
+
+  filteredPartOfCity:Array<PartOfCity> =[]
+  
+  constructor(private estateService: EstateService,
+    public _snackBar: MatSnackBar,
+    private partOfCityService: PartOfCityService,
+    private cityService: CityService) { }
 
   ngOnInit() {
     this.getAllEstates();
-    this.filterEstate();
+    this.getCities();
+    this.getPartsOfCities();
+    this.setValue();
+    this.filterPartOfCity();
   }
 
-  filterEstate() {
 
 
+  filter() {
 
+    let filter = {
+      priceFrom: this.searchForm.get("priceFrom").value,
+      priceTo: this.searchForm.get("priceTo").value,
+      id_part_of_city: this.searchForm.get("id_part_of_city").value
+    }
+
+
+    if (filter.priceFrom === ''){
+      console.log('Ovde');
+      
+      this.filteredEstate = this.filteredEstate.filter(
+        x => x.price >= filter.priceFrom && x.price <= filter.priceTo ||
+          x.id_location.id_part_of_city.id === filter.id_part_of_city.id
+      )
+    }else {
+      console.log('Ovde ne');
+      this.filteredEstate = this.filteredEstate.filter(
+        x => x.price >= filter.priceFrom && x.price <= filter.priceTo &&
+          x.id_location.id_part_of_city.id === filter.id_part_of_city.id
+      )
+    }
+    
+  }
+
+   filterPartOfCity() {
+
+    this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
+    const id: number = this.searchForm.get("id_city").value;
+    
+    this.filteredPartOfCity = this.listOfPartsOfCities.filter(x => x.id_city.id === id)
+    
+  }
+
+
+  getCities() {
+    this.cityService.getAll().subscribe(resp => {
+      this.listOfCities = resp as Array<City>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  getPartsOfCities() {
+    this.partOfCityService.getAll().subscribe(resp => {
+      this.listOfPartsOfCities = resp as Array<PartOfCity>
+      localStorage.setItem("POC", JSON.stringify(this.listOfPartsOfCities))
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  setValue() {
+    var filter: Filter = JSON.parse(localStorage.getItem("filter"));
+    this.selectedCity = filter.id_city.id
   }
 
   getAllEstates() {
@@ -43,5 +123,11 @@ export class FilterPageComponent implements OnInit {
     })
 
 
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

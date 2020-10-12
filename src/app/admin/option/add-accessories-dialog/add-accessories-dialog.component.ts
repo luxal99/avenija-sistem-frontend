@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Accessories } from 'src/app/models/Accessories';
 import { City } from 'src/app/models/CIty';
-import { accessoies } from 'src/app/models/accessoies';
 import { AccessoriesService } from 'src/app/service/accessories.service';
 import { CityService } from 'src/app/service/city.service';
 
