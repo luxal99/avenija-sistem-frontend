@@ -63,6 +63,10 @@ export class EstateOverviewComponent implements OnInit {
       data: estate
 
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getAllEstates();
+    });
   }
 
 }

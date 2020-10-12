@@ -357,12 +357,18 @@ export class EditEstateDialogComponent implements OnInit {
     let heating = new Heating();
     let estateType = new EstateType();
     let equipment = new Equipment();
+    let id_part_of_city = new PartOfCity();
+    let id_location = new Location()
 
 
     estateSubCategory.id = this.firstFormGroup.get("id_estate_sub_category").value;
     heating.id = this.accessoriesForm.get("id_heating").value;
     estateType.id = this.thirdStepForm.get("id_estate_type").value;
     equipment.id = this.accessoriesForm.get("id_equipment").value;
+    id_part_of_city.id = this.locationForm.get("id_part_of_city").value;
+    id_location.id = this.data.id_location.id;
+    id_location.id_part_of_city = id_part_of_city
+    id_location.address = this.locationForm.get("address").value
 
     estate.title = this.titleForm.get("title").value;
     estate.description = this.editorComponent.editorInstance.getData();
@@ -382,9 +388,24 @@ export class EditEstateDialogComponent implements OnInit {
 
     estate.listOfImages = this.listOfImages;
     estate.listOfAccessories = this.listOfSelectedAccessories;
+    estate.id_location = id_location
+    estate.id = this.data.id
 
+    estate.listOfImages.forEach(img =>{
+      const estate = new Estate();
+      estate.id = this.data.id;
 
+      img.id_estate = estate
+    })
+    
     console.log(estate);
+    
+    this.estateService.update(estate).subscribe(resp=>{
+      console.log(resp);
+      
+    },err =>{
+      this.openSnackBar("Dogodila se greska","PONOVO")
+    })
   }
 
   setDescription() {
