@@ -117,11 +117,12 @@ export class OptionComponent implements OnInit {
   openAddCityDialog(city?) {
     const dialogRef = this.dialog.open(AddCityDialogComponent, {
       width: 'auto',
-      data:city
+      data: city
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.getCities();
+      this.getPartsOfCities()
     });
   }
 
@@ -136,13 +137,15 @@ export class OptionComponent implements OnInit {
   }
 
 
-  openAddEstateCategoryDialog() {
+  openAddEstateCategoryDialog(estateCategory) {
     const dialogRef = this.dialog.open(AddEstateCategoryDialogComponent, {
-      width: 'auto'
+      width: 'auto',
+      data: estateCategory
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.getEstateCategories();
+      this.getEstateSubCategories();
     });
   }
 
@@ -155,9 +158,10 @@ export class OptionComponent implements OnInit {
       this.getEstateSubCategories();
     });
   }
-  openAddEstateTypeDialog() {
+  openAddEstateTypeDialog(estateType) {
     const dialogRef = this.dialog.open(AddEstateTypeDialogComponent, {
-      width: 'auto'
+      width: 'auto',
+      data: estateType
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -166,9 +170,10 @@ export class OptionComponent implements OnInit {
   }
 
 
-  openAddEquipmentDialog() {
+  openAddEquipmentDialog(equipment?) {
     const dialogRef = this.dialog.open(AddEquipmentDialogComponent, {
-      width: 'auto'
+      width: 'auto',
+      data: equipment
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -177,9 +182,9 @@ export class OptionComponent implements OnInit {
   }
 
 
-  openAddAccessoriesDialog() {
+  openAddAccessoriesDialog(acc) {
     const dialogRef = this.dialog.open(AddAccessoriesDialogComponent, {
-      width: 'auto'
+      width: 'auto', data: acc
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -188,9 +193,10 @@ export class OptionComponent implements OnInit {
   }
 
 
-  openAddHeatingDialog() {
+  openAddHeatingDialog(heating) {
     const dialogRef = this.dialog.open(AddHeatingDialogComponent, {
-      width: 'auto'
+      width: 'auto',
+      data:heating
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -199,12 +205,12 @@ export class OptionComponent implements OnInit {
   }
 
 
-  cityColumns: string[] = ['id', 'title','option'];
-  partOfCityColumns: string[] = ['id', 'title', 'city','option'];
-  estateCategoryColumns: string[] = ['id', 'title','option'];
-  estateTypeColumns: string[] = ['id', 'title','option'];
-  estateSubCategoryColumns: string[] = ['id', 'title', 'estate_category','option'];
-  accColumns: string[] = ['id', 'title','option'];
-  eqColumns: string[] = ['id', 'title','option'];
-  heatingColumns: string[] = ['id', 'title','option'];
+  cityColumns: string[] = ['id', 'title', 'option'];
+  partOfCityColumns: string[] = ['id', 'title', 'city', 'option'];
+  estateCategoryColumns: string[] = ['id', 'title', 'option'];
+  estateTypeColumns: string[] = ['id', 'title', 'option'];
+  estateSubCategoryColumns: string[] = ['id', 'title', 'estate_category', 'option'];
+  accColumns: string[] = ['id', 'title', 'option'];
+  eqColumns: string[] = ['id', 'title', 'option'];
+  heatingColumns: string[] = ['id', 'title', 'option'];
 }

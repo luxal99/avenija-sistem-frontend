@@ -27,9 +27,6 @@ export class AddCityDialogComponent implements OnInit {
     if (this.data.id)
       this.addCityForm.get("title").setValue(this.data.title)
   }
-
-
-
   save() {
     if (this.data.id) {
       let city = new City(this.addCityForm.get("title").value);
