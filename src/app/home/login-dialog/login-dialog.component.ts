@@ -28,10 +28,13 @@ export class LoginDialogComponent implements OnInit {
     this.authService.auth(user).subscribe(resp => {
       localStorage.setItem("token",resp['token'])
 
+      console.log(resp);
+      
+
       if(resp['role'].title === 'ADMIN'){
         this.router.navigate(['/admin'])
-      }else if (resp['role'].title === 'CLIENT'){
-          
+      }else if (resp['role'].title === 'USER'){
+        this.router.navigate(['/client']) 
       }
 
     })
