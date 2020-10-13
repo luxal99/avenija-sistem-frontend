@@ -58,14 +58,11 @@ export class FilterPageComponent implements OnInit {
 
 
     if (filter.priceFrom === ''){
-      console.log('Ovde');
-      
       this.filteredEstate = this.filteredEstate.filter(
         x => x.price >= filter.priceFrom && x.price <= filter.priceTo ||
           x.id_location.id_part_of_city.id === filter.id_part_of_city.id
       )
     }else {
-      console.log('Ovde ne');
       this.filteredEstate = this.filteredEstate.filter(
         x => x.price >= filter.priceFrom && x.price <= filter.priceTo &&
           x.id_location.id_part_of_city.id === filter.id_part_of_city.id
