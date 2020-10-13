@@ -37,6 +37,7 @@ import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { WhiteFooterComponent } from './white-footer/white-footer.component';
 import { AdvertisingRequestComponent } from './advertising-request/advertising-request.component';
+import { AdvertisingRequestOverviewComponent } from './admin/advertising-request-overview/advertising-request-overview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { AdvertisingRequestComponent } from './advertising-request/advertising-r
     EstatePageOverviewComponent,
     FilterPageComponent,
     WhiteFooterComponent,
-    AdvertisingRequestComponent
+    AdvertisingRequestComponent,
+    AdvertisingRequestOverviewComponent
     
   ],
   imports: [
