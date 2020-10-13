@@ -17,24 +17,24 @@ export class LoginDialogComponent implements OnInit {
     password: new FormControl("", Validators.required)
   })
 
-  constructor(private authService: AuthService,private router:Router) { }
+  
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
 
   auth() {
-    let user =new User(this.userForm.get("username").value, this.userForm.get("password").value);
+    let user = new User(this.userForm.get("username").value, this.userForm.get("password").value);
     this.authService.auth(user).subscribe(resp => {
-      localStorage.setItem("token",resp['token'])
+      localStorage.setItem("token", resp['token'])
 
-      console.log(resp);
-      
 
-      if(resp['role'].title === 'ADMIN'){
+      if (resp['role'].title === 'ADMIN') {
         this.router.navigate(['/admin'])
-      }else if (resp['role'].title === 'USER'){
-        this.router.navigate(['/client']) 
+      } else if (resp['role'].title === 'USER') {
+        this.router.navigate(['/client'])
       }
 
     })

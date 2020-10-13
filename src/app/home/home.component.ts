@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { error } from 'protractor';
 import { SwiperOptions } from 'swiper';
@@ -17,6 +17,10 @@ import { EstateSubCategory } from '../models/EstateSubCategory';
 import { Transaction } from '../models/Transaction';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { PartOfCity } from '../models/PartOfCity';
+import { PartOfCityService } from '../service/part-of-city.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,10 +28,32 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
+  public Editor = ClassicEditor;
+
   searchForm = new FormGroup({
     id_transaction_type: new FormControl("", Validators.required),
     id_city: new FormControl("", Validators.required),
     id_estate_category: new FormControl("", Validators.required),
+    id_estate_sub_category: new FormControl("", Validators.required)
+  })
+
+  userInfoForm = new FormGroup({
+    full_name: new FormControl("", Validators.required),
+    email: new FormControl("", Validators.required),
+    telephone: new FormControl("", Validators.required),
+  })
+
+  secondForm = new FormGroup({
+    quadrature: new FormControl("", Validators.required),
+    priceFrom: new FormControl("", Validators.required),
+    priceTo: new FormControl("", Validators.required),
+    id_transaction_type: new FormControl("", Validators.required)
+  })
+
+  locationForm = new FormGroup({
+    address: new FormControl("", Validators.required),
+    id_part_of_city: new FormControl("", Validators.required),
     id_estate_sub_category: new FormControl("", Validators.required)
   })
 
@@ -37,11 +63,13 @@ export class HomeComponent implements OnInit {
   listOfEstateSubCategories: Array<EstateSubCategory> = [];
   listOfCities: Array<City> = []
   listOfTransaction: Array<Transaction> = [];
+  listOfPartsOfCities: Array<PartOfCity> = [];
 
   constructor(private dialog: MatDialog, private estateService: EstateService,
     private cityService: CityService, private transactionTypeService: TransactionService,
-    private estateCategoryService: EstateCategoryService, public _snackBar: MatSnackBar,
-    private estateSubCategoryService: EstateSubCategoryService,private router:Router) { }
+    private estateCategoryService: EstateCategoryService, private partOfCityService: PartOfCityService,
+    public _snackBar: MatSnackBar,
+    private estateSubCategoryService: EstateSubCategoryService, private router: Router) { }
 
 
   config: SwiperOptions = {
@@ -91,11 +119,19 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  getPartsOfCities() {
+    this.partOfCityService.getAll().subscribe(resp => {
+      this.listOfPartsOfCities = resp as Array<PartOfCity>
+      localStorage.setItem("POC", JSON.stringify(this.listOfPartsOfCities))
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
 
   getEstateSubCategories() {
     this.estateSubCategoryService.getAll().subscribe(resp => {
       this.listOfEstateSubCategories = resp as Array<EstateSubCategory>
-      localStorage.setItem("ESC",JSON.stringify(this.listOfEstateSubCategories))
+      localStorage.setItem("ESC", JSON.stringify(this.listOfEstateSubCategories))
     }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
     })
@@ -115,11 +151,11 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  searchOnSell(){
+  searchOnSell() {
     let filter =
     {
       id_city: this.searchForm.get("id_city").value,
-      id_transaction_type: {id:1},
+      id_transaction_type: { id: 1 },
       id_estate_category: this.searchForm.get("id_estate_category").value,
       id_estate_sub_category: this.searchForm.get("id_estate_sub_category").value
     }
@@ -127,11 +163,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/filter'])
   }
 
-  searchOnRent (){
+  searchOnRent() {
     let filter =
     {
       id_city: this.searchForm.get("id_city").value,
-      id_transaction_type: {id:2},
+      id_transaction_type: { id: 2 },
       id_estate_category: this.searchForm.get("id_estate_category").value,
       id_estate_sub_category: this.searchForm.get("id_estate_sub_category").value
     }
