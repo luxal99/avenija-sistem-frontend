@@ -14,8 +14,22 @@ export class AdminComponent implements OnInit {
   constructor(private cvRef: ViewContainerRef, private resolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
+    
   }
 
+ ngAfterViewInit(): void {
+   //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+   //Add 'implements AfterViewInit' to the class.
+   this.loadAdvertisingRequestOverview()
+ }
+
+
+  async loadAdvertisingRequestOverview (){
+    this.entry.clear();
+    const { AdvertisingRequestOverviewComponent } = await import('./advertising-request-overview/advertising-request-overview.component');
+    const factory = this.resolver.resolveComponentFactory(AdvertisingRequestOverviewComponent)
+    this.entry.createComponent(factory);
+  }
   async loadEstateOverview (){
     this.entry.clear();
     const { EstateOverviewComponent } = await import('./estate-overview/estate-overview.component');

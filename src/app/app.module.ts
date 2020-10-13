@@ -93,7 +93,7 @@ import { AdvertisingRequestOverviewComponent } from './admin/advertising-request
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
-    AddPartOfCityDialogComponent,
+    AddPartOfCityDialogComponent,AdvertisingRequestOverviewComponent,
     AddEstateDialogComponent, OverviewEstateDialogComponent, EditEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })

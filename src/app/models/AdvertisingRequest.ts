@@ -14,4 +14,6 @@ export class AdvertisingRequest {
     id_location: Location
     id_estate_sub_category: EstateSubCategory
     id_transaction_type: Transaction
+
+    isReviewed:boolean
 }
