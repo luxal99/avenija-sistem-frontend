@@ -159,16 +159,20 @@ h4, h5 {}
     background-position: center;
     height: 80vh;
     background: linear-gradient( rgba(0, 0, 0, .8), rgba(0, 0, 0, 0.5)), url('../../assets/img/92d3e202bee3df35b5a65278158677c1.jpg');
+
+    background-attachment: fixed;
 }
 
 .form-div {
-    padding: 3em;
+    padding: 2em;
     margin-top: 3em;
     background-color: #fff;
 }
 
 .next-btn, .back-btn {
     width: 25%;
+    padding-top: .5em;
+    padding-bottom: .5em;
 }
 
 .next-btn {
@@ -187,4 +191,13 @@ h4, h5 {}
     font-weight: bold;
     font-size: 80px;
     padding-top: 1em;
+}
+
+.send-btn {
+    width: 50%;
+    color: #fff;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    margin-top: 1em;
+    background-color: #00c3f6;
 }

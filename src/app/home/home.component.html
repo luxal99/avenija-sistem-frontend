@@ -13,8 +13,11 @@
       </div>
       <div class="col-sm">
 
-      <div class="text-right" style="padding-right: 3em;">
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 257018</h5>
+      <div class="text-right" style="display: inline-flex;padding-left: 3.5em;">
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
       </div>
     <div class="menu-div">
      <a><h5 (click)="searchOnRent()">Izdavanje</h5></a>
@@ -144,14 +147,14 @@
           <div class="row">
             <div class="col-sm" style="padding-left: 0;">
               <mat-form-field appearance="outline">
-                <mat-label>Telefon</mat-label>
+                <mat-label>Cena od</mat-label>
                 <input matInput type="number" formControlName="priceFrom">
                 <mat-icon matSuffix>attach_money</mat-icon>
               </mat-form-field>
             </div>
-            <div class="col-sm" style="padding-right: 0;">
+            <div class="col-sm" style="padding-right: 0;padding-left: 0;">
               <mat-form-field appearance="outline">
-                <mat-label>Telefon</mat-label>
+                <mat-label>Cena do</mat-label>
                 <input matInput type="number" formControlName="priceTo">
                 <mat-icon matSuffix>attach_money</mat-icon>
               </mat-form-field>
@@ -185,18 +188,22 @@
   <div class="row">
     <div class="col-sm" style="padding-left: 0;">
       <mat-form-field appearance="outline">
-        <mat-label>Ime i prezime</mat-label>
+        <mat-label>Adresa</mat-label>
         <input matInput formControlName="address">
         <mat-icon matSuffix>contact_mail</mat-icon>
       </mat-form-field>
     </div>
-    <div class="col-sm">
-      <mat-form-field appearance="outline" style="padding-right: 0;">
+    <div class="col-sm" style="padding-right: 0 !important;">
+      <mat-form-field appearance="outline">
+        
         <mat-label>Grad i deo grada</mat-label>
         <mat-select formControlName="id_part_of_city">
-          <mat-option *ngFor="let partOfCity of listOfPartsOfCities" [value]="partOfCity">
-            {{partOfCity.title}}
-          </mat-option>
+          <mat-option>-- None --</mat-option>
+          <mat-optgroup *ngFor="let city of listOfCities" [label]="city.title">
+            <mat-option *ngFor="let partOfCity of city.listOfPartOfCities" [value]="partOfCity">
+              {{partOfCity.title}}
+            </mat-option>
+          </mat-optgroup>
         </mat-select>
       </mat-form-field>
     </div>
@@ -218,6 +225,7 @@
   </div>
 
   <ckeditor #editor [editor]="Editor"></ckeditor>
+  <button class="send-btn" mat-button (click)="sendAdvertisingRequset()">Pošalji</button>
 </form>
         </mat-step>
       </mat-horizontal-stepper>

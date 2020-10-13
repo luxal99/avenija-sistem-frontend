@@ -21,6 +21,10 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { PartOfCity } from '../models/PartOfCity';
 import { PartOfCityService } from '../service/part-of-city.service';
+import { AdvertisingRequest } from '../models/AdvertisingRequest';
+import { User } from '../models/User';
+import { UserInfo } from '../models/UserInfo';
+import { Location } from '../models/Location';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -90,6 +94,7 @@ export class HomeComponent implements OnInit {
     this.getAllTransaction();
     this.getEstateCategories();
     this.getEstateSubCategories();
+    this.getPartsOfCities()
     this.getCities();
   }
 
@@ -209,5 +214,38 @@ export class HomeComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  sendAdvertisingRequset() {
+    let advertisingRequest = new AdvertisingRequest();
+
+    // Step 1
+    advertisingRequest.id_user_info = new UserInfo(
+      this.userInfoForm.get("full_name").value,
+      this.userInfoForm.get("email").value,
+      this.userInfoForm.get("telephone").value
+    )
+
+    // Step 2
+
+    advertisingRequest.priceFrom = this.secondForm.get("priceFrom").value;
+    advertisingRequest.priceTo = this.secondForm.get("priceTo").value;
+    advertisingRequest.quadrature = this.secondForm.get("quadrature").value;
+    advertisingRequest.id_transaction_type = this.secondForm.get("id_transaction_type").value;
+
+    // Step 3
+
+    advertisingRequest.id_location = new Location(
+      this.locationForm.get("address").value,
+      this.locationForm.get("id_part_of_city").value
+    );
+
+    advertisingRequest.id_estate_sub_category = this.locationForm.get("id_estate_sub_category").value;
+    advertisingRequest.description = this.editorComponent.editorInstance.getData();
+
+    console.log(advertisingRequest);
+    
+
+
   }
 }
