@@ -25,6 +25,7 @@ import { AdvertisingRequest } from '../models/AdvertisingRequest';
 import { User } from '../models/User';
 import { UserInfo } from '../models/UserInfo';
 import { Location } from '../models/Location';
+import { AdvertisingRequestService } from '../service/advertising-request.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -72,7 +73,7 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog, private estateService: EstateService,
     private cityService: CityService, private transactionTypeService: TransactionService,
     private estateCategoryService: EstateCategoryService, private partOfCityService: PartOfCityService,
-    public _snackBar: MatSnackBar,
+    public _snackBar: MatSnackBar, private advertisingRequestService: AdvertisingRequestService,
     private estateSubCategoryService: EstateSubCategoryService, private router: Router) { }
 
 
@@ -243,9 +244,13 @@ export class HomeComponent implements OnInit {
     advertisingRequest.id_estate_sub_category = this.locationForm.get("id_estate_sub_category").value;
     advertisingRequest.description = this.editorComponent.editorInstance.getData();
 
-    console.log(advertisingRequest);
-    
+    this.advertisingRequestService.save(advertisingRequest).subscribe(resp => {
+      this.openSnackBar("Uspesno ste postali zahtev","DONE")
 
+    },err=>{
+      this.openSnackBar("Neuspesan zahtev","DONE")
+
+    })
 
   }
 }

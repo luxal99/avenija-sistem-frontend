@@ -1,5 +1,6 @@
 [{
     "context": [
+        "/advertising",
         "/user",
         "/estateCategory",
         "/estateSubCategory",

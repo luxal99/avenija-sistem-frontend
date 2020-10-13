@@ -36,6 +36,7 @@ import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-d
 import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-overview.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { WhiteFooterComponent } from './white-footer/white-footer.component';
+import { AdvertisingRequestComponent } from './advertising-request/advertising-request.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,8 @@ import { WhiteFooterComponent } from './white-footer/white-footer.component';
     EditEstateDialogComponent,
     EstatePageOverviewComponent,
     FilterPageComponent,
-    WhiteFooterComponent
+    WhiteFooterComponent,
+    AdvertisingRequestComponent
     
   ],
   imports: [
