@@ -1,0 +1,73 @@
+.menu-div {
+    display: inline-flex;
+}
+
+h1, p {}
+
+h5 {
+    margin-left: 1em;
+    padding-top: .5em;
+    color: #fff;
+}
+
+nav {
+    padding: 3em;
+}
+
+.header {
+    background: linear-gradient( rgba(0, 0, 0, .8), rgba(0, 0, 0, 0.5)), url('../../assets/img/92d3e202bee3df35b5a65278158677c1.jpg');
+    background-attachment: fixed;
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.reg-btn, .login-btn {
+    border: 0 !important;
+    -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    padding: .6em 3em .6em 3em;
+}
+
+.reg-btn {
+    background-color: #00c3f6;
+    color: #fff;
+    margin-left: 2em;
+}
+
+.login-btn {
+    margin-left: 2em;
+    background-color: #fff;
+    color: #282828;
+}
+
+.header h2 {
+    color: #fff;
+    line-height: 3px;
+}
+
+::ng-deep.contact {
+    background-color: #fff !important;
+}
+
+::ng-deep.contact h4 {
+    color: #282828 !important;
+}
+
+::ng-deep.logo {
+    content: url('../../assets/img/logo.png') !important;
+}
+
+.ad-form-div {
+
+    padding: 5em 20% 10em 20%;
+    -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+}
+
+
+
+mat-form-field {
+    width: 100%;
+}

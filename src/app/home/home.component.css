@@ -186,13 +186,6 @@ h4, h5 {}
     color: #282828;
 }
 
-.big-h1 {
-    color: #fff;
-    font-weight: bold;
-    font-size: 80px;
-    padding-top: 1em;
-}
-
 .send-btn {
     width: 50%;
     color: #fff;
@@ -200,4 +193,11 @@ h4, h5 {}
     padding-bottom: .5em;
     margin-top: 1em;
     background-color: #00c3f6;
+}
+
+.big-h1 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 80px;
+    padding-top: 1em;
 }
