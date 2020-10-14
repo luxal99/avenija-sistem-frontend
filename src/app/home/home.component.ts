@@ -97,6 +97,18 @@ export class HomeComponent implements OnInit {
     this.getEstateSubCategories();
     this.getPartsOfCities()
     this.getCities();
+    this.setResponsiveSlider();
+    
+  }
+
+  setResponsiveSlider(){
+    if (window.screen.width <= 570) {
+      console.log(';');
+      
+      this.config.slidesPerView = 1
+      this.config.spaceBetween = 300
+      this.config.slidesPerGroup = 1
+    }
   }
 
 
