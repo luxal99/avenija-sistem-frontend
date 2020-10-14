@@ -1,11 +1,14 @@
-<mat-drawer-container class="example-container" hasBackdrop="false" fullscreen>
-  <mat-drawer #drawer mode="side">
+<mat-drawer-container class="example-container" hasBackdrop="true" fullscreen>
+  <mat-drawer #drawer mode="over">
       <img src="../../assets/img/white_logo.png" alt="" class="img-fluid">
       <div class="option-menu">
       </div>
   </mat-drawer>
   <mat-drawer-content>
 <div class="header">
+  <div class="text-right hamburger-menu">
+    <button mat-icon-button (click)="drawer.toggle()"><mat-icon>format_align_right</mat-icon></button>
+  </div>
   <nav>
     <div class="row">
       <div class="col-sm-7">
@@ -36,7 +39,7 @@
   </div>
   <div class="search-div text-center">
     <div class="row text-center" >
-   <form [formGroup]="searchForm" style="display: inline-flex;width: 100%;">
+   <form [formGroup]="searchForm" class="search-form">
     <div class="col-sm">
       <mat-form-field appearance="fill">
         <mat-label>Grad</mat-label>
@@ -77,13 +80,15 @@
         </mat-select>
       </mat-form-field>
     </div>
+
+    <div class="col-sm">
+      <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>
+    </div>
   
    </form>
 
     </div>
-    <div class="col-sm">
-      <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>
-    </div>
+    
   </div>
 </div>
 <div class="estate-binding">
