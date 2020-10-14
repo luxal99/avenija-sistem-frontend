@@ -1,0 +1,37 @@
+<div class="dialog">
+ <div class="row">
+     <div class="col-sm">
+        <h1>Podaci o zahtevu</h1>
+     </div>
+     <div class="col-sm text-right">
+         <div class="text-right">
+    <button mat-button (click)="update(data)" mat-dialog-close>Oznaci kao pregledano</button>
+</div>
+     </div>
+ </div>
+<h3>Kontakt podaci</h3>
+<mat-divider></mat-divider>
+<h5><span style="font-weight: bold;">Ime: </span>{{data.id_user_info.full_name}}</h5>
+<h5><span style="font-weight: bold;">Email: </span>{{data.id_user_info.email}}</h5>
+<h5><span style="font-weight: bold;">Telefon: </span>{{data.id_user_info.telephone}}</h5>
+
+
+<h3>Podaci o stanu</h3>
+<mat-divider></mat-divider>
+<h5><span style="font-weight: bold;">Transakcija: </span>{{data.id_transaction_type.title}}</h5>
+<h5><span style="font-weight: bold;">Cena od: </span>{{data.priceFrom}}€ do {{data.priceTo}}€</h5>
+<h5><span style="font-weight: bold;">Okvirna kvadratura: </span>{{data.quadrature}}m2</h5>
+<h5 [innerHTML]="data.description"></h5>
+
+
+<h3>Kategorija stana</h3>
+<mat-divider></mat-divider>
+<h5><span style="font-weight: bold;">Kategorija: </span> {{data.id_estate_sub_category.id_estate_category.title}} | {{data.id_estate_sub_category.title}}</h5>
+
+<h3>Podaci o lokaciji</h3>
+<mat-divider></mat-divider>
+<h5><span style="font-weight: bold;">Adresa: </span>{{data.id_location.address}}</h5>
+<h5><span style="font-weight: bold;">Grad i deo grada: </span>{{data.id_location.id_part_of_city.id_city.title}} <span style="font-weight: bold;">|</span> {{data.id_location.id_part_of_city.title}}</h5>
+
+
+</div>

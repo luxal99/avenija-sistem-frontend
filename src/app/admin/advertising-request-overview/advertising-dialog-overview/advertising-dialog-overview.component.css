@@ -1,0 +1,20 @@
+.dialog{
+    padding: 5em;
+}
+
+h3 {font-weight: bold;padding-top: 2em;}
+h5{
+    padding-top: .5em;
+}
+
+h1 {
+    padding-top: .5em;
+}
+
+button {
+    padding: .5em 0 .5em 0;
+    background-color: #00c3f6;
+    color: #fff;
+    width: 50%;
+    margin-top: 2em;
+}

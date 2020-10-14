@@ -38,6 +38,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
 import { WhiteFooterComponent } from './white-footer/white-footer.component';
 import { AdvertisingRequestComponent } from './advertising-request/advertising-request.component';
 import { AdvertisingRequestOverviewComponent } from './admin/advertising-request-overview/advertising-request-overview.component';
+import { AdvertisingDialogOverviewComponent } from './admin/advertising-request-overview/advertising-dialog-overview/advertising-dialog-overview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { AdvertisingRequestOverviewComponent } from './admin/advertising-request
     FilterPageComponent,
     WhiteFooterComponent,
     AdvertisingRequestComponent,
-    AdvertisingRequestOverviewComponent
+    AdvertisingRequestOverviewComponent,
+    AdvertisingDialogOverviewComponent
     
   ],
   imports: [
@@ -93,7 +95,7 @@ import { AdvertisingRequestOverviewComponent } from './admin/advertising-request
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
-    AddPartOfCityDialogComponent,AdvertisingRequestOverviewComponent,
+    AddPartOfCityDialogComponent,AdvertisingDialogOverviewComponent,AdvertisingRequestOverviewComponent,
     AddEstateDialogComponent, OverviewEstateDialogComponent, EditEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
