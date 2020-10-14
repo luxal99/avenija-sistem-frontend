@@ -1,8 +1,8 @@
 <mat-drawer-container class="example-container" hasBackdrop="true" fullscreen>
   <mat-drawer #drawer mode="over">
       <div style="display: inline-flex;">
-        <img src="../../assets/img/white_logo.png" width="210px" alt="" class="img-fluid">
-        <button mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
+        <img src="../../assets/img/white_logo.png" width="200px" alt="" class="img-fluid">
+        <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
       </div>
       <div class="option-menu">
         <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
@@ -11,10 +11,16 @@
       </div>
 
       <div class="contact-div">
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
+   <div class="row">
+    <div class="col">
+      <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+    </div>
+   <div class="col">
+    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
+   </div>
+   </div>
       </div>
 
       <div class="social-div">

@@ -4,7 +4,7 @@ mat-drawer {
     background-color: #282828 !important;
 }
 
-button {
+mat-drawer .close-btn {
     margin-left: 2em;
     color: #00c3f6;
 }
@@ -31,4 +31,12 @@ h5{
 i {
     font-size: 25px;
     color: #00c3f6;
+}
+
+.contact-div h5 {
+    font-size: 15px;
+}
+
+mat-drawer .col {
+    padding: 0 !important;
 }
