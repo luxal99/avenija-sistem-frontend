@@ -17,11 +17,12 @@ h1 {
     font-weight: bold;
 }
 
-h5{
+mat-drawer h5{
     margin-left: 0 !important;
+    color: #fff;
 }
 
-.contact-div {
+.side-contact-div {
     padding-top: 2em;
 }
 
@@ -33,7 +34,7 @@ i {
     color: #00c3f6;
 }
 
-.contact-div h5 {
+.side-contact-div h5 {
     font-size: 15px;
 }
 

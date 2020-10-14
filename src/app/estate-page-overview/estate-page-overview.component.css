@@ -1,61 +1,55 @@
-
+@import "../../assets/css/sidenav.css";
 .estate-info h5 {
     margin-left: 0 !important;
 }
 
 .header h2 {
     color: #282828;
-
     line-height: 3px;
 }
 
-
-h1,h4,h6,h5{
-
-}
-
+h1, h4, h6, h5 {}
 
 .estate {
-     padding-left: 5em;
-     padding-right: 5em;
+    padding-left: 5em;
+    padding-right: 5em;
 }
 
 .estate-container {
-   padding-top: 3em;
-   padding-bottom: 3em;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
-.estate-item{
-   margin-top: 2em;
+.estate-item {
+    margin-top: 2em;
 }
 
 .overview-btn {
-   padding: .5em 3em .5em 3em;
-   color: #fff;
-   margin-top: 1.5em;
-   border: 0 !important;
-   background-color: #00c3f6;
-   font-family: 'Poppins', sans-serif;
+    padding: .5em 3em .5em 3em;
+    color: #fff;
+    margin-top: 1.5em;
+    border: 0 !important;
+    background-color: #00c3f6;
+    font-family: 'Poppins', sans-serif;
 }
 
 .edit-btn {
-   padding: .5em 3em .5em 3em;
-   margin-right: 1em;
-   color: #fff;
-   margin-top: 1.5em;
-   border: 0 !important;
-   background-color: #282828;
-   font-family: 'Poppins', sans-serif;
+    padding: .5em 3em .5em 3em;
+    margin-right: 1em;
+    color: #fff;
+    margin-top: 1.5em;
+    border: 0 !important;
+    background-color: #282828;
+    font-family: 'Poppins', sans-serif;
 }
 
-.row{
-    margin:  0 !important;
+.row {
+    margin: 0 !important;
 }
+
 .estate-info {
-
     padding: 5em 10em 5em 10em;
 }
-
 
 .slider-img {
     width: 1180px !important;
@@ -68,7 +62,6 @@ h1,h4,h6,h5{
 .contact-btn {
     width: 48%;
     background-color: #00c3f6;
-
 }
 
 .favorite-btn {
@@ -76,6 +69,26 @@ h1,h4,h6,h5{
     margin-left: 1em;
     background-color: #282828;
     color: #fff;
+}
 
+@media screen and (max-width:1870px) {
+    ::ng-deep nav {
+        display: none;
+    }
+    .hamburger-menu {
+        display: flex;
+        color: #00c3f6;
+        padding-right: 1em;
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+    .hamburger-menu mat-icon {
+        font-size: 40px !important;
+    }
+}
 
+@media screen and (max-width: 570px) {
+    .estate-info {
+        padding: 5em 2em 5em 2em;
+    }
 }

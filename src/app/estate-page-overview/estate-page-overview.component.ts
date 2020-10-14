@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SwiperOptions } from 'swiper';
 import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
 import { RegistrationDialogComponent } from '../home/registration-dialog/registration-dialog.component';
@@ -28,7 +28,7 @@ export class EstatePageOverviewComponent implements OnInit {
     }
   }
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog, private estateService: EstateService) { }
+  constructor(private route: ActivatedRoute, private router :Router,private dialog: MatDialog, private estateService: EstateService) { }
 
   ngOnInit() {
     window.scrollTo(0,0)
@@ -52,4 +52,29 @@ export class EstatePageOverviewComponent implements OnInit {
     this.estate = JSON.parse(localStorage.getItem("estate"))
   }
 
+  searchOnSell(){
+    let filter =
+    {
+      id_city: "",
+      id_transaction_type: {id:1},
+      id_estate_category: "",
+      id_estate_sub_category: ""
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
+    location.reload();
+  }
+
+  searchOnRent (){
+    let filter =
+    {
+      id_city: "",
+      id_transaction_type: {id:2},
+      id_estate_category: "",
+      id_estate_sub_category: ""
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
+    location.reload();
+  }
 }
