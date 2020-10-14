@@ -45,7 +45,7 @@ mat-form-field {
     box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
 }
 
-.search-btn , .reset-btn {
+.search-btn, .reset-btn {
     width: 100%;
     padding-top: .7em;
     color: #fff;
@@ -55,5 +55,47 @@ mat-form-field {
 }
 
 .reset-btn {
-     background-color: #282828 !important;
+    background-color: #282828 !important;
+}
+
+.filter-h1 {
+    padding-top: 6em;
+}
+
+.hamburger-menu {
+    display: none;
+}
+
+@media screen and (max-width:1870px) {
+    ::ng-deep nav {
+        display: none;
+    }
+    .hamburger-menu {
+        display: flex;
+        color: #00c3f6;
+        padding-right: 1em;
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+    .hamburger-menu mat-icon {
+        font-size: 40px !important;
+    }
+}
+
+@media screen and (max-width:570px) {
+    .header {
+        height: 100vh;
+        padding-top: 0 !important;
+    }
+    .search-div {
+        margin: 2em;
+        padding: 2em;
+    }.filter-h1 {
+        padding-top: 3em;
+    }
+    .estate-container {
+        padding-bottom: 10em;   
+    } .estate-card {
+        margin-bottom: 5em;
+    }
 }

@@ -71,6 +71,10 @@ h1, h4, h6, h5 {}
     color: #fff;
 }
 
+.hamburger-menu {
+    display: none;
+}
+
 @media screen and (max-width:1870px) {
     ::ng-deep nav {
         display: none;

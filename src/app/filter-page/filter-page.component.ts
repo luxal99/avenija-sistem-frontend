@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 import { City } from '../models/CIty';
 import { Estate } from '../models/Estate';
 import { Filter } from '../models/Filter';
@@ -35,6 +36,7 @@ export class FilterPageComponent implements OnInit {
   
   constructor(private estateService: EstateService,
     public _snackBar: MatSnackBar,
+    private router:Router,
     private partOfCityService: PartOfCityService,
     private cityService: CityService) { }
 
@@ -126,5 +128,31 @@ export class FilterPageComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  searchOnSell(){
+    let filter =
+    {
+      id_city: "",
+      id_transaction_type: {id:1},
+      id_estate_category: "",
+      id_estate_sub_category: ""
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
+    location.reload();
+  }
+
+  searchOnRent (){
+    let filter =
+    {
+      id_city: "",
+      id_transaction_type: {id:2},
+      id_estate_category: "",
+      id_estate_sub_category: ""
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
+    location.reload();
   }
 }
