@@ -229,6 +229,9 @@ h4, h5 {}
     .hamburger-menu mat-icon {
         font-size: 40px !important;
     }
+}
+
+@media screen and (min-width:360px) and ( max-width: 570px) {
     .search-form {
         display: block;
     }
@@ -254,7 +257,6 @@ h4, h5 {}
         background-attachment: fixed;
         margin-top: 5em;
     }
-
     .mobile-advertising-div h1 {
         font-size: 50px;
     }
@@ -270,5 +272,33 @@ h4, h5 {}
     .big-estate img {
         padding: 0 2em 0 2em;
     }
-
+    .about-div {
+        padding: 1em !important;
+    }
+    .about-div h1 {
+        padding-top: 0;
+    }
+    .about-text-col {
+        padding: 2em;
+    }
+    .sell-text {
+        padding-bottom: .5em !important;
+        padding-top: 2em !important;
+    }
+    .mobile-advertising-div .send-btn {
+        width: 100%;
+    }
+    .mobile-advertising-div .next-btn {
+        width: 45%;
+    }
+    .mobile-advertising-div .back-btn {
+        width: 45%;
+    }
+    .mobile-advertising-div .col-sm {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+    .estate-binding h1 {
+        padding-top: 3em;
+    }
 }
