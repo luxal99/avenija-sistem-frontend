@@ -13,3 +13,10 @@ h5 {
 }
 
 h4, h5 {  font-family: 'Poppins', sans-serif;}
+
+
+@media screen and (max-width:570px){
+    .contact{
+        padding: 5em;
+    }
+}
