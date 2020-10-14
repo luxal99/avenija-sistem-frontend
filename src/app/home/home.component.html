@@ -1,8 +1,28 @@
 <mat-drawer-container class="example-container" hasBackdrop="true" fullscreen>
   <mat-drawer #drawer mode="over">
-      <img src="../../assets/img/white_logo.png" alt="" class="img-fluid">
-      <div class="option-menu">
+      <div style="display: inline-flex;">
+        <img src="../../assets/img/white_logo.png" width="210px" alt="" class="img-fluid">
+        <button mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
       </div>
+      <div class="option-menu">
+        <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
+        <a (click)="searchOnSell()"><h1>Prodaja</h1></a>
+        <a><h1>Kontakt</h1></a>
+      </div>
+
+      <div class="contact-div">
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
+      </div>
+
+      <div class="social-div">
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+        <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
+
+      </div>
+
   </mat-drawer>
   <mat-drawer-content>
 <div class="header">
