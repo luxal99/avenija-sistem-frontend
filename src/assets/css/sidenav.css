@@ -44,3 +44,10 @@ i {
 mat-drawer .col {
     padding: 0 !important;
 }
+
+
+@media screen and (min-width:1280px) {
+    mat-drawer {
+        width: 30%;
+    }
+}

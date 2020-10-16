@@ -25,6 +25,12 @@
       <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
      </div>
      </div>
+
+     <div style="display: inline-flex;margin-top: 2em;">
+      <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
+
+      <button class="login-btn" (click)="openLoginDialog()">Login</button>  
+    </div>
         </div>
   
         <div class="social-div">
@@ -57,8 +63,9 @@
         </div>
           </div>
         </div>
-      </nav> 
+      </nav>
 <div class="header">
+ 
     <div class="row hamburger-menu" style="margin: 0 !important;">
         <div class="col">
           <a [routerLink]="['/']" routerLinkActive="router-link-active" >
@@ -118,7 +125,7 @@
                     <button mat-button class="search-btn" (click)="filter()">Pretraži</button>
                 </div>
                 <div class="col" style="padding-left: 0 !important;">
-                    <button mat-button class="reset-btn" (click)="getAllEstates()">Reset</button>
+                    <button mat-button class="reset-btn" (click)="reset()">Reset</button>
                 </div>
             </div>
         </form>

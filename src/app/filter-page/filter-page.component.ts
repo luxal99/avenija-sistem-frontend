@@ -30,7 +30,8 @@ export class FilterPageComponent implements OnInit {
   selectedCity;
 
   listOfEstates: Array<Estate> = [];
-  filteredEstate: Array<Estate> = []
+  filteredEstate: Array<Estate> = [];
+
   listOfCities: Array<City> = []
   listOfPartsOfCities: Array<PartOfCity> = [];
 
@@ -51,8 +52,19 @@ export class FilterPageComponent implements OnInit {
   }
 
 
+  reset(){
+    this.searchForm.get('priceFrom').setValue("");
+    this.searchForm.get('priceTo').setValue("");
+    this.searchForm.get('id_city').setValue("");
+    this.searchForm.get('id_part_of_city').setValue("");
+
+    this.getAllEstates();
+  }
+
 
   filter() {
+
+    let estetes = JSON.parse(localStorage.getItem("estates"));
 
     let filter = {
       priceFrom: this.searchForm.get("priceFrom").value,
@@ -62,12 +74,12 @@ export class FilterPageComponent implements OnInit {
 
 
     if (filter.priceFrom === ''){
-      this.filteredEstate = this.filteredEstate.filter(
+      this.filteredEstate = estetes.filter(
         x => x.price >= filter.priceFrom && x.price <= filter.priceTo ||
           x.id_location.id_part_of_city.id === filter.id_part_of_city.id
       )
     }else {
-      this.filteredEstate = this.filteredEstate.filter(
+      this.filteredEstate = estetes.filter(
         x => x.price >= filter.priceFrom && x.price <= filter.priceTo &&
           x.id_location.id_part_of_city.id === filter.id_part_of_city.id
       )
@@ -109,6 +121,7 @@ export class FilterPageComponent implements OnInit {
 
   getAllEstates() {
     this.estateService.getAll().subscribe(resp => {
+      localStorage.setItem("estates",JSON.stringify(resp))
       this.listOfEstates = resp as Array<Estate>
       var filter: Filter = JSON.parse(localStorage.getItem("filter"))
       if (JSON.stringify(filter.id_city).length === 2) {

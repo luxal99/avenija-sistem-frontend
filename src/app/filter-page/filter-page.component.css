@@ -115,6 +115,9 @@ mat-form-field {
     ::ng-deep nav {
         display: none;
     }
+    .header {
+        padding-top: 0 !important;
+    }
     .hamburger-menu {
         display: flex;
         color: #00c3f6;

@@ -23,6 +23,12 @@
    </div>
       </div>
 
+      <div style="display: inline-flex;margin-top: 2em;">
+        <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
+
+        <button class="login-btn" (click)="openLoginDialog()">Login</button>  
+      </div>
+
       <div class="social-div">
         <i class="fa fa-instagram" aria-hidden="true"></i>
         <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
@@ -35,12 +41,12 @@
   <div class="text-right hamburger-menu">
     <button mat-icon-button (click)="drawer.toggle()"><mat-icon>format_align_right</mat-icon></button>
   </div>
-  <nav>
+  <nav >
     <div class="row">
-      <div class="col-sm-7">
+      <div class="col-7">
         <img src="../../assets/img/white_logo.png" width="300px" style="padding-top: 1em;" alt="" class="img-fluid">
       </div>
-      <div class="col-sm">
+      <div class="col">
 
       <div class="text-right" style="display: inline-flex;padding-left: 3.5em;">
         <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
@@ -127,7 +133,9 @@
     <swiper [config]="config">
       <div class="swiper-wrapper text-left">
         <div class="swiper-slide" *ngFor="let estate of listOfEstates" >
-          <img class="swiper-slide slider-img" [src]="estate.listOfImages[0].url" />
+         <a routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active"  >
+          <img *ngIf="estate.listOfImages.length !== 0" class="swiper-slide slider-img" [src]="estate.listOfImages[0].url" />
+        </a>
           <div>
             <h4 style="color: #282828;margin-top: 1em;">{{estate.title}}</h4>
           <h4 class="blue">{{estate.price}}€</h4> 
@@ -176,14 +184,14 @@
         <mat-step [stepControl]="secondForm" label="Podaci o nekretnini">
          <form [formGroup]="secondForm">
           <div class="row">
-            <div class="col-sm" style="padding-left: 0;">
+            <div class="col" style="padding-left: 0;">
               <mat-form-field appearance="outline">
                 <mat-label>Cena od</mat-label>
                 <input matInput type="number" formControlName="priceFrom">
                 <mat-icon matSuffix>attach_money</mat-icon>
               </mat-form-field>
             </div>
-            <div class="col-sm" style="padding-right: 0;padding-left: 0;">
+            <div class="col" style="padding-right: 0;padding-left: 0;">
               <mat-form-field appearance="outline">
                 <mat-label>Cena do</mat-label>
                 <input matInput type="number" formControlName="priceTo">
@@ -217,14 +225,14 @@
         <mat-step [stepControl]="locationForm" label="Lokacija i opis">
 <form [formGroup]="locationForm">
   <div class="row">
-    <div class="col-sm" style="padding-left: 0;">
+    <div class="col" style="padding-left: 0;">
       <mat-form-field appearance="outline">
         <mat-label>Adresa</mat-label>
         <input matInput formControlName="address">
         <mat-icon matSuffix>contact_mail</mat-icon>
       </mat-form-field>
     </div>
-    <div class="col-sm" style="padding-right: 0 !important;">
+    <div class="col" style="padding-left: 0;padding-right: 0;">
       <mat-form-field appearance="outline">
         
         <mat-label>Grad i deo grada</mat-label>

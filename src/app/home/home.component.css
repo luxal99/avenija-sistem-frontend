@@ -1,5 +1,4 @@
 @import "../../assets/css/sidenav.css";
-
 .menu-div {
     display: inline-flex;
 }
@@ -46,6 +45,7 @@ nav {
     color: #fff;
     line-height: 3px;
 }
+
 .text-header-div {
     padding-top: 12em;
 }
@@ -110,7 +110,8 @@ mat-form-field {
     -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
 }
-https://sistemnekretnine.rs/#/
+
+
 .row {
     margin: 0 !important;
 }
@@ -167,7 +168,8 @@ h4, h5 {}
 .form-div {
     padding: 2em;
     margin-top: 3em;
-    background-color: #fff;https://sistemnekretnine.rs/#/
+    background-color: #fff;
+    
 }
 
 .next-btn, .back-btn {
@@ -185,7 +187,7 @@ h4, h5 {}
 .back-btn {
     background-color: #f3f4f7;
     color: #282828;
-}https://sistemnekretnine.rs/#/
+}
 
 .send-btn {
     width: 50%;
