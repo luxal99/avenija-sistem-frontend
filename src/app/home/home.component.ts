@@ -193,6 +193,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/filter'])
   }
 
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+  }
   search() {
     let filter =
     {

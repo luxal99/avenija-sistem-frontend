@@ -5,3 +5,8 @@
 ::ng-deep.mat-focused .mat-form-field-label {
     color: #282828 !important;
 }
+
+button {
+    padding: .5em 0 .5em 0;
+    width: 100%;
+}

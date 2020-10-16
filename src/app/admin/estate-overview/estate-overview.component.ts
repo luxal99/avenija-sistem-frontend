@@ -21,6 +21,11 @@ export class EstateOverviewComponent implements OnInit {
 
   }
 
+  errorHandler(event) {
+    console.debug(event);
+    event.target.src = "https://cdn.browshot.com/static/images/not-found.png";
+ }
+
   deleteEstate(estate: Estate) {
     this.estateService.delete(estate.id).subscribe(resp => {
       this.getAllEstates();

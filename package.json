@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "sudo ng serve --watch --proxy-config proxy.config.json",
-    "build": "ng build",
+    "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,6 +25,7 @@
     "@ckeditor/ckeditor5-angular": "^1.2.3",
     "@ckeditor/ckeditor5-build-classic": "^23.0.0",
     "@firebase/storage": "^0.3.43",
+    "angular-typing-animation": "^0.5.4",
     "bootstrap": "^4.5.2",
     "ckeditor5-build-classic": "^1.0.0",
     "firebase": "^7.22.1",
@@ -33,7 +34,7 @@
     "material-design-icons": "^3.0.1",
     "ngx-image-compress": "^8.0.4",
     "ngx-useful-swiper": "^10.0.1",
-    "rxjs": "~6.4.0",
+    "rxjs": "^6.4.0",
     "swiper": "^6.3.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

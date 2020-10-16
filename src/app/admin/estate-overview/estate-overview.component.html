@@ -14,7 +14,7 @@
                 <button mat-icon-button (click)="deleteEstate(estate)"><mat-icon>close</mat-icon></button></div>
             <div class="row">
                 <div class="col-sm-2">
-                    <img [src]="estate.listOfImages[0].url" alt="" class="img-fluid">
+                    <img *ngIf="estate.listOfImages.length !== 0" [src]="estate.listOfImages[0].url" (error)="errorHandler($event)" alt="" class="img-fluid">
                 </div>
                 <div class="col-sm" style="background-color: #fff;">
                     <div class="row">

@@ -5,6 +5,6 @@
       </mat-form-field>
 
       <div class="text-center">
-          <button class="big-blue-btn" mat-dialog-close (click)="save()">Sacuvaj</button>
+          <button class="big-blue-btn" mat-dialog-close mat-button [disabled]="!addEstateTypeForm.valid" (click)="save()">Sacuvaj</button>
       </div>
 </form>

@@ -7,7 +7,7 @@
       <div class="option-menu">
         <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
         <a (click)="searchOnSell()"><h1>Prodaja</h1></a>
-        <a><h1>Kontakt</h1></a>
+        <a (click)="scrollToElement(contact)"><h1>Kontakt</h1></a>
       </div>
 
       <div class="side-contact-div">
@@ -51,7 +51,7 @@
     <div class="menu-div">
      <a><h5 (click)="searchOnRent()">Izdavanje</h5></a>
      <a (click)="searchOnSell()"><h5>Prodaja</h5></a>
-     <a><h5>Kontakt</h5></a>
+     <a (click)="scrollToElement(contact)"><h5>Kontakt</h5></a>
      <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
 
      <button class="login-btn" (click)="openLoginDialog()">Login</button>
@@ -60,7 +60,7 @@
     </div>
   </nav>
   <div class="text-center text-header-div">
-    <h2>Lorem ipsum</h2>
+    <h2 >Lorem ipsum</h2>
     <h1>Dolor nunc lorem ipsum</h1>
   </div>
   <div class="search-div text-center">
@@ -439,6 +439,8 @@
    
   </div>
 </div>
+
+<div #contact></div>
 
 <app-footer></app-footer>
   </mat-drawer-content>

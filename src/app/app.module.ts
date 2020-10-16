@@ -35,7 +35,6 @@ import { OverviewEstateDialogComponent } from './admin/estate-overview/overview-
 import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-dialog/edit-estate-dialog.component';
 import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-overview.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
-import { WhiteFooterComponent } from './white-footer/white-footer.component';
 import { AdvertisingRequestComponent } from './advertising-request/advertising-request.component';
 import { AdvertisingRequestOverviewComponent } from './admin/advertising-request-overview/advertising-request-overview.component';
 import { AdvertisingDialogOverviewComponent } from './admin/advertising-request-overview/advertising-dialog-overview/advertising-dialog-overview.component';
@@ -63,7 +62,6 @@ import { AdvertisingDialogOverviewComponent } from './admin/advertising-request-
     EditEstateDialogComponent,
     EstatePageOverviewComponent,
     FilterPageComponent,
-    WhiteFooterComponent,
     AdvertisingRequestComponent,
     AdvertisingRequestOverviewComponent,
     AdvertisingDialogOverviewComponent

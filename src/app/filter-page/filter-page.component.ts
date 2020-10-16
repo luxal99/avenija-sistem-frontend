@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
+import { RegistrationDialogComponent } from '../home/registration-dialog/registration-dialog.component';
 import { City } from '../models/CIty';
 import { Estate } from '../models/Estate';
 import { Filter } from '../models/Filter';
@@ -38,7 +40,7 @@ export class FilterPageComponent implements OnInit {
     public _snackBar: MatSnackBar,
     private router:Router,
     private partOfCityService: PartOfCityService,
-    private cityService: CityService) { }
+    private cityService: CityService,private dialog:MatDialog) { }
 
   ngOnInit() {
     this.getAllEstates();
@@ -140,7 +142,7 @@ export class FilterPageComponent implements OnInit {
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
-    location.reload();
+    location.reload()
   }
 
   searchOnRent (){
@@ -153,6 +155,29 @@ export class FilterPageComponent implements OnInit {
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
-    location.reload();
+    location.reload()
+  }
+
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+  }
+
+
+  openRegistrationDialog() {
+    const dialogRef = this.dialog.open(RegistrationDialogComponent, {
+      width: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  openLoginDialog() {
+    const dialogRef = this.dialog.open(LoginDialogComponent, {
+      width: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

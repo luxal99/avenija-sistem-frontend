@@ -16,6 +16,6 @@
       </div>
 
       <div class="text-center">
-          <button class="big-blue-btn" mat-dialog-close (click)="save()">Sacuvaj</button>
+          <button class="big-blue-btn" mat-button [disabled]="!addPartOfCityForm.valid" mat-dialog-close (click)="save()">Sacuvaj</button>
       </div>
 </form>

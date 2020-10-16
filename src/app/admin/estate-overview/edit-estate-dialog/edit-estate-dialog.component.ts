@@ -164,6 +164,11 @@ export class EditEstateDialogComponent implements OnInit {
 
   }
 
+  errorHandler(event) {
+    console.debug(event);
+    event.target.src = "https://cdn.browshot.com/static/images/not-found.png";
+ }
+
   uploadFiles() {
     var totalUploadSize = 0;
     for (const file of this.fileUploadList) {

@@ -62,7 +62,7 @@ export class EstatePageOverviewComponent implements OnInit {
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
-    location.reload();
+    
   }
 
   searchOnRent (){
@@ -75,6 +75,30 @@ export class EstatePageOverviewComponent implements OnInit {
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
-    location.reload();
+    
   }
+
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+  }
+
+
+  openRegistrationDialog() {
+    const dialogRef = this.dialog.open(RegistrationDialogComponent, {
+      width: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  openLoginDialog() {
+    const dialogRef = this.dialog.open(LoginDialogComponent, {
+      width: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
 }

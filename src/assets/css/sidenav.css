@@ -12,12 +12,14 @@ mat-drawer .close-btn {
 .option-menu {
     padding-top: 5em;
 }
+
 h1 {
     color: #00c3f6;
     font-weight: bold;
+    font-size: 35px;
 }
 
-mat-drawer h5{
+mat-drawer h5 {
     margin-left: 0 !important;
     color: #fff;
 }
@@ -29,6 +31,7 @@ mat-drawer h5{
 .social-div {
     padding-top: 2em;
 }
+
 i {
     font-size: 25px;
     color: #00c3f6;
