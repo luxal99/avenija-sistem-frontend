@@ -157,6 +157,11 @@ export class AdvertisingRequestComponent implements OnInit {
 
   }
 
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+  }
+
 
   searchOnSell() {
     let filter =

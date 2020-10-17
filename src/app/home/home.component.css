@@ -3,7 +3,6 @@
     display: inline-flex;
 }
 
-h1, p {}
 
 h5 {
     margin-left: 1em;
@@ -162,6 +161,11 @@ h4, h5 {}
     background-position: center;
     height: 80vh;
     background: linear-gradient( rgba(0, 0, 0, .8), rgba(0, 0, 0, 0.5)), url('../../assets/img/92d3e202bee3df35b5a65278158677c1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
     background-attachment: fixed;
 }
 
@@ -238,6 +242,13 @@ h4, h5 {}
 @media screen and (min-width:360px) and ( max-width: 570px) {
     .search-form {
         display: block;
+    }.header {
+        background-attachment: unset;
+        height: 150vh;
+    }
+    .login-btn {
+        margin-top: 2em;
+        margin-left: 0;
     }
     .search-div {
         margin: 2em 2em 0 2em;
@@ -258,7 +269,10 @@ h4, h5 {}
         background-position: center;
         height: 150vh;
         background: linear-gradient( rgba(0, 0, 0, .8), rgba(0, 0, 0, 0.5)), url('../../assets/img/92d3e202bee3df35b5a65278158677c1.jpg');
-        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
         margin-top: 5em;
     }
     .mobile-advertising-div h1 {

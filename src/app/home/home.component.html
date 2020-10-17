@@ -1,15 +1,17 @@
 <mat-drawer-container class="example-container" hasBackdrop="true" fullscreen>
   <mat-drawer #drawer mode="over">
-      <div style="display: inline-flex;">
-        <img src="../../assets/img/white_logo.png" width="200px" alt="" class="img-fluid">
+    <div class="drawer-content">
+      <div class="text-right">
+       
         <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
       </div>
       <div class="option-menu">
+        <a (click)="drawer.toggle()"><h1 >Početna</h1></a>
         <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
         <a (click)="searchOnSell()"><h1>Prodaja</h1></a>
-        <a (click)="scrollToElement(contact)"><h1>Kontakt</h1></a>
+        <a (click)="scrollToElement(contact)"><h1 (click)="drawer.toggle()">Kontakt</h1></a>
       </div>
-
+  
       <div class="side-contact-div">
    <div class="row">
     <div class="col">
@@ -22,18 +24,18 @@
    </div>
    </div>
       </div>
-
-      <div style="display: inline-flex;margin-top: 2em;">
+  
+      <div class="button-div">
         <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
-
+  
         <button class="login-btn" (click)="openLoginDialog()">Login</button>  
       </div>
-
       <div class="social-div">
         <i class="fa fa-instagram" aria-hidden="true"></i>
         <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
-
+  
       </div>
+    </div>
 
   </mat-drawer>
   <mat-drawer-content>
@@ -296,14 +298,14 @@
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="email">
+                    <input inputmode="email" matInput formControlName="email">
                     <mat-icon matSuffix>email</mat-icon>
                   </mat-form-field>
             </div>
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Telefon</mat-label>
-                    <input matInput type="number" formControlName="telephone">
+                    <input inputmode="tel" matInput type="number" formControlName="telephone">
                     <mat-icon matSuffix>local_phone</mat-icon>
                   </mat-form-field>
             </div>
@@ -318,14 +320,14 @@
             <div class="col-sm" style="padding-left: 0;">
               <mat-form-field appearance="outline">
                 <mat-label>Cena od</mat-label>
-                <input matInput type="number" formControlName="priceFrom">
+                <input matInput inputmode="numeric" formControlName="priceFrom">
                 <mat-icon matSuffix>attach_money</mat-icon>
               </mat-form-field>
             </div>
             <div class="col-sm" style="padding-right: 0;padding-left: 0;">
               <mat-form-field appearance="outline">
                 <mat-label>Cena do</mat-label>
-                <input matInput type="number" formControlName="priceTo">
+                <input matInput inputmode="numeric" formControlName="priceTo">
                 <mat-icon matSuffix>attach_money</mat-icon>
               </mat-form-field>
             </div>
@@ -333,7 +335,7 @@
           <div>
             <mat-form-field appearance="outline">
               <mat-label>Kvadratura</mat-label>
-              <input matInput type="number" formControlName="quadrature">
+              <input matInput inputmode="numeric" formControlName="quadrature">
               <mat-icon matSuffix>attach_money</mat-icon>
             </mat-form-field>
           </div>

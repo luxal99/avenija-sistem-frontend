@@ -14,26 +14,30 @@ import { EstateService } from '../service/estate.service';
 })
 export class EstatePageOverviewComponent implements OnInit {
 
-  estate = new Estate()
+  estate = new Estate();
 
   config: SwiperOptions = {
     slidesPerView: 2,
-    spaceBetween: 50,
-    slidesPerGroup: 2,
+    spaceBetween: 200,
+    slidesPerGroup: 1,
     loop: true,
-    loopFillGroupWithBlank: false,
+    loopFillGroupWithBlank: true,
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     }
   }
 
+
   constructor(private route: ActivatedRoute, private router :Router,private dialog: MatDialog, private estateService: EstateService) { }
 
   ngOnInit() {
     window.scrollTo(0,0)
     this.findEstate();
+    this.setResponsiveSlider();
   }
+
+
 
   ngAfterViewInit(): void {
 
@@ -65,6 +69,13 @@ export class EstatePageOverviewComponent implements OnInit {
     
   }
 
+  setResponsiveSlider(){
+    if (window.screen.width <= 570) {
+      this.config.slidesPerView = 1
+      this.config.spaceBetween = 50
+      this.config.slidesPerGroup = 1
+    }
+  }
   searchOnRent (){
     let filter =
     {

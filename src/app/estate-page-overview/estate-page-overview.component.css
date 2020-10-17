@@ -122,6 +122,8 @@ h1, h4, h6, h5 {}
     display: none;
 }
 
+
+
 @media screen and (max-width:1870px) {
     ::ng-deep nav {
         display: none;
@@ -142,8 +144,15 @@ h1, h4, h6, h5 {}
     .estate-info {
         padding: 5em 2em 5em 2em;
     }
+    .login-btn {
+        margin: 2em 0 0 0 ;
+        background-color: #fff;
+        color: #282828;
+    }
+
+    
     .slider-img {
-        width:500px !important;
+        width:100% !important;
         height: 300px !important;
     }
 }

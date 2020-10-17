@@ -1,46 +1,48 @@
 <mat-drawer-container>
      <mat-drawer #drawer mode="over">
-      <div class="text-right">
+  <div class="drawer-content">
+    <div class="text-right">
      
-        <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
-      </div>
-      <div class="option-menu">
-        <a><h1 [routerLink]="['/']" routerLinkActive="router-link-active" >Početna</h1></a>
-        <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
-        <a (click)="searchOnSell()"><h1>Prodaja</h1></a>
-        <a><h1>Kontakt</h1></a>
-      </div>
-
-      <div class="side-contact-div">
-   <div class="row">
-    <div class="col">
-      <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
-    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+      <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
     </div>
-   <div class="col">
-    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
-    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
-   </div>
-   </div>
-      </div>
+    <div class="option-menu">
+      <a><h1 [routerLink]="['/']" routerLinkActive="router-link-active" >Početna</h1></a>
+      <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
+      <a (click)="searchOnSell()"><h1>Prodaja</h1></a>
+      <a (click)="scrollToElement(contact)"><h1 (click)="drawer.toggle()">Kontakt</h1></a>
+    </div>
 
-      <div style="display: inline-flex;margin-top: 2em;">
-        <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
+    <div class="side-contact-div">
+ <div class="row">
+  <div class="col">
+    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+  <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+  </div>
+ <div class="col">
+  <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+  <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
+ </div>
+ </div>
+    </div>
 
-        <button class="login-btn" (click)="openLoginDialog()">Login</button>  
-      </div>
-      <div class="social-div">
-        <i class="fa fa-instagram" aria-hidden="true"></i>
-        <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
+    <div class="button-div">
+      <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
 
-      </div>
+      <button class="login-btn" (click)="openLoginDialog()">Login</button>  
+    </div>
+    <div class="social-div">
+      <i class="fa fa-instagram" aria-hidden="true"></i>
+      <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
+
+    </div>
+  </div>
 
   </mat-drawer>
     <mat-drawer-content>
      <div class="row hamburger-menu">
        <div class="col">
          <a [routerLink]="['/']" routerLinkActive="router-link-active" >
-          <img src="../../assets/img/logo.png" width="210px" alt="" class="img-fluid"></a>
+          <img src="../../assets/img/logo.png" width="250px" alt="" class="img-fluid"></a>
        </div>
        <div class="col">
         <div class="text-right">
@@ -54,7 +56,7 @@
       <div class="row">
         <div class="col-sm-7">
         <a [routerLink]="['/']" routerLinkActive="router-link-active" >
-          <img src="../../assets/img/logo.png" width="400px" style="padding-top: 1em;" alt="" ></a>
+          <img src="../../assets/img/logo.png" width="400px" [routerLink]="['/']" routerLinkActive="router-link-active"  style="padding-top: 1em;" alt="" ></a>
         </div>
         <div class="col-sm">
   
@@ -117,7 +119,7 @@
 
                  <div class="row" style="margin-top: 5em !important;">
                      <div class="col-sm" style="display: inline-flex;">
-                        <button mat-button class="contact-btn">Kontaktiraj</button>
+                        <button mat-button class="contact-btn" (click)="scrollToElement(contact)">Kontaktiraj</button>
                     </div>
                      <div class="col-sm"></div>
                  </div>

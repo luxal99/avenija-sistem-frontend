@@ -2,7 +2,10 @@ mat-drawer {
     width: 95%;
     padding: 5em 2em 5em 2em;
     background-color: #282828 !important;
+   
 }
+
+
 
 mat-drawer .close-btn {
     margin-left: 2em;
@@ -17,6 +20,11 @@ h1 {
     color: #00c3f6;
     font-weight: bold;
     font-size: 35px;
+}
+
+h1:hover {
+    color: #fff;
+    transition: .5s ease;
 }
 
 mat-drawer h5 {
@@ -45,9 +53,19 @@ mat-drawer .col {
     padding: 0 !important;
 }
 
+.button-div {
+    display: inline-flex;margin-top: 2em;
+}
+
 
 @media screen and (min-width:1280px) {
     mat-drawer {
         width: 30%;
+    }
+}
+
+@media screen and (max-width:570px) {
+    .button-div {
+        display: grid !important;
     }
 }

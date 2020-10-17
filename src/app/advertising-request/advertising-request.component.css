@@ -1,8 +1,8 @@
+@import "../../assets/css/sidenav.css";
+
 .menu-div {
     display: inline-flex;
 }
-
-h1, p {}
 
 h5 {
     margin-left: 1em;
@@ -106,4 +106,63 @@ mat-horizontal-stepper {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+@media screen and (max-width:1870px) {
+    nav {
+        display: none;
+    }
+    .hamburger-menu {
+        display: block;
+        color: #00c3f6;
+        padding-right: 1em;
+        padding-top: 2em;
+    }
+    .hamburger-menu mat-icon {
+        font-size: 40px !important;
+    }
+}
+
+.mobile-ad-form-div{display: none;}
+
+@media screen and (min-width:410px) and (max-width:570px) {
+    .ad-form-div {
+        display: none;
+    }
+
+    .mobile-ad-form-div {
+        display: block;
+    }
+    .header {
+        height: 150vh;
+        padding:1em;
+    }
+    .login-btn {
+        margin: 2em 0 0 0 ;
+        background-color: #fff;
+        color: #282828;
+    }
+
+}
+
+@media screen and (min-width:370px) and (max-width: 400px) {
+    .header {
+        height: 180vh;
+    }
+    .ad-form-div {
+        display: none;
+    }
+
+    .mobile-ad-form-div {
+        display: block;
+    }
+    mat-horizontal-stepper {
+        margin-top: 5em;
+    }
+    .login-btn {
+        margin: 2em 0 0 0 ;
+        background-color: #fff;
+        color: #282828;
+    }
+
 }
