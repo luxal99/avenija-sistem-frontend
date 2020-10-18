@@ -6,6 +6,7 @@ import { LoginDialogComponent } from '../home/login-dialog/login-dialog.componen
 import { RegistrationDialogComponent } from '../home/registration-dialog/registration-dialog.component';
 import { Estate } from '../models/Estate';
 import { EstateService } from '../service/estate.service';
+declare var $: any;
 
 @Component({
   selector: 'app-estate-page-overview',
@@ -35,14 +36,11 @@ export class EstatePageOverviewComponent implements OnInit {
     window.scrollTo(0,0)
     this.findEstate();
     this.setResponsiveSlider();
-  }
-
-
-
-  ngAfterViewInit(): void {
-
 
   }
+
+
+  
   findEstate() {
     this.route.params.subscribe(params => {
       this.estateService.findById(Number.parseInt(params.id)).subscribe(resp => {
@@ -54,6 +52,9 @@ export class EstatePageOverviewComponent implements OnInit {
     })
 
     this.estate = JSON.parse(localStorage.getItem("estate"))
+    // load cross domain images
+
+
   }
 
   searchOnSell(){

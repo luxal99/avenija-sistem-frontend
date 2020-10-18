@@ -38,6 +38,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
 import { AdvertisingRequestComponent } from './advertising-request/advertising-request.component';
 import { AdvertisingRequestOverviewComponent } from './admin/advertising-request-overview/advertising-request-overview.component';
 import { AdvertisingDialogOverviewComponent } from './admin/advertising-request-overview/advertising-dialog-overview/advertising-dialog-overview.component';
+import { NgxWatermarkModule } from 'ngx-watermark';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,7 @@ import { AdvertisingDialogOverviewComponent } from './admin/advertising-request-
   imports: [
     BrowserModule,
     MaterialModule,
+    NgxWatermarkModule,
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,

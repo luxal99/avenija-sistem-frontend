@@ -75,11 +75,11 @@
       </div>
     </nav>          <swiper [config]="config">
             <div class="swiper-wrapper">
-              <img class="swiper-slide slider-img" *ngFor="let image of estate.listOfImages" [src]="image.url" />
+              <img class="swiper-slide slider-img watermark" *ngFor="let image of estate.listOfImages" [src]="image.url" />
             </div>
             <div class="swiper-pagination"></div>
           </swiper>
-        
+
           <div class="estate-info">
               <h1 style="font-weight: bold;">{{estate.title}}</h1>
         

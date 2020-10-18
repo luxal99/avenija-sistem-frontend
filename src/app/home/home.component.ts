@@ -26,15 +26,25 @@ import { User } from '../models/User';
 import { UserInfo } from '../models/UserInfo';
 import { Location } from '../models/Location';
 import { AdvertisingRequestService } from '../service/advertising-request.service';
+import { NgxWatermarkOptions } from "ngx-watermark";
+import { ElementRef } from '@angular/core';
+import { AfterViewChecked } from '@angular/core';
+declare var $: any;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,AfterViewChecked  {
 
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
+
+
+  @ViewChild('watermark', { static: false }) wm: ElementRef<HTMLElement>; 
+
+
 
   searchForm = new FormGroup({
     id_transaction_type: new FormControl("", Validators.required),
@@ -89,7 +99,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
+  list: [{ n: 'a' }, { n: 'a' }, { n: 'a' }]
   ngOnInit() {
     this.getAllEstates();
     this.getAllTransaction();
@@ -98,13 +108,33 @@ export class HomeComponent implements OnInit {
     this.getPartsOfCities()
     this.getCities();
     this.setResponsiveSlider();
-    
+    // setTimeout(() => {
+    //   this.wm.nativeElement.click();
+    //   }, 1000);
+
   }
 
-  setResponsiveSlider(){
+
+  ngAfterViewChecked(): void {
+    this.watermark()
+  }
+  watermark(){
+    setTimeout(() => {
+      $('.watermark').watermark({
+        path: 'assets/img/small_watermark.png',
+        gravity: 'c',
+        margin:20
+      });
+    }, 300);
+  }
+
+
+  test(){
+    console.log('test');
+    
+  }
+  setResponsiveSlider() {
     if (window.screen.width <= 570) {
-      console.log(';');
-      
       this.config.slidesPerView = 1
       this.config.spaceBetween = 300
       this.config.slidesPerGroup = 1
@@ -261,10 +291,10 @@ export class HomeComponent implements OnInit {
     advertisingRequest.description = this.editorComponent.editorInstance.getData();
 
     this.advertisingRequestService.save(advertisingRequest).subscribe(resp => {
-      this.openSnackBar("Uspesno ste postali zahtev","DONE")
+      this.openSnackBar("Uspesno ste postali zahtev", "DONE")
 
-    },err=>{
-      this.openSnackBar("Neuspesan zahtev","DONE")
+    }, err => {
+      this.openSnackBar("Neuspesan zahtev", "DONE")
 
     })
 

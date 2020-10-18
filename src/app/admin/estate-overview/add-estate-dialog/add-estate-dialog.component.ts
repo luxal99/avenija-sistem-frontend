@@ -27,7 +27,6 @@ import { Estate } from 'src/app/models/Estate';
 import { LocationService } from 'src/app/service/location.service';
 import { Location } from 'src/app/models/Location';
 import { EstateService } from 'src/app/service/estate.service';
-
 @Component({
   selector: 'app-add-estate-dialog',
   templateUrl: './add-estate-dialog.component.html',
@@ -121,12 +120,13 @@ export class AddEstateDialogComponent implements OnInit {
   }
 
   async addFiles(event) {
-    console.log(this.fileUploadList);
 
     for (let index = 0; index < event.length; index++) {
       if (event[index].size / 1000 > 700) {
         this.openSnackBar("Prevelik fajl", "DONE");
       } else {
+
+       
         const element = event[index];
         var elementIndex = this.fileUploadList.indexOf(element);
         if (elementIndex === -1) {

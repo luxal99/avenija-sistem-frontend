@@ -125,6 +125,8 @@
     
   </div>
 </div>
+
+
 <div class="estate-binding">
 <div class="row">
   <div class="col-sm">
@@ -133,10 +135,12 @@
   </div>
   <div class="col-sm-8 text-center">
     <swiper [config]="config">
-      <div class="swiper-wrapper text-left">
+      <div class="swiper-wrapper text-left" >
         <div class="swiper-slide" *ngFor="let estate of listOfEstates" >
          <a routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active"  >
-          <img *ngIf="estate.listOfImages.length !== 0" class="swiper-slide slider-img" [src]="estate.listOfImages[0].url" />
+          
+            <img *ngIf="estate.listOfImages.length !== 0" class="swiper-slide slider-img watermark" [src]="estate.listOfImages[0].url" />
+       
         </a>
           <div>
             <h4 style="color: #282828;margin-top: 1em;">{{estate.title}}</h4>
@@ -277,6 +281,8 @@
     </div>
   </div>
 </div>
+
+ <button #watermark (click)="watermark()">SET WM</button>
 <div class="mobile-advertising-div">
   <div class="row">
     <div class="col-sm text-right">
@@ -455,3 +461,5 @@
 <app-footer></app-footer>
   </mat-drawer-content>
 </mat-drawer-container>
+
+
