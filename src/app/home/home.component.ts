@@ -26,8 +26,6 @@ import { User } from '../models/User';
 import { UserInfo } from '../models/UserInfo';
 import { Location } from '../models/Location';
 import { AdvertisingRequestService } from '../service/advertising-request.service';
-import { NgxWatermarkOptions } from "ngx-watermark";
-import { ElementRef } from '@angular/core';
 import { AfterViewChecked } from '@angular/core';
 declare var $: any;
 
@@ -40,10 +38,6 @@ export class HomeComponent implements OnInit,AfterViewChecked  {
 
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
-
-
-  @ViewChild('watermark', { static: false }) wm: ElementRef<HTMLElement>; 
-
 
 
   searchForm = new FormGroup({
@@ -122,17 +116,12 @@ export class HomeComponent implements OnInit,AfterViewChecked  {
     setTimeout(() => {
       $('.watermark').watermark({
         path: 'assets/img/small_watermark.png',
-        gravity: 'c',
-        margin:20
+        gravity: 'c'
       });
     }, 300);
   }
 
 
-  test(){
-    console.log('test');
-    
-  }
   setResponsiveSlider() {
     if (window.screen.width <= 570) {
       this.config.slidesPerView = 1

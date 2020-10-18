@@ -281,8 +281,6 @@
     </div>
   </div>
 </div>
-
- <button #watermark (click)="watermark()">SET WM</button>
 <div class="mobile-advertising-div">
   <div class="row">
     <div class="col-sm text-right">
@@ -416,7 +414,7 @@
     <h1 style="font-weight: bold;">{{estate.title}}</h1>
     <p style="color: #999;padding: 0 30em 0 30em;" [innerHTML]="estate.description"></p>
   </div>
-  <img [src]="estate.listOfImages[0].url" style="margin-top: 2em;"  width="1280" class="img-fluid" alt="">
+  <img [src]="estate.listOfImages[0].url" style="margin-top: 2em;"  width="1280" class="img-fluid watermark" alt="">
 </div>
 <div class="about-div">
   <div class="row">

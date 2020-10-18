@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwiperOptions } from 'swiper';
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './estate-page-overview.component.html',
   styleUrls: ['./estate-page-overview.component.css']
 })
-export class EstatePageOverviewComponent implements OnInit {
+export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
 
   estate = new Estate();
 
@@ -39,6 +39,17 @@ export class EstatePageOverviewComponent implements OnInit {
 
   }
 
+  ngAfterViewChecked(): void {
+    this.watermark()
+  }
+  watermark(){
+    setTimeout(() => {
+      $('.watermark').watermark({
+        path: 'assets/img/small_watermark.png',
+        gravity: 'c'
+      });
+    }, 300);
+  }
 
   
   findEstate() {

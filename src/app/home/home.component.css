@@ -318,5 +318,8 @@ h4, h5 {}
     }
     .estate-binding h1 {
         padding-top: 3em;
+    }.slider-img {
+        width: 100% !important;
+        height: auto !important;
     }
 }
