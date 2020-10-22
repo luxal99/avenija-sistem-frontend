@@ -7,11 +7,12 @@ import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { AuthService } from './service/auth.service';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent,canActivate: [AuthService]  },
   { path: 'contact', component: FooterComponent },
   { path: 'estate/:id', component: EstatePageOverviewComponent },
   { path: 'filter', component: FilterPageComponent },
