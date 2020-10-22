@@ -3,7 +3,6 @@
     display: inline-flex;
 }
 
-
 h5 {
     margin-left: 1em;
     padding-top: .5em;
@@ -20,7 +19,8 @@ nav {
     height: 100vh;
 }
 
-.reg-btn, .login-btn {
+.reg-btn,
+.login-btn {
     border: 0 !important;
     -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
@@ -110,12 +110,12 @@ mat-form-field {
     box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
 }
 
-
 .row {
     margin: 0 !important;
 }
 
-h4, h5 {}
+h4,
+h5 {}
 
 .swiper-slide .blue {
     color: #00c3f6;
@@ -173,10 +173,10 @@ h4, h5 {}
     padding: 2em;
     margin-top: 3em;
     background-color: #fff;
-    
 }
 
-.next-btn, .back-btn {
+.next-btn,
+.back-btn {
     width: 25%;
     padding-top: .5em;
     padding-bottom: .5em;
@@ -205,7 +205,7 @@ h4, h5 {}
 .big-h1 {
     color: #fff;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 70px;
     padding-top: 1em;
 }
 
@@ -221,6 +221,7 @@ h4, h5 {}
 .mobile-advertising-div {
     display: none;
 }
+
 
 /* Responsive */
 
@@ -242,7 +243,8 @@ h4, h5 {}
 @media screen and (min-width:360px) and ( max-width: 570px) {
     .search-form {
         display: block;
-    }.header {
+    }
+    .header {
         background-attachment: unset;
         height: 150vh;
     }
@@ -267,7 +269,7 @@ h4, h5 {}
         display: block;
         background-size: cover;
         background-position: center;
-        height: 150vh;
+        height: 170vh;
         background: linear-gradient( rgba(0, 0, 0, .8), rgba(0, 0, 0, 0.5)), url('../../assets/img/92d3e202bee3df35b5a65278158677c1.jpg');
         background-repeat: no-repeat;
         -o-background-size: cover;
@@ -318,7 +320,8 @@ h4, h5 {}
     }
     .estate-binding h1 {
         padding-top: 3em;
-    }.slider-img {
+    }
+    .slider-img {
         width: 100% !important;
         height: auto !important;
     }

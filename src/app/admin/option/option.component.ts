@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Accessories } from 'src/app/models/Accessories';
 import { City } from 'src/app/models/CIty';
 import { Equipment } from 'src/app/models/Equipment';
@@ -49,6 +49,7 @@ export class OptionComponent implements OnInit {
     private accessoriesService: AccessoriesService,
     private partOfCityService: PartOfCityService,
     private estateTypeService: EstateTypeService,
+    public _snackBar: MatSnackBar,
     private dialog: MatDialog, private estateCategoryService: EstateCategoryService,
     private estateSubCategoryService: EstateSubCategoryService) { }
 
@@ -61,6 +62,75 @@ export class OptionComponent implements OnInit {
     this.getAccessories();
     this.getHeating();
     this.getEquipments()
+  }
+
+
+  deleteCity(id:number){
+    this.cityService.delete(id).subscribe(resp=>{
+      this.getCities();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
+  }
+
+
+  deletePartOfCity(id:number){
+    this.partOfCityService.delete(id).subscribe(resp=>{
+      this.getPartsOfCities();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
+  }
+
+
+  deleteEstateCategory(id:number){
+    this.estateCategoryService.delete(id).subscribe(resp=>{
+      this.getEstateCategories();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
+  }
+
+
+  deleteEstateSubCategory(id:number){
+    this.estateSubCategoryService.delete(id).subscribe(resp=>{
+      this.getEstateSubCategories();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
+  }
+
+
+  deleteEstateType(id:number){
+    this.estateTypeService.delete(id).subscribe(resp=>{
+      this.getEstateTypes();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
+  }
+
+  deleteEquipment(id:number){
+    this.equipmentService.delete(id).subscribe(resp=>{
+      this.getEquipments();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
+  }
+
+  deleteAccessories(id:number){
+    this.accessoriesService.delete(id).subscribe(resp=>{
+      this.getAccessories();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
+  }
+
+  deleteHeating(id:number){
+    this.heatingService.delete(id).subscribe(resp=>{
+      this.getHeating();
+    },err =>{
+      this.openSnackBar("Ne mozete izbrisati","DONE")
+    })
   }
 
   getCities() {
@@ -123,7 +193,7 @@ export class OptionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getCities();
       this.getPartsOfCities()
-    });
+    });EstateTypeService
   }
 
   openAddPartOfCityDialog(partOfCity) {
@@ -203,6 +273,13 @@ export class OptionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getHeating();
+    });
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 

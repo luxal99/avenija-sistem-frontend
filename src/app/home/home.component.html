@@ -1,463 +1,475 @@
 <mat-drawer-container class="example-container" hasBackdrop="true" fullscreen>
-  <mat-drawer #drawer mode="over">
-    <div class="drawer-content">
-      <div class="text-right">
-       
-        <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
-      </div>
-      <div class="option-menu">
-        <a (click)="drawer.toggle()"><h1 >Početna</h1></a>
-        <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
-        <a (click)="searchOnSell()"><h1>Prodaja</h1></a>
-        <a (click)="scrollToElement(contact)"><h1 (click)="drawer.toggle()">Kontakt</h1></a>
-      </div>
-  
-      <div class="side-contact-div">
-   <div class="row">
-    <div class="col">
-      <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
-    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
-    </div>
-   <div class="col">
-    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
-    <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
-   </div>
-   </div>
-      </div>
-  
-      <div class="button-div">
-        <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
-  
-        <button class="login-btn" (click)="openLoginDialog()">Login</button>  
-      </div>
-      <div class="social-div">
-        <i class="fa fa-instagram" aria-hidden="true"></i>
-        <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
-  
-      </div>
-    </div>
+    <mat-drawer #drawer mode="over">
+        <div class="drawer-content">
+            <div class="text-right">
 
-  </mat-drawer>
-  <mat-drawer-content>
-<div class="header">
-  <div class="text-right hamburger-menu">
-    <button mat-icon-button (click)="drawer.toggle()"><mat-icon>format_align_right</mat-icon></button>
-  </div>
-  <nav >
-    <div class="row">
-      <div class="col-7">
-        <img src="../../assets/img/white_logo.png" width="300px" style="padding-top: 1em;" alt="" class="img-fluid">
-      </div>
-      <div class="col">
+                <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
+            </div>
+            <div class="option-menu">
+                <a (click)="drawer.toggle()">
+                    <h1>Početna</h1>
+                </a>
+                <a>
+                    <h1 (click)="searchOnRent()">Izdavanje</h1>
+                </a>
+                <a (click)="searchOnSell()">
+                    <h1>Prodaja</h1>
+                </a>
+                <a (click)="scrollToElement(contact)">
+                    <h1 (click)="drawer.toggle()">Kontakt</h1>
+                </a>
+            </div>
 
-      <div class="text-right" style="display: inline-flex;padding-left: 3.5em;">
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
-      </div>
-    <div class="menu-div">
-     <a><h5 (click)="searchOnRent()">Izdavanje</h5></a>
-     <a (click)="searchOnSell()"><h5>Prodaja</h5></a>
-     <a (click)="scrollToElement(contact)"><h5>Kontakt</h5></a>
-     <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
+            <div class="side-contact-div">
+                <div class="row">
+                    <div class="col">
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+                    </div>
+                    <div class="col">
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
+                    </div>
+                </div>
+            </div>
 
-     <button class="login-btn" (click)="openLoginDialog()">Login</button>
-    </div>
-      </div>
-    </div>
-  </nav>
-  <div class="text-center text-header-div">
-    <h2 >Lorem ipsum</h2>
-    <h1>Dolor nunc lorem ipsum</h1>
-  </div>
-  <div class="search-div text-center">
-    <div class="row text-center" >
-   <form [formGroup]="searchForm" class="search-form">
-    <div class="col-sm">
-      <mat-form-field appearance="fill">
-        <mat-label>Grad</mat-label>
-        <mat-select formControlName="id_city">
-          <mat-option *ngFor="let city of listOfCities" [value]="city">
-            {{city.title}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-sm">
-      <mat-form-field appearance="fill">
-        <mat-label>Usluga</mat-label>
-        <mat-select formControlName="id_transaction_type">
-          <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
-            {{transaction.title}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-sm">
-      <mat-form-field appearance="fill">
-        <mat-label>Tip nekretnine</mat-label>
-        <mat-select formControlName="id_estate_category" (ngModelChange)="filterPartOfCity()">
-          <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory">
-            {{estateCategory.title}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-sm">
-      <mat-form-field appearance="fill">
-        <mat-label>Potkategorija nekretnine</mat-label>
-        <mat-select formControlName="id_estate_sub_category">
-          <mat-option *ngFor="let estateSubCategory of listOfEstateSubCategories" [value]="estateSubCategory">
-            {{estateSubCategory.title}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+            <div class="button-div">
+                <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
 
-    <div class="col-sm">
-      <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>
-    </div>
-  
-   </form>
+                <button class="login-btn" (click)="openLoginDialog()">Login</button>
+            </div>
+            <div class="social-div">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
 
-    </div>
-    
-  </div>
-</div>
-
-
-<div class="estate-binding">
-<div class="row">
-  <div class="col-sm">
-    <h1><span style="color: #282828;">Najnovniji</span> <br><span style="color: #00c3f6;">Oglasi</span></h1>
-    <p>Lorem Ipsum is simply dummy text of the printing <br> a type specimen book. It has survived not only  </p>
-  </div>
-  <div class="col-sm-8 text-center">
-    <swiper [config]="config">
-      <div class="swiper-wrapper text-left" >
-        <div class="swiper-slide" *ngFor="let estate of listOfEstates" >
-         <a routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active"  >
-          
-            <img *ngIf="estate.listOfImages.length !== 0" class="swiper-slide slider-img watermark" [src]="estate.listOfImages[0].url" />
-       
-        </a>
-          <div>
-            <h4 style="color: #282828;margin-top: 1em;">{{estate.title}}</h4>
-          <h4 class="blue">{{estate.price}}€</h4> 
-          <button mat-button class="slider-btn" routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active" >Pogledaj više</button>
-          </div>
+            </div>
         </div>
-        
-      </div>
-    </swiper>
-  </div>
-</div>
-</div>
-<div class="advertising-div">
-  <div class="row">
-    <div class="col-sm-5 form-div">
-      <mat-horizontal-stepper>
-        <ng-template matStepLabel>Kontakt podaci</ng-template>
-        <mat-step [stepControl]="userInfoForm" label="Kontakt podaci">
-            <form [formGroup]="userInfoForm">
-              <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Ime i prezime</mat-label>
-                    <input matInput formControlName="full_name">
-                    <mat-icon matSuffix>contact_mail</mat-icon>
-                  </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email">
-                    <mat-icon matSuffix>email</mat-icon>
-                  </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Telefon</mat-label>
-                    <input matInput type="number" formControlName="telephone">
-                    <mat-icon matSuffix>local_phone</mat-icon>
-                  </mat-form-field>
-            </div>
-            <div>
-              <button mat-button matStepperNext class="next-btn" style="margin-left: 0;">Dalje</button>
-            </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="secondForm" label="Podaci o nekretnini">
-         <form [formGroup]="secondForm">
-          <div class="row">
-            <div class="col" style="padding-left: 0;">
-              <mat-form-field appearance="outline">
-                <mat-label>Cena od</mat-label>
-                <input matInput type="number" formControlName="priceFrom">
-                <mat-icon matSuffix>attach_money</mat-icon>
-              </mat-form-field>
-            </div>
-            <div class="col" style="padding-right: 0;padding-left: 0;">
-              <mat-form-field appearance="outline">
-                <mat-label>Cena do</mat-label>
-                <input matInput type="number" formControlName="priceTo">
-                <mat-icon matSuffix>attach_money</mat-icon>
-              </mat-form-field>
-            </div>
-          </div>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Kvadratura</mat-label>
-              <input matInput type="number" formControlName="quadrature">
-              <mat-icon matSuffix>attach_money</mat-icon>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Kupovina/prodaja</mat-label>
-              <mat-select formControlName="id_transaction_type">
-                <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
-                  {{transaction.title}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div>
-            <button mat-button matStepperPrevious class="back-btn">Nazad</button>
-            <button mat-button matStepperNext class="next-btn">Dalje</button>
-          </div>
-         </form>
-        </mat-step>
-        <mat-step [stepControl]="locationForm" label="Lokacija i opis">
-<form [formGroup]="locationForm">
-  <div class="row">
-    <div class="col" style="padding-left: 0;">
-      <mat-form-field appearance="outline">
-        <mat-label>Adresa</mat-label>
-        <input matInput formControlName="address">
-        <mat-icon matSuffix>contact_mail</mat-icon>
-      </mat-form-field>
-    </div>
-    <div class="col" style="padding-left: 0;padding-right: 0;">
-      <mat-form-field appearance="outline">
-        
-        <mat-label>Grad i deo grada</mat-label>
-        <mat-select formControlName="id_part_of_city">
-          <mat-option>-- None --</mat-option>
-          <mat-optgroup *ngFor="let city of listOfCities" [label]="city.title">
-            <mat-option *ngFor="let partOfCity of city.listOfPartOfCities" [value]="partOfCity">
-              {{partOfCity.title}}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
 
-  <div>
-    <mat-form-field appearance="outline">
-        
-      <mat-label>Kategorija</mat-label>
-      <mat-select formControlName="id_estate_sub_category">
-        <mat-option>-- None --</mat-option>
-        <mat-optgroup *ngFor="let estateCategory of listOfEstateCategories" [label]="estateCategory.title">
-          <mat-option *ngFor="let estateSubCategory of estateCategory.listOfEstateSubCategories" [value]="estateSubCategory">
-            {{estateSubCategory.title}}
-          </mat-option>
-        </mat-optgroup>
-      </mat-select>
-    </mat-form-field>
-  </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="header">
+            <div class="text-right hamburger-menu">
+                <button mat-icon-button (click)="drawer.toggle()"><mat-icon>format_align_right</mat-icon></button>
+            </div>
+            <nav>
+                <div class="row">
+                    <div class="col-7">
+                        <img src="../../assets/img/white_logo.png" width="300px" style="padding-top: 1em;" alt="" class="img-fluid">
+                    </div>
+                    <div class="col">
 
-  <ckeditor #editor [editor]="Editor"></ckeditor>
-  <button class="send-btn" mat-button (click)="sendAdvertisingRequset()">Pošalji</button>
-</form>
-        </mat-step>
-      </mat-horizontal-stepper>
-    </div>
-    <div class="col-sm text-right">
-        <h1 class="big-h1">Lorem <br> <span style="color: #00c3f6;">Dolor Ipsum.</span></h1>
-        <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text </h5>
-    </div>
-  </div>
-</div>
-<div class="mobile-advertising-div">
-  <div class="row">
-    <div class="col-sm text-right">
-        <h1 class="big-h1">Lorem <br> <span style="color: #00c3f6;">Dolor Ipsum.</span></h1>
-        <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text </h5>
-    </div>
-    <div class="col-sm-5 form-div">
-      <mat-horizontal-stepper>
-        <ng-template matStepLabel>Kontakt podaci</ng-template>
-        <mat-step [stepControl]="userInfoForm" label="Kontakt podaci">
-            <form [formGroup]="userInfoForm">
-              <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Ime i prezime</mat-label>
-                    <input matInput formControlName="full_name">
-                    <mat-icon matSuffix>contact_mail</mat-icon>
-                  </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input inputmode="email" matInput formControlName="email">
-                    <mat-icon matSuffix>email</mat-icon>
-                  </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Telefon</mat-label>
-                    <input inputmode="tel" matInput type="number" formControlName="telephone">
-                    <mat-icon matSuffix>local_phone</mat-icon>
-                  </mat-form-field>
-            </div>
-            <div>
-              <button mat-button matStepperNext class="next-btn" style="margin-left: 0;width: 70%;">Dalje</button>
-            </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="secondForm" label="Podaci o nekretnini">
-         <form [formGroup]="secondForm">
-          <div class="row">
-            <div class="col-sm" style="padding-left: 0;">
-              <mat-form-field appearance="outline">
-                <mat-label>Cena od</mat-label>
-                <input matInput inputmode="numeric" formControlName="priceFrom">
-                <mat-icon matSuffix>attach_money</mat-icon>
-              </mat-form-field>
-            </div>
-            <div class="col-sm" style="padding-right: 0;padding-left: 0;">
-              <mat-form-field appearance="outline">
-                <mat-label>Cena do</mat-label>
-                <input matInput inputmode="numeric" formControlName="priceTo">
-                <mat-icon matSuffix>attach_money</mat-icon>
-              </mat-form-field>
-            </div>
-          </div>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Kvadratura</mat-label>
-              <input matInput inputmode="numeric" formControlName="quadrature">
-              <mat-icon matSuffix>attach_money</mat-icon>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Kupovina/prodaja</mat-label>
-              <mat-select formControlName="id_transaction_type">
-                <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
-                  {{transaction.title}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div>
-            <button mat-button matStepperPrevious class="back-btn">Nazad</button>
-            <button mat-button matStepperNext class="next-btn">Dalje</button>
-          </div>
-         </form>
-        </mat-step>
-        <mat-step [stepControl]="locationForm" label="Lokacija i opis">
-<form [formGroup]="locationForm">
-  <div class="row">
-    <div class="col-sm" style="padding-left: 0;">
-      <mat-form-field appearance="outline">
-        <mat-label>Adresa</mat-label>
-        <input matInput formControlName="address">
-        <mat-icon matSuffix>contact_mail</mat-icon>
-      </mat-form-field>
-    </div>
-    <div class="col-sm" style="padding-right: 0 !important;">
-      <mat-form-field appearance="outline">
-        
-        <mat-label>Grad i deo grada</mat-label>
-        <mat-select formControlName="id_part_of_city">
-          <mat-option>-- None --</mat-option>
-          <mat-optgroup *ngFor="let city of listOfCities" [label]="city.title">
-            <mat-option *ngFor="let partOfCity of city.listOfPartOfCities" [value]="partOfCity">
-              {{partOfCity.title}}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
+                        <div class="text-right" style="display: inline-flex;padding-left: 3.5em;">
+                            <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+                            <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+                            <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+                            <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
+                        </div>
+                        <div class="menu-div">
+                            <a>
+                                <h5 (click)="searchOnRent()">Izdavanje</h5>
+                            </a>
+                            <a (click)="searchOnSell()">
+                                <h5>Prodaja</h5>
+                            </a>
+                            <a (click)="scrollToElement(contact)">
+                                <h5>Kontakt</h5>
+                            </a>
+                            <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
 
-  <div>
-    <mat-form-field appearance="outline">
-        
-      <mat-label>Kategorija</mat-label>
-      <mat-select formControlName="id_estate_sub_category">
-        <mat-option>-- None --</mat-option>
-        <mat-optgroup *ngFor="let estateCategory of listOfEstateCategories" [label]="estateCategory.title">
-          <mat-option *ngFor="let estateSubCategory of estateCategory.listOfEstateSubCategories" [value]="estateSubCategory">
-            {{estateSubCategory.title}}
-          </mat-option>
-        </mat-optgroup>
-      </mat-select>
-    </mat-form-field>
-  </div>
+                            <button class="login-btn" (click)="openLoginDialog()">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="text-center text-header-div">
+                <h2>Dobrodošli</h2>
+                <h1>Pronađite nekretninu po Vašoj meri</h1>
+            </div>
+            <div class="search-div text-center">
+                <div class="row text-center">
+                    <form [formGroup]="searchForm" class="search-form">
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Grad</mat-label>
+                                <mat-select formControlName="id_city">
+                                    <mat-option *ngFor="let city of listOfCities" [value]="city">
+                                        {{city.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Usluga</mat-label>
+                                <mat-select formControlName="id_transaction_type">
+                                    <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
+                                        {{transaction.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Tip nekretnine</mat-label>
+                                <mat-select formControlName="id_estate_category" (ngModelChange)="filterPartOfCity()">
+                                    <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory">
+                                        {{estateCategory.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Potkategorija nekretnine</mat-label>
+                                <mat-select formControlName="id_estate_sub_category">
+                                    <mat-option *ngFor="let estateSubCategory of listOfEstateSubCategories" [value]="estateSubCategory">
+                                        {{estateSubCategory.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
 
-  <ckeditor #editor [editor]="Editor"></ckeditor>
-  <button class="send-btn" mat-button (click)="sendAdvertisingRequset()">Pošalji</button>
-</form>
-        </mat-step>
-      </mat-horizontal-stepper>
-    </div>
-  </div>
-</div>
-<div class="big-estate text-center" *ngFor="let estate of listOfEstates|slice:3:4;let i = index" [attr.data-index]="i">
-  <div>
-    <button mat-button class="big-estate-btn" routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active" >Specijalno</button>
-    <h1 style="font-weight: bold;">{{estate.title}}</h1>
-    <p style="color: #999;padding: 0 30em 0 30em;" [innerHTML]="estate.description"></p>
-  </div>
-  <img [src]="estate.listOfImages[0].url" style="margin-top: 2em;"  width="1280" class="img-fluid watermark" alt="">
-</div>
-<div class="about-div">
-  <div class="row">
-    <div class="col-sm-7">
-      <div class="row">
-        <div class="col-sm">
-          <img src="../../assets/img/glass-items-3339972_1920 1.png" alt="" class="img-fluid">
+                        <div class="col-sm">
+                            <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
         </div>
-        <div class="col-sm">
-          <h1>Projektovanje <i class="fa fa-line-chart" aria-hidden="true" style="color: #00c3f6;"></i></h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <h1 class="text-right sell-text">Prodaja <i class="fa fa-university" aria-hidden="true" style="color: #00c3f6;"></i></h1>
-        </div>
-        <div class="col-sm">
-          <div class="col-sm">
-            <img src="../../assets/img/real-estate-and-property-concept---close-up-of-hands-holding-house-or-home-model-929044292-5c0f1d5b4cedfd00019bd6aa 1.png" alt="" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-5 text-right about-text-col">
-      <h1>O nama.</h1>
-      <p class="about-p">Lorem Ipsum is simply dummy
-        text of the printing and typesetting
-        industry. Lorem Ipsum has been
-        the industry's standard dummy
-        text ever since the 1500s, when an 
-       unknown printer took a galley 
-       of type and scrambled it to make
-        a type specimen book. It has survived</p>
-        <button class="big-blue-btn" style="width: 60%;" onclick="location.href='https://avenijasistem.com/'">Vise o nama</button>
-    </div>
-   
-  </div>
-</div>
 
-<div #contact></div>
 
-<app-footer></app-footer>
-  </mat-drawer-content>
+        <div class="estate-binding">
+            <div class="row">
+                <div class="col-sm">
+                    <h1><span style="color: #282828;">Izdvajamo iz</span> <br><span style="color: #00c3f6;">ponude</span></h1>
+                    <p>Naši agenti Vam preporučuju najatraktivnije nekretnine iz naše ponude. <br> Najtraženije, najnovije, na najboljim lokacijama i najboljim odnosom cene i kvaliteta. </p>
+                </div>
+                <div class="col-sm-8 text-center">
+                    <swiper [config]="config">
+                        <div class="swiper-wrapper text-left">
+                            <div class="swiper-slide" *ngFor="let estate of listOfEstates">
+                                <a routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">
+
+                                    <img *ngIf="estate.listOfImages.length !== 0" class="swiper-slide slider-img watermark" [src]="estate.listOfImages[0].url" />
+
+                                </a>
+                                <div>
+                                    <h4 style="color: #282828;margin-top: 1em;">{{estate.title}}</h4>
+                                    <h4 class="blue">{{estate.price}}€</h4>
+                                    <button mat-button class="slider-btn" routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">Pogledaj više</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </swiper>
+                </div>
+            </div>
+        </div>
+        <div class="advertising-div">
+            <div class="row">
+                <div class="col-sm-5 form-div">
+                    <mat-horizontal-stepper>
+                        <ng-template matStepLabel>Kontakt podaci</ng-template>
+                        <mat-step [stepControl]="userInfoForm" label="Kontakt podaci">
+                            <form [formGroup]="userInfoForm">
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Ime i prezime</mat-label>
+                                        <input matInput formControlName="full_name">
+                                        <mat-icon matSuffix>contact_mail</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput formControlName="email">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Telefon</mat-label>
+                                        <input matInput type="number" formControlName="telephone">
+                                        <mat-icon matSuffix>local_phone</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <button mat-button matStepperNext class="next-btn" style="margin-left: 0;">Dalje</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="secondForm" label="Podaci o nekretnini">
+                            <form [formGroup]="secondForm">
+                                <div class="row">
+                                    <div class="col" style="padding-left: 0;">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Cena od</mat-label>
+                                            <input matInput type="number" formControlName="priceFrom">
+                                            <mat-icon matSuffix>attach_money</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col" style="padding-right: 0;padding-left: 0;">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Cena do</mat-label>
+                                            <input matInput type="number" formControlName="priceTo">
+                                            <mat-icon matSuffix>attach_money</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Kvadratura</mat-label>
+                                        <input matInput type="number" formControlName="quadrature">
+                                        <mat-icon matSuffix>attach_money</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Kupovina/prodaja</mat-label>
+                                        <mat-select formControlName="id_transaction_type">
+                                            <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
+                                                {{transaction.title}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <button mat-button matStepperPrevious class="back-btn">Nazad</button>
+                                    <button mat-button matStepperNext class="next-btn">Dalje</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="locationForm" label="Lokacija i opis">
+                            <form [formGroup]="locationForm">
+                                <div class="row">
+                                    <div class="col" style="padding-left: 0;">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Adresa</mat-label>
+                                            <input matInput formControlName="address">
+                                            <mat-icon matSuffix>contact_mail</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col" style="padding-left: 0;padding-right: 0;">
+                                        <mat-form-field appearance="outline">
+
+                                            <mat-label>Grad i deo grada</mat-label>
+                                            <mat-select formControlName="id_part_of_city">
+                                                <mat-option>-- None --</mat-option>
+                                                <mat-optgroup *ngFor="let city of listOfCities" [label]="city.title">
+                                                    <mat-option *ngFor="let partOfCity of city.listOfPartOfCities" [value]="partOfCity">
+                                                        {{partOfCity.title}}
+                                                    </mat-option>
+                                                </mat-optgroup>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <mat-form-field appearance="outline">
+
+                                        <mat-label>Kategorija</mat-label>
+                                        <mat-select formControlName="id_estate_sub_category">
+                                            <mat-option>-- None --</mat-option>
+                                            <mat-optgroup *ngFor="let estateCategory of listOfEstateCategories" [label]="estateCategory.title">
+                                                <mat-option *ngFor="let estateSubCategory of estateCategory.listOfEstateSubCategories" [value]="estateSubCategory">
+                                                    {{estateSubCategory.title}}
+                                                </mat-option>
+                                            </mat-optgroup>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <ckeditor #editor [editor]="Editor"></ckeditor>
+                                <button class="send-btn" mat-button (click)="sendAdvertisingRequset()">Pošalji</button>
+                            </form>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                </div>
+                <div class="col-sm text-right">
+                    <h1 class="big-h1">Želite da kupite <br> <span style="color: #00c3f6;">ili prodate nekretninu?</span></h1>
+                    <h5>Unesite parametre za kupoprodaju nekretnina. U koliko želite da kupite nekretninu, opišite nam sta biste želeli i mi cemo dati sve od sebe da pronađemo pravu nekretninu za Vas. U koliko želite da prodate svoju nekretninu, opišite nam
+                        o kojoj je nekretnini reč, i naši agenti će Vam pomoći da što pre dođete do kupca. </h5>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-advertising-div">
+            <div class="row">
+                <div class="col-sm text-right">
+                    <h1 class="big-h1">Želite da kupite <br> <span style="color: #00c3f6;">ili prodate nekretninu?</span></h1>
+                    <h5>Unesite parametre za kupoprodaju nekretnina. U koliko želite da kupite nekretninu, opišite nam sta biste želeli i mi cemo dati sve od sebe da pronađemo pravu nekretninu za Vas. U koliko želite da prodate svoju nekretninu, opišite nam
+                        o kojoj je nekretnini reč, i naši agenti će Vam pomoći da što pre dođete do kupca. </h5>
+                </div>
+                <div class="col-sm-5 form-div">
+                    <mat-horizontal-stepper>
+                        <ng-template matStepLabel>Kontakt podaci</ng-template>
+                        <mat-step [stepControl]="userInfoForm" label="Kontakt podaci">
+                            <form [formGroup]="userInfoForm">
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Ime i prezime</mat-label>
+                                        <input matInput formControlName="full_name">
+                                        <mat-icon matSuffix>contact_mail</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Email</mat-label>
+                                        <input inputmode="email" matInput formControlName="email">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Telefon</mat-label>
+                                        <input inputmode="tel" matInput type="number" formControlName="telephone">
+                                        <mat-icon matSuffix>local_phone</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <button mat-button matStepperNext class="next-btn" style="margin-left: 0;width: 70%;">Dalje</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="secondForm" label="Podaci o nekretnini">
+                            <form [formGroup]="secondForm">
+                                <div class="row">
+                                    <div class="col-sm" style="padding-left: 0;">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Cena od</mat-label>
+                                            <input matInput inputmode="numeric" formControlName="priceFrom">
+                                            <mat-icon matSuffix>attach_money</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm" style="padding-right: 0;padding-left: 0;">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Cena do</mat-label>
+                                            <input matInput inputmode="numeric" formControlName="priceTo">
+                                            <mat-icon matSuffix>attach_money</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Kvadratura</mat-label>
+                                        <input matInput inputmode="numeric" formControlName="quadrature">
+                                        <mat-icon matSuffix>attach_money</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Kupovina/prodaja</mat-label>
+                                        <mat-select formControlName="id_transaction_type">
+                                            <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
+                                                {{transaction.title}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <button mat-button matStepperPrevious class="back-btn">Nazad</button>
+                                    <button mat-button matStepperNext class="next-btn">Dalje</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="locationForm" label="Lokacija i opis">
+                            <form [formGroup]="locationForm">
+                                <div class="row">
+                                    <div class="col-sm" style="padding-left: 0;">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Adresa</mat-label>
+                                            <input matInput formControlName="address">
+                                            <mat-icon matSuffix>contact_mail</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm" style="padding-right: 0 !important;">
+                                        <mat-form-field appearance="outline">
+
+                                            <mat-label>Grad i deo grada</mat-label>
+                                            <mat-select formControlName="id_part_of_city">
+                                                <mat-option>-- None --</mat-option>
+                                                <mat-optgroup *ngFor="let city of listOfCities" [label]="city.title">
+                                                    <mat-option *ngFor="let partOfCity of city.listOfPartOfCities" [value]="partOfCity">
+                                                        {{partOfCity.title}}
+                                                    </mat-option>
+                                                </mat-optgroup>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <mat-form-field appearance="outline">
+
+                                        <mat-label>Kategorija</mat-label>
+                                        <mat-select formControlName="id_estate_sub_category">
+                                            <mat-option>-- None --</mat-option>
+                                            <mat-optgroup *ngFor="let estateCategory of listOfEstateCategories" [label]="estateCategory.title">
+                                                <mat-option *ngFor="let estateSubCategory of estateCategory.listOfEstateSubCategories" [value]="estateSubCategory">
+                                                    {{estateSubCategory.title}}
+                                                </mat-option>
+                                            </mat-optgroup>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <ckeditor #editor [editor]="Editor"></ckeditor>
+                                <button class="send-btn" mat-button (click)="sendAdvertisingRequset()">Pošalji</button>
+                            </form>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                </div>
+            </div>
+        </div>
+        <div class="big-estate text-center" *ngFor="let estate of listOfEstates|slice:3:4;let i = index" [attr.data-index]="i">
+            <div>
+                <button mat-button class="big-estate-btn" routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">Specijalno</button>
+                <h1 style="font-weight: bold;">{{estate.title}}</h1>
+                <p style="color: #999;padding: 0 30em 0 30em;" [innerHTML]="estate.description"></p>
+            </div>
+            <img [src]="estate.listOfImages[0].url" style="margin-top: 2em;" width="1280" class="img-fluid watermark" alt="">
+        </div>
+        <div class="about-div">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="row">
+                        <div class="col-sm">
+                            <img src="../../assets/img/glass-items-3339972_1920 1.png" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-sm">
+                            <h1 onclick="location.href='https://avenijasistem.com/'">Projektovanje <i class="fa fa-line-chart" aria-hidden="true" style="color: #00c3f6;"></i></h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h1 class="text-right sell-text">Prodaja <i class="fa fa-university" aria-hidden="true" style="color: #00c3f6;"></i></h1>
+                        </div>
+                        <div class="col-sm">
+                            <div class="col-sm">
+                                <img src="../../assets/img/real-estate-and-property-concept---close-up-of-hands-holding-house-or-home-model-929044292-5c0f1d5b4cedfd00019bd6aa 1.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 text-right about-text-col">
+                    <h1>O nama.</h1>
+                    <p class="about-p">
+                        "Sistem nekretnine" nastale su kao proizvod dugogodišnjeg rada u oblasti projektovanja i izvođenja građevinskih radova firme koja se, mozemo slobodno reći, smatra našom izvornom delatnošću i bazom našeg rada "Avenija Sistem" d.o.o. Analizom tržišta, kako
+                        u oblasti građevine, tako i u oblasti kupoprodaje nekretnina, shvatili smo da postoji velika potreba za agencijom za nekretnine koja će pružiti sigurnost i izgraditi poverenje kako sa kupcima tako i sa prodavcima nekretnina. Želimo
+                        da iskoristimo svoje profesionalno iskustvo u građevinarstvu kako bismo Vam pomogli da pronađete idealnu nekretninu za sebe, jer Vaše zadovoljstvo smatramo našim uspehom. O radu Avenije Sistem d.o.o. govore brojne reference, veliki
+                        broj zadovoljnih klijenata, mnogi domaći i internacionalni partneri, a timskim radom i dobrim duhom nastavljamo da gradimo renome firme od poverenja započet jos davne 1992 godine.
+                    </p>
+                    <button class="big-blue-btn" style="width: 60%;" onclick="location.href='https://avenijasistem.com/'">Vise o nama</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div #contact></div>
+
+        <app-footer></app-footer>
+    </mat-drawer-content>
 </mat-drawer-container>
-
-
