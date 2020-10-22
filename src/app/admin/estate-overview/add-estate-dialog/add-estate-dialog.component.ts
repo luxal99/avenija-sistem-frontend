@@ -40,7 +40,7 @@ export class AddEstateDialogComponent implements OnInit {
 
   editorData = '';
   description = '';
-
+  AngularFireModule
   percentage: number = 0;
   isReady = 'Nije spremno';
 
