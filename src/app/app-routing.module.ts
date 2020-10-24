@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'estate/:id', component: EstatePageOverviewComponent },
   { path: 'filter', component: FilterPageComponent },
   { path: 'client', component: ClientComponent },
-  {path:'advertising',component:AdvertisingRequestComponent}
+  {path:'advertising',component:AdvertisingRequestCompdonent}
 ];
 
 @NgModule({
