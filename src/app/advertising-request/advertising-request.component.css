@@ -1,5 +1,4 @@
 @import "../../assets/css/sidenav.css";
-
 .menu-div {
     display: inline-flex;
 }
@@ -21,7 +20,8 @@ nav {
     background-repeat: no-repeat;
 }
 
-.reg-btn, .login-btn {
+.reg-btn,
+.login-btn {
     border: 0 !important;
     -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
@@ -60,13 +60,13 @@ mat-form-field {
 .big-h1 {
     color: #fff;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 50px;
     padding-top: 1em;
 }
 
 .row {
-     margin-left: 0 !important;
-     margin-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
@@ -84,13 +84,12 @@ mat-form-field {
     color: #282828;
 }
 
-
-.next-btn, .back-btn {
+.next-btn,
+.back-btn {
     width: 25%;
     padding-top: .5em;
     padding-bottom: .5em;
 }
-
 
 .send-btn {
     width: 50%;
@@ -101,11 +100,10 @@ mat-form-field {
     background-color: #00c3f6;
 }
 
-
 mat-horizontal-stepper {
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 @media screen and (max-width:1870px) {
@@ -123,26 +121,26 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     }
 }
 
-.mobile-ad-form-div{display: none;}
+.mobile-ad-form-div {
+    display: none;
+}
 
 @media screen and (min-width:410px) and (max-width:570px) {
     .ad-form-div {
         display: none;
     }
-
     .mobile-ad-form-div {
         display: block;
     }
     .header {
         height: 150vh;
-        padding:1em;
+        padding: 1em;
     }
     .login-btn {
-        margin: 2em 0 0 0 ;
+        margin: 2em 0 0 0;
         background-color: #fff;
         color: #282828;
     }
-
 }
 
 @media screen and (min-width:370px) and (max-width: 400px) {
@@ -152,7 +150,6 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     .ad-form-div {
         display: none;
     }
-
     .mobile-ad-form-div {
         display: block;
     }
@@ -160,9 +157,8 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
         margin-top: 5em;
     }
     .login-btn {
-        margin: 2em 0 0 0 ;
+        margin: 2em 0 0 0;
         background-color: #fff;
         color: #282828;
     }
-
 }

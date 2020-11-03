@@ -1,17 +1,16 @@
-.advertising{
+.advertising {
     padding: 0 5em 0 5em;
 }
 
 table {
-     width: 100%;
-     
+    width: 100%;
 }
 
-.table-div{
+.table-div {
     padding: 5em;
 }
 
-.preview-btn{
+.preview-btn {
     background-color: #00c3f6;
     color: #fff;
     width: 100%;
