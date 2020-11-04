@@ -40,7 +40,7 @@ export class AddAccessoriesDialogComponent implements OnInit {
 
     } else {
       this.accessoriesService.save(new Accessories(this.addAccessoriesForm.get("title").value)).subscribe(resp => {
-        console.log(resp);
+    
       })
     }
   }

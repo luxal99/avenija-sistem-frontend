@@ -7,4 +7,8 @@ import { FactoryService } from './factory.service';
 })
 export class UserService extends FactoryService<User> {
   route = "user"
+
+  findByHashedUsername(){
+    return this.http.post(`${this.route}/hash`,{token:localStorage.getItem("token")},{responseType:'json'})
+  }
 }

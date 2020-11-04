@@ -165,8 +165,6 @@ export class AddEstateDialogComponent implements OnInit {
           this.listOfImages.push(image);
 
         }, err => {
-          console.log(fileName);
-          
         });
 
       }

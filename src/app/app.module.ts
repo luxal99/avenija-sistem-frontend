@@ -39,6 +39,7 @@ import { AdvertisingRequestComponent } from './advertising-request/advertising-r
 import { AdvertisingRequestOverviewComponent } from './admin/advertising-request-overview/advertising-request-overview.component';
 import { AdvertisingDialogOverviewComponent } from './admin/advertising-request-overview/advertising-dialog-overview/advertising-dialog-overview.component';
 import { NgxWatermarkModule } from 'ngx-watermark';
+import { UserInfoComponent } from './admin/user-info/user-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { NgxWatermarkModule } from 'ngx-watermark';
     FilterPageComponent,
     AdvertisingRequestComponent,
     AdvertisingRequestOverviewComponent,
-    AdvertisingDialogOverviewComponent
+    AdvertisingDialogOverviewComponent,
+    UserInfoComponent
     
   ],
   imports: [
@@ -95,7 +97,7 @@ import { NgxWatermarkModule } from 'ngx-watermark';
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
-    AddPartOfCityDialogComponent,AdvertisingDialogOverviewComponent,AdvertisingRequestOverviewComponent,
+    AddPartOfCityDialogComponent,UserInfoComponent,AdvertisingDialogOverviewComponent,AdvertisingRequestOverviewComponent,
     AddEstateDialogComponent, OverviewEstateDialogComponent, EditEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })

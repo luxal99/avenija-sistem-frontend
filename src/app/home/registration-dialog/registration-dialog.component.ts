@@ -43,7 +43,7 @@ export class RegistrationDialogComponent implements OnInit {
     if (user.password === this.userForm.get("password_confirm").value) {
 
       this.userService.save(user).subscribe(resp => {
-        console.log(resp);
+       
 
       })
     }else{

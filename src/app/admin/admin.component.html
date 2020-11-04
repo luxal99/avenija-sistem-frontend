@@ -2,16 +2,16 @@
     <mat-drawer #drawer mode="side" opened>
         <img src="../../assets/img/white_logo.png" alt="" class="img-fluid">
         <div class="option-menu">
-          <h3 (click)="loadAdvertisingRequestOverview()">Pregled</h3>
+            <h3 (click)="loadAdvertisingRequestOverview()">Pregled</h3>
             <h3 (click)="loadEstateOverview()">Nekretnine</h3>
-                <h3 (click)="loadOption()">Opcije</h3>
+            <h3 (click)="loadOption()">Opcije</h3>
+            <h3 (click)="loadUserInfo()">Korisničke opcije</h3>
         </div>
     </mat-drawer>
     <mat-drawer-content>
-      
-      <button (click)="drawer.toggle()" class="menu-btn"><mat-icon>toc</mat-icon></button>
 
-      <div #target class="target" ></div>
+        <button (click)="drawer.toggle()" class="menu-btn"><mat-icon>toc</mat-icon></button>
+
+        <div #target class="target"></div>
     </mat-drawer-content>
-  </mat-drawer-container>
-  
+</mat-drawer-container>

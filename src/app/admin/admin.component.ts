@@ -44,4 +44,11 @@ export class AdminComponent implements OnInit {
     const factory = this.resolver.resolveComponentFactory(OptionComponent)
     this.entry.createComponent(factory);
   }
+
+  async loadUserInfo (){
+    this.entry.clear();
+    const { UserInfoComponent } = await import('./user-info/user-info.component');
+    const factory = this.resolver.resolveComponentFactory(UserInfoComponent)
+    this.entry.createComponent(factory);
+  }
 }

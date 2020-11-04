@@ -39,7 +39,7 @@ export class AddEstateTypeDialogComponent implements OnInit {
 
     } else {
       this.estateTypeService.save(new EstateType(this.addEstateTypeForm.get("title").value)).subscribe(resp => {
-        console.log(resp);
+     
       })
     }
   }

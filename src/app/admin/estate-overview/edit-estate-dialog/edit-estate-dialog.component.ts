@@ -152,16 +152,13 @@ export class EditEstateDialogComponent implements OnInit {
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
 
     var index = this.listOfSelectedAccessories.indexOf(accessories)
-    console.log(index);
+   
 
     if ($event.checked && index === -1) {
       this.listOfSelectedAccessories.push(accessories)
     } else {
       this.listOfSelectedAccessories.splice(index, 1)
     }
-
-    console.log(this.listOfSelectedAccessories);
-
   }
 
   errorHandler(event) {
@@ -410,8 +407,6 @@ export class EditEstateDialogComponent implements OnInit {
     })
     
     this.estateService.update(estate).subscribe(resp=>{
-      console.log(resp);
-      
     },err =>{
       this.openSnackBar("Dogodila se greska","PONOVO")
     })

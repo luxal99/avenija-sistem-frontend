@@ -1,0 +1,9 @@
+mat-form-field {
+    width: 100%;
+}
+
+.save-btn {
+    width: 80%;
+    padding: .4em 0 .4em 0;
+    background-color: #00c3f6;
+}

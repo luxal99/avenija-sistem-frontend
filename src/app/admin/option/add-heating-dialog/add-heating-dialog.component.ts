@@ -38,7 +38,7 @@ export class AddHeatingDialogComponent implements OnInit {
 
     } else {
       this.heatingService.save(new Heating(this.addHeatingForm.get("title").value)).subscribe(resp => {
-        console.log(resp);
+       
       })
     }
   }

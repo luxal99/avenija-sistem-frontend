@@ -38,7 +38,7 @@ export class AddEquipmentDialogComponent implements OnInit {
 
     } else {
       this.equipmentService.save(new Equipment(this.addEquipmentForm.get("title").value)).subscribe(resp => {
-        console.log(resp);
+       
       })
     }
   }

@@ -31,13 +31,13 @@ export class AddEstateCategoryDialogComponent implements OnInit {
       estateCategory.id = this.data.id;
 
       this.estateCategoryService.update(estateCategory).subscribe(resp => {
-        console.log(resp);
+      
         
       })
 
     } else {
       this.estateCategoryService.save(new EstateCategory(this.addEstateCategoryForm.get("title").value)).subscribe(resp => {
-        console.log(resp);
+      
       })
     }
   }

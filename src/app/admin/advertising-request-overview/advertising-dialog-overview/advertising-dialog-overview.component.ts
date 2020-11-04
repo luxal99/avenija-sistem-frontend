@@ -13,8 +13,7 @@ export class AdvertisingDialogOverviewComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: AdvertisingRequest,private advertisingRequestService:AdvertisingRequestService) { }
 
   ngOnInit() {
-    console.log(this.data);
-    
+
   }
 
   update(entity:AdvertisingRequest){

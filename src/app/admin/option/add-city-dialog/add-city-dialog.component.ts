@@ -38,7 +38,7 @@ export class AddCityDialogComponent implements OnInit {
 
     } else {
       this.cityService.save(new City(this.addCityForm.get("title").value)).subscribe(resp => {
-        console.log(resp);
+ 
       })
     }
   }

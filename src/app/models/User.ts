@@ -6,6 +6,7 @@ export class User {
     password: string
     id_user_info: UserInfo;
     id_role: Object;
+    token;
 
     constructor(username?, password?,userInfo?:UserInfo) {
 
