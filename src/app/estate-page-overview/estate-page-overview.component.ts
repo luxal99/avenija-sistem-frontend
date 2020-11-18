@@ -29,7 +29,6 @@ export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
     }
   }
 
-
   constructor(private route: ActivatedRoute, private router :Router,private dialog: MatDialog, private estateService: EstateService) { }
 
   ngOnInit() {
@@ -55,17 +54,12 @@ export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
   findEstate() {
     this.route.params.subscribe(params => {
       this.estateService.findById(Number.parseInt(params.id)).subscribe(resp => {
-      
         this.estate = resp as Estate;
         localStorage.setItem("estate",JSON.stringify(this.estate))
-        
       })
     })
 
     this.estate = JSON.parse(localStorage.getItem("estate"))
-    // load cross domain images
-
-
   }
 
   searchOnSell(){

@@ -152,7 +152,7 @@ export class EditEstateDialogComponent implements OnInit {
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
 
     var index = this.listOfSelectedAccessories.indexOf(accessories)
-   
+
 
     if ($event.checked && index === -1) {
       this.listOfSelectedAccessories.push(accessories)
@@ -164,7 +164,7 @@ export class EditEstateDialogComponent implements OnInit {
   errorHandler(event) {
     console.debug(event);
     event.target.src = "https://cdn.browshot.com/static/images/not-found.png";
- }
+  }
 
   uploadFiles() {
     var totalUploadSize = 0;
@@ -340,8 +340,14 @@ export class EditEstateDialogComponent implements OnInit {
     this.selectedCity = this.data.id_location.id_part_of_city.id_city.id;
     this.selectedPartOfCity = this.data.id_location.id_part_of_city.id;
     this.selectedEstateType = this.data.id_estate_type.id;
-    this.selectedEquipment = this.data.id_equipment.id;
-    this.selectedHeating = this.data.id_heating.id;
+
+
+    if (this.data.id_equipment !== null) {
+      this.selectedEquipment = this.data.id_equipment.id;
+    } else if (this.data.id_heating !== null) {
+
+      this.selectedHeating = this.data.id_heating.id;
+    }
 
     this.listOfSelectedAccessories = this.data.listOfAccessories
     this.listOfImages = this.data.listOfImages
@@ -371,7 +377,7 @@ export class EditEstateDialogComponent implements OnInit {
     heating.id = this.accessoriesForm.get("id_heating").value;
     estateType.id = this.thirdStepForm.get("id_estate_type").value;
     equipment.id = this.accessoriesForm.get("id_equipment").value;
-    
+
     // Location
     id_part_of_city.id = this.locationForm.get("id_part_of_city").value;
     id_location.id = this.data.id_location.id;
@@ -399,16 +405,16 @@ export class EditEstateDialogComponent implements OnInit {
     estate.id_location = id_location
     estate.id = this.data.id
 
-    estate.listOfImages.forEach(img =>{
+    estate.listOfImages.forEach(img => {
       const estate = new Estate();
       estate.id = this.data.id;
 
       img.id_estate = estate
     })
-    
-    this.estateService.update(estate).subscribe(resp=>{
-    },err =>{
-      this.openSnackBar("Dogodila se greska","PONOVO")
+
+    this.estateService.update(estate).subscribe(resp => {
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "PONOVO")
     })
   }
 

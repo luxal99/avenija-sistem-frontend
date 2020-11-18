@@ -1,32 +1,35 @@
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatCheckboxChange, MatDialog, MatSlideToggle, MatSnackBar } from '@angular/material';
-import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+
 import { Accessories } from 'src/app/models/Accessories';
-import { City } from 'src/app/models/CIty';
-import { Equipment } from 'src/app/models/Equipment';
-import { EstateCategory } from 'src/app/models/EstateCategory';
-import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
-import { EstateType } from 'src/app/models/EstateType';
-import { Heating } from 'src/app/models/Heating';
-import { PartOfCity } from 'src/app/models/PartOfCity';
-import { Transaction } from 'src/app/models/Transaction';
 import { AccessoriesService } from 'src/app/service/accessories.service';
-import { CityService } from 'src/app/service/city.service';
-import { EquipmentService } from 'src/app/service/equipment.service';
-import { EstateCategoryService } from 'src/app/service/estate-category.service';
-import { EstateSubCategoryService } from 'src/app/service/estate-sub-category.service';
-import { EstateTypeService } from 'src/app/service/estate-type.service';
-import { HeatingService } from 'src/app/service/heating.service';
-import { PartOfCityService } from 'src/app/service/part-of-city.service';
-import { TransactionService } from 'src/app/service/transaction.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Image } from 'src/app/models/Image';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { City } from 'src/app/models/CIty';
+import { CityService } from 'src/app/service/city.service';
+import { Equipment } from 'src/app/models/Equipment';
+import { EquipmentService } from 'src/app/service/equipment.service';
 import { Estate } from 'src/app/models/Estate';
-import { LocationService } from 'src/app/service/location.service';
-import { Location } from 'src/app/models/Location';
+import { EstateCategory } from 'src/app/models/EstateCategory';
+import { EstateCategoryService } from 'src/app/service/estate-category.service';
 import { EstateService } from 'src/app/service/estate.service';
+import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
+import { EstateSubCategoryService } from 'src/app/service/estate-sub-category.service';
+import { EstateType } from 'src/app/models/EstateType';
+import { EstateTypeService } from 'src/app/service/estate-type.service';
+import { Heating } from 'src/app/models/Heating';
+import { HeatingService } from 'src/app/service/heating.service';
+import { Image } from 'src/app/models/Image';
+import { Location } from 'src/app/models/Location';
+import { LocationService } from 'src/app/service/location.service';
+import { PartOfCity } from 'src/app/models/PartOfCity';
+import { PartOfCityService } from 'src/app/service/part-of-city.service';
+import { Transaction } from 'src/app/models/Transaction';
+import { TransactionService } from 'src/app/service/transaction.service';
+
 @Component({
   selector: 'app-add-estate-dialog',
   templateUrl: './add-estate-dialog.component.html',
@@ -65,22 +68,22 @@ export class AddEstateDialogComponent implements OnInit {
   locationForm = new FormGroup({
     id_city: new FormControl("", Validators.required),
     id_part_of_city: new FormControl("", Validators.required),
-    address: new FormControl("", Validators.required)
+    address: new FormControl("")
   });
 
   thirdStepForm = new FormGroup({
-    price: new FormControl("", Validators.required),
-    quadrature: new FormControl("", Validators.required),
+    price: new FormControl(0, Validators.required),
+    quadrature: new FormControl(0, Validators.required),
     id_estate_type: new FormControl("", Validators.required)
   })
 
   accessoriesForm = new FormGroup({
     id_equipment: new FormControl("", Validators.required),
     id_heating: new FormControl("", Validators.required),
-    floor: new FormControl("", Validators.required),
-    max_floor: new FormControl("", Validators.required),
-    rooms: new FormControl("", Validators.required),
-    num_of_bathrooms: new FormControl("", Validators.required),
+    floor: new FormControl(0, Validators.required),
+    max_floor: new FormControl(0, Validators.required),
+    rooms: new FormControl(0, Validators.required),
+    num_of_bathrooms: new FormControl(0, Validators.required),
     accesory: new FormControl("", Validators.required),
   })
 
@@ -122,19 +125,12 @@ export class AddEstateDialogComponent implements OnInit {
   async addFiles(event) {
 
     for (let index = 0; index < event.length; index++) {
-      if (event[index].size / 1000 > 700) {
-        this.openSnackBar("Prevelik fajl", "DONE");
-      } else {
-
-       
-        const element = event[index];
-        var elementIndex = this.fileUploadList.indexOf(element);
-        if (elementIndex === -1) {
-          this.fileUploadList.push(element);
-        }
+      const element = event[index];
+      var elementIndex = this.fileUploadList.indexOf(element);
+      if (elementIndex === -1) {
+        this.fileUploadList.push(element);
       }
     }
-
     await this.uploadFiles();
 
   }
@@ -143,37 +139,23 @@ export class AddEstateDialogComponent implements OnInit {
     var c = (($event.checked)) ? this.listOfSelectedAccessories.add(accessories) : this.listOfSelectedAccessories.delete(accessories);
   }
 
-  uploadFiles() {
-    var totalUploadSize = 0;
-    for (const file of this.fileUploadList) {
+  async uploadFiles() {
 
-      totalUploadSize += file.size / 1000;
-      this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
-        this.percentage = data
-      });
+    for (const file of this.fileUploadList) {
+      this.afStorage.upload(file.name, file)
+        .then(() => {
+          setTimeout(() => {
+            const downloadUrl = this.afStorage.ref(file.name).getDownloadURL().subscribe(async data => {
+              this.listOfImages.push(new Image(file.name, data));
+
+            });
+          }, 500);
+        }).then(() => {
+
+          this.disableSpinner(1000);
+        });
     }
 
-    this.disableSpinner(totalUploadSize * 6);
-
-    setTimeout(() => {
-
-      for (const fileName of this.fileUploadList) {
-        const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
-          var image = new Image()
-          image.title = fileName.name;
-          image.url = data;
-          this.listOfImages.push(image);
-
-        }, err => {
-        });
-
-      }
-
-
-
-      this.fileUploadList = [];
-
-    }, 5 * totalUploadSize)
 
   }
 
@@ -313,6 +295,9 @@ export class AddEstateDialogComponent implements OnInit {
       this.estateService.save(estate).subscribe(resp => {
         this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
       }, err => {
+        console.log(err);
+        console.log(estate);
+        
         this.openSnackBar("Dogodila se greska", "AGAIN")
       })
     });

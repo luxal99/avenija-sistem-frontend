@@ -14,6 +14,8 @@ export class OverviewEstateDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Estate) { }
 
   ngOnInit() {
+    console.log(this.data);
+    
   }
 
 config: SwiperOptions = {
