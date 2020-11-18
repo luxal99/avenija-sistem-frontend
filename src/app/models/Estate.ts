@@ -3,7 +3,7 @@ import { Equipment } from './Equipment';
 import { EstateSubCategory } from './EstateSubCategory';
 import { EstateType } from './EstateType';
 import { Heating } from './Heating';
-import { Image } from './Image';
+import { ImageModel } from './ImageModel';
 import { Transaction } from './Transaction';
 import {Location} from './Location'
 
@@ -29,5 +29,5 @@ export class Estate {
     id_location: Location;
 
     listOfAccessories: Accessories[];
-    listOfImages:Image[]
+    listOfImages:ImageModel[]
 }

@@ -26,7 +26,7 @@ import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-import { Image } from 'src/app/models/Image'
+import { ImageModel } from 'src/app/models/ImageModel'
 import { AccessoriesDTO } from 'src/app/models/AccessoriesDTO';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
@@ -96,7 +96,7 @@ export class EditEstateDialogComponent implements OnInit {
   listOfEquipment: Array<Equipment> = [];
   listOfAccessories: Array<Accessories> = [];
   listOfHeating: Array<Heating> = [];
-  listOfImages: Array<Image> = [];
+  listOfImages: Array<ImageModel> = [];
   fileUploadList: Array<File> = [];
   listOfSelectedAccessories: Array<Accessories> = [];
 
@@ -182,7 +182,7 @@ export class EditEstateDialogComponent implements OnInit {
 
       for (const fileName of this.fileUploadList) {
         const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
-          var image = new Image()
+          var image = new ImageModel()
           image.title = fileName.name;
           image.url = data;
           this.listOfImages.push(image);

@@ -1,4 +1,5 @@
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as imageCompression from 'browser-image-compression'
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -22,13 +23,16 @@ import { EstateType } from 'src/app/models/EstateType';
 import { EstateTypeService } from 'src/app/service/estate-type.service';
 import { Heating } from 'src/app/models/Heating';
 import { HeatingService } from 'src/app/service/heating.service';
-import { Image } from 'src/app/models/Image';
+import { ImageModel } from 'src/app/models/ImageModel';
 import { Location } from 'src/app/models/Location';
 import { LocationService } from 'src/app/service/location.service';
 import { PartOfCity } from 'src/app/models/PartOfCity';
 import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { Transaction } from 'src/app/models/Transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
+import { async } from '@angular/core/testing';
+
+const Compress = require('compress.js')
 
 @Component({
   selector: 'app-add-estate-dialog',
@@ -56,8 +60,8 @@ export class AddEstateDialogComponent implements OnInit {
   listOfEquipment: Array<Equipment> = [];
   listOfAccessories: Array<Accessories> = [];
   listOfHeating: Array<Heating> = [];
-  listOfImages: Array<Image> = [];
-  fileUploadList: Array<File> = [];
+  listOfImages: Array<ImageModel> = [];
+  fileUploadList: Array<any> = [];
   listOfSelectedAccessories = new Set<Accessories>();
 
   firstFormGroup = new FormGroup({
@@ -123,16 +127,16 @@ export class AddEstateDialogComponent implements OnInit {
   }
 
   async addFiles(event) {
-
     for (let index = 0; index < event.length; index++) {
+
       const element = event[index];
+      console.log(element);
+      
       var elementIndex = this.fileUploadList.indexOf(element);
       if (elementIndex === -1) {
-        this.fileUploadList.push(element);
+        this.fileUploadList.push(element)
       }
     }
-    await this.uploadFiles();
-
   }
 
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
@@ -141,31 +145,26 @@ export class AddEstateDialogComponent implements OnInit {
 
   async uploadFiles() {
 
+
     for (const file of this.fileUploadList) {
+
+      await this.disableSpinner();
       this.afStorage.upload(file.name, file)
         .then(() => {
-          setTimeout(() => {
-            const downloadUrl = this.afStorage.ref(file.name).getDownloadURL().subscribe(async data => {
-              this.listOfImages.push(new Image(file.name, data));
+          const downloadUrl = this.afStorage.ref(file.name).getDownloadURL().subscribe(async data => {
 
-            });
-          }, 500);
-        }).then(() => {
+            document.getElementById('spinner').style.display = 'block'
+            this.listOfImages.push(new ImageModel(file.name, data));
 
-          this.disableSpinner(1000);
-        });
+          });
+        })
     }
-
 
   }
 
 
-  disableSpinner(timeOut) {
-    document.getElementById('spinner').style.display = 'block'
-
-    setTimeout(() => {
-      document.getElementById('spinner').style.display = 'none'
-    }, timeOut);
+  async disableSpinner() {
+    document.getElementById('spinner').style.display = 'none'
   }
 
   async filterPartOfCity() {
@@ -297,12 +296,37 @@ export class AddEstateDialogComponent implements OnInit {
       }, err => {
         console.log(err);
         console.log(estate);
-        
+
         this.openSnackBar("Dogodila se greska", "AGAIN")
       })
     });
 
-
-
   }
+
+
+  scaleImage(url, width, height, liElm, callback){
+    var img = new Image,
+    width = width,
+    height = height,
+    callback;
+  
+    // When the images is loaded, resize it in canvas.
+    img.onload = function(){
+      var canvas = document.createElement("canvas"),
+          ctx = canvas.getContext("2d");
+  
+          canvas.width = width;
+          canvas.height= height;
+  
+          // draw the img into canvas
+          ctx.drawImage(img, 0, 0, width, height);
+  
+          // Run the callback on what to do with the canvas element.
+          callback(canvas, liElm);
+    };
+  
+    img.src = url;
+  }
+
+
 }

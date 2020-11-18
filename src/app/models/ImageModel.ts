@@ -1,6 +1,6 @@
 import { Estate } from './Estate';
 
-export class Image {
+export class ImageModel {
     id: number;
     title: string
     url: string;

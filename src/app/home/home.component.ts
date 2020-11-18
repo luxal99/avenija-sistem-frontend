@@ -6,7 +6,7 @@ import { Estate } from '../models/Estate';
 import { EstateService } from '../service/estate.service';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
-import { Image } from "src/app/models/Image"
+import { ImageModel } from "src/app/models/ImageModel"
 import { CityService } from '../service/city.service';
 import { TransactionService } from '../service/transaction.service';
 import { EstateCategoryService } from '../service/estate-category.service';
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit,AfterViewChecked  {
   })
 
   listOfEstates: Array<Estate> = []
-  listOfImages: Array<Image> = [];
+  listOfImages: Array<ImageModel> = [];
   listOfEstateCategories: Array<EstateCategory> = [];
   listOfEstateSubCategories: Array<EstateSubCategory> = [];
   listOfCities: Array<City> = []
