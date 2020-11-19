@@ -130,13 +130,15 @@ export class AddEstateDialogComponent implements OnInit {
     for (let index = 0; index < event.length; index++) {
 
       const element = event[index];
-      console.log(element);
-      
+
       var elementIndex = this.fileUploadList.indexOf(element);
       if (elementIndex === -1) {
         this.fileUploadList.push(element)
       }
     }
+
+
+    await this.uploadFiles();
   }
 
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
@@ -146,19 +148,21 @@ export class AddEstateDialogComponent implements OnInit {
   async uploadFiles() {
 
 
+    document.getElementById('spinner').style.display = 'block'
+
     for (const file of this.fileUploadList) {
-
-      await this.disableSpinner();
       this.afStorage.upload(file.name, file)
-        .then(() => {
-          const downloadUrl = this.afStorage.ref(file.name).getDownloadURL().subscribe(async data => {
+        .then(async () => {
+          const downloadUrl = await this.afStorage.ref(file.name).getDownloadURL().subscribe(async data => {
 
-            document.getElementById('spinner').style.display = 'block'
+            document.getElementById('spinner').style.display = 'none'
             this.listOfImages.push(new ImageModel(file.name, data));
 
           });
         })
     }
+
+    this.fileUploadList = []
 
   }
 
@@ -301,31 +305,6 @@ export class AddEstateDialogComponent implements OnInit {
       })
     });
 
-  }
-
-
-  scaleImage(url, width, height, liElm, callback){
-    var img = new Image,
-    width = width,
-    height = height,
-    callback;
-  
-    // When the images is loaded, resize it in canvas.
-    img.onload = function(){
-      var canvas = document.createElement("canvas"),
-          ctx = canvas.getContext("2d");
-  
-          canvas.width = width;
-          canvas.height= height;
-  
-          // draw the img into canvas
-          ctx.drawImage(img, 0, 0, width, height);
-  
-          // Run the callback on what to do with the canvas element.
-          callback(canvas, liElm);
-    };
-  
-    img.src = url;
   }
 
 

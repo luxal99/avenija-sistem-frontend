@@ -1,8 +1,8 @@
-mat-icon{
+mat-icon {
     font-size: 40px !important;
 }
 
-.menu-btn{
+.menu-btn {
     background: none;
     border: none;
     padding: 2em;
@@ -13,13 +13,18 @@ mat-drawer {
     width: 15%;
     background-color: #282828;
 }
-.option-menu{
+
+.option-menu {
     padding-top: 5em;
 }
 
-    h3{
-        font-family: 'Poppins', sans-serif;
+h3 {
+    font-family: 'Poppins', sans-serif;
     color: #fff;
 }
-.target {
+
+h3:hover {
+    cursor: pointer;
 }
+
+.target {}
