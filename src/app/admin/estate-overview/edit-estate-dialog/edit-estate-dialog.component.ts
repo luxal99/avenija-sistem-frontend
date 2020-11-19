@@ -133,19 +133,17 @@ export class EditEstateDialogComponent implements OnInit {
 
   async addFiles(event) {
     for (let index = 0; index < event.length; index++) {
-      if (event[index].size / 1000 > 700) {
-        this.openSnackBar("Prevelik fajl", "DONE");
-      } else {
-        const element = event[index];
-        var elementIndex = this.fileUploadList.indexOf(element);
-        if (elementIndex === -1) {
-          this.fileUploadList.push(element);
-        }
+
+      const element = event[index];
+
+      var elementIndex = this.fileUploadList.indexOf(element);
+      if (elementIndex === -1) {
+        this.fileUploadList.push(element)
       }
     }
 
-    await this.uploadFiles();
 
+    await this.uploadFiles();
   }
 
 
@@ -166,35 +164,24 @@ export class EditEstateDialogComponent implements OnInit {
     event.target.src = "https://cdn.browshot.com/static/images/not-found.png";
   }
 
-  uploadFiles() {
-    var totalUploadSize = 0;
+ async uploadFiles() {
+
+
+    document.getElementById('spinner').style.display = 'block'
+
     for (const file of this.fileUploadList) {
+      this.afStorage.upload(file.name, file)
+        .then(async () => {
+          const downloadUrl = await this.afStorage.ref(file.name).getDownloadURL().subscribe(async data => {
 
-      totalUploadSize += file.size / 1000;
-      this.afStorage.upload(file.name, file).percentageChanges().subscribe(data => {
+            document.getElementById('spinner').style.display = 'none'
+            this.listOfImages.push(new ImageModel(file.name, data));
 
-      });
+          });
+        })
     }
 
-    this.disableSpinner(totalUploadSize * 6);
-
-    setTimeout(() => {
-
-      for (const fileName of this.fileUploadList) {
-        const downloadUrl = this.afStorage.ref(fileName.name).getDownloadURL().subscribe(data => {
-          var image = new ImageModel()
-          image.title = fileName.name;
-          image.url = data;
-          this.listOfImages.push(image);
-
-        }, err => {
-
-        });
-
-      }
-      this.fileUploadList = [];
-
-    }, 5 * totalUploadSize)
+    this.fileUploadList = []
 
   }
 
