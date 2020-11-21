@@ -1,158 +1,176 @@
 <mat-drawer-container>
     <mat-drawer #drawer mode="over">
-      <div class="drawer-content">
-        <div class="text-right">
-         
-          <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
+        <div class="drawer-content">
+            <div class="text-right">
+
+                <button class="close-btn" mat-icon-button (click)="drawer.toggle()"><mat-icon>close</mat-icon></button>
+            </div>
+            <div class="option-menu">
+                <a>
+                    <h1 [routerLink]="['/']" routerLinkActive="router-link-active">Početna</h1>
+                </a>
+                <a>
+                    <h1 (click)="searchOnRent()">Izdavanje</h1>
+                </a>
+                <a (click)="searchOnSell()">
+                    <h1>Prodaja</h1>
+                </a>
+                <a (click)="scrollToElement(contact)">
+                    <h1 (click)="drawer.toggle()">Kontakt</h1>
+                </a>
+            </div>
+
+            <div class="side-contact-div">
+                <div class="row">
+                    <div class="col">
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+                    </div>
+                    <div class="col">
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-div">
+                <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
+
+                <button class="login-btn" (click)="openLoginDialog()">Login</button>
+            </div>
+            <div class="social-div">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
+
+            </div>
         </div>
-        <div class="option-menu">
-          <a><h1 [routerLink]="['/']" routerLinkActive="router-link-active" >Početna</h1></a>
-          <a><h1 (click)="searchOnRent()">Izdavanje</h1></a>
-          <a (click)="searchOnSell()"><h1>Prodaja</h1></a>
-          <a (click)="scrollToElement(contact)"><h1 (click)="drawer.toggle()">Kontakt</h1></a>
-        </div>
-    
-        <div class="side-contact-div">
-     <div class="row">
-      <div class="col">
-        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
-      <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
-      </div>
-     <div class="col">
-      <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
-      <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
-     </div>
-     </div>
-        </div>
-    
-        <div class="button-div">
-          <button class="reg-btn" style="margin-left: 0 !important;" (click)="openRegistrationDialog()">Registracija</button>
-    
-          <button class="login-btn" (click)="openLoginDialog()">Login</button>  
-        </div>
-        <div class="social-div">
-          <i class="fa fa-instagram" aria-hidden="true"></i>
-          <i class="fa fa-facebook" style="margin-left: 1em;" aria-hidden="true"></i>
-    
-        </div>
-      </div>
     </mat-drawer>
     <mat-drawer-content>
-      <nav>
-    
-        <div class="row">
-          <div class="col-sm-7">
-          <a [routerLink]="['/']" routerLinkActive="router-link-active" >
-            <img src="../../assets/img/logo.png" width="400px" style="padding-top: 1em;" alt="" ></a>
-          </div>
-          <div class="col-sm">
-    
-          <div class="text-right" style="padding-right: 3em;">
-            <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 257018</h5>
-          </div>
-        <div class="menu-div">
-          <a><h5 (click)="searchOnRent()" class="nav-li">Izdavanje</h5></a>
-         <a (click)="searchOnSell()"><h5 class="nav-li">Prodaja</h5></a>
-         <a><h5 class="nav-li" (click)="scrollToElement(contact)">Kontakt</h5></a>
-         <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
-    
-         <button class="login-btn" (click)="openLoginDialog()">Login</button>
-        </div>
-          </div>
-        </div>
-      </nav>
-<div class="header">
- 
-    <div class="row hamburger-menu" style="margin: 0 !important;">
-        <div class="col">
-          <a [routerLink]="['/']" routerLinkActive="router-link-active" >
-           <img src="../../assets/img/white_logo.png" width="250px" alt=""></a>
-        </div>
-        <div class="col">
-         <div class="text-right">
-           <button mat-icon-button (click)="drawer.toggle()"><mat-icon>format_align_right</mat-icon></button>
-         </div>
-        </div>
-      </div>
-    <div class="search-div">
-        <h3>Napredna pretraga</h3>
-        <mat-divider></mat-divider>
-        <form [formGroup]="searchForm">
-            <div class="row" style="margin-top: 1em;">
-                <div class="col-sm">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Cena od</mat-label>
-                        <input inputmode="numeric" matInput formControlName="priceFrom">
-                        <mat-icon matSuffix>attach_money</mat-icon>
-                      </mat-form-field>
-                </div>
-                <div class="col-sm">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Cena do</mat-label>
-                        <input inputmode="numeric" matInput formControlName="priceTo">
-                        <mat-icon matSuffix>attach_money</mat-icon>
-                      </mat-form-field>
-                </div>
-                <div class="col-sm">
-                    <mat-form-field appearance="fill" >
-                        <mat-label>Grad</mat-label>
-                        <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
-                          <mat-option *ngFor="let city of listOfCities" [value]="city.id" >
-                            {{city.title}}
-                          </mat-option>
-                        </mat-select>
-          
-                      </mat-form-field>
-                </div>
-                <div class="col-sm">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Deo grada</mat-label>
-                        <mat-select formControlName="id_part_of_city">
-                          <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity">
-                            {{partOfCity.title}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                </div>
-    
-            
-            </div>
-            <div class="row">
-                <div class="col-8">
-                    <button mat-button class="search-btn" (click)="filter()">Pretraži</button>
-                </div>
-                <div class="col" style="padding-left: 0 !important;">
-                    <button mat-button class="reset-btn" (click)="reset()">Reset</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="estate-container">
-    <h1 class="filter-h1">Filtrirane nekretnine</h1>
-    <mat-divider></mat-divider>
-    <div class="row" >
-        <div class="col-sm-6 estate-card" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
-            <img [src]="estate.listOfImages[0].url" width="100%" height="60%" alt="" class="estate-img watermark">
-           <div class="row">
-               <div class="col-sm-6">
-                <h3 class="text-left">{{estate.title}}</h3>
-                <div style="display: inline-flex;">
-                    <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_location.id_part_of_city.id_city.title}} | {{estate.id_location.id_part_of_city.title}}</h5>
-                <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.id_location.address}}</h5>
-                </div>
-                <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate.price}}€</h4>
-            </div>
-               <div class="col-sm"></div>
-           </div>
-            <div class="text-left">
-                <button mat-button routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active"  class="estate-btn">Pogledaj više</button>
-            </div>
-        </div>
-    </div>
-</div>
+        <nav>
 
-<div #contact></div>
-<app-footer></app-footer>
+            <div class="row">
+                <div class="col-sm-7">
+                    <a [routerLink]="['/']" routerLinkActive="router-link-active">
+                        <img src="../../assets/img/logo.png" width="400px" style="padding-top: 1em;" alt=""></a>
+                </div>
+                <div class="col-sm">
+
+                    <div class="text-right" style="padding-right: 3em;">
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 257018</h5>
+                    </div>
+                    <div class="menu-div">
+                        <a>
+                            <h5 (click)="searchOnRent()" class="nav-li">Izdavanje</h5>
+                        </a>
+                        <a (click)="searchOnSell()">
+                            <h5 class="nav-li">Prodaja</h5>
+                        </a>
+                        <a>
+                            <h5 class="nav-li" (click)="scrollToElement(contact)">Kontakt</h5>
+                        </a>
+                        <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
+
+                        <button class="login-btn" (click)="openLoginDialog()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="header">
+
+            <div class="row hamburger-menu" style="margin: 0 !important;">
+                <div class="col">
+                    <a [routerLink]="['/']" routerLinkActive="router-link-active">
+                        <img src="../../assets/img/white_logo.png" width="250px" alt=""></a>
+                </div>
+                <div class="col">
+                    <div class="text-right">
+                        <button mat-icon-button (click)="drawer.toggle()"><mat-icon>format_align_right</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+            <div class="search-div">
+                <h3>Napredna pretraga</h3>
+                <mat-divider></mat-divider>
+                <form [formGroup]="searchForm">
+                    <div class="row" style="margin-top: 1em;">
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Cena od</mat-label>
+                                <input inputmode="numeric" matInput formControlName="priceFrom">
+                                <mat-icon matSuffix>attach_money</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Cena do</mat-label>
+                                <input inputmode="numeric" matInput formControlName="priceTo">
+                                <mat-icon matSuffix>attach_money</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Grad</mat-label>
+                                <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
+
+                                    <mat-option *ngFor="let city of listOfCities" [value]="city.id">
+                                        {{city.title}}
+                                    </mat-option>
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Deo grada</mat-label>
+                                <mat-select formControlName="id_part_of_city">
+                                    <mat-option value="undefinded">
+                                        Sve
+                                    </mat-option>
+                                    <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity">
+                                        {{partOfCity.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <button mat-button class="search-btn" (click)="filter()">Pretraži</button>
+                        </div>
+                        <div class="col" style="padding-left: 0 !important;">
+                            <button mat-button class="reset-btn" (click)="reset()">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="estate-container">
+            <h1 class="filter-h1">Filtrirane nekretnine</h1>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <div class="col-sm-6 estate-card" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
+                    <img [src]="estate.listOfImages[0].url" width="100%" height="60%" alt="" class="estate-img watermark">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="text-left">{{estate.title}}</h3>
+                            <div style="display: inline-flex;">
+                                <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_location.id_part_of_city.id_city.title}} | {{estate.id_location.id_part_of_city.title}}</h5>
+                                <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.id_location.address}}</h5>
+                            </div>
+                            <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate.price}}€</h4>
+                        </div>
+                        <div class="col-sm"></div>
+                    </div>
+                    <div class="text-left">
+                        <button mat-button routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active" class="estate-btn">Pogledaj više</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div #contact></div>
+        <app-footer></app-footer>
     </mat-drawer-content>
 </mat-drawer-container>

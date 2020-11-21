@@ -111,7 +111,7 @@
                         <div class="col-sm">
                             <mat-form-field appearance="fill">
                                 <mat-label>Tip nekretnine</mat-label>
-                                <mat-select formControlName="id_estate_category" (ngModelChange)="filterPartOfCity()">
+                                <mat-select formControlName="id_estate_category">
                                     <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory">
                                         {{estateCategory.title}}
                                     </mat-option>
@@ -120,14 +120,19 @@
                         </div>
                         <div class="col-sm">
                             <mat-form-field appearance="fill">
-                                <mat-label>Potkategorija nekretnine</mat-label>
-                                <mat-select formControlName="id_estate_sub_category">
-                                    <mat-option *ngFor="let estateSubCategory of listOfEstateSubCategories" [value]="estateSubCategory">
-                                        {{estateSubCategory.title}}
-                                    </mat-option>
-                                </mat-select>
+                                <mat-label>Cena od</mat-label>
+                                <input inputmode="numeric" matInput formControlName="priceFrom">
+                                <mat-icon matSuffix>attach_money</mat-icon>
                             </mat-form-field>
                         </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Cena do</mat-label>
+                                <input inputmode="numeric" matInput formControlName="priceTo">
+                                <mat-icon matSuffix>attach_money</mat-icon>
+                            </mat-form-field>
+                        </div>
+
 
                         <div class="col-sm">
                             <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>

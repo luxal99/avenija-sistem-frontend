@@ -1,32 +1,35 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { error } from 'protractor';
-import { SwiperOptions } from 'swiper';
-import { Estate } from '../models/Estate';
-import { EstateService } from '../service/estate.service';
-import { LoginDialogComponent } from './login-dialog/login-dialog.component';
-import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
-import { ImageModel } from "src/app/models/ImageModel"
-import { CityService } from '../service/city.service';
-import { TransactionService } from '../service/transaction.service';
-import { EstateCategoryService } from '../service/estate-category.service';
-import { EstateSubCategoryService } from '../service/estate-sub-category.service';
-import { City } from '../models/CIty';
-import { EstateCategory } from '../models/EstateCategory';
-import { EstateSubCategory } from '../models/EstateSubCategory';
-import { Transaction } from '../models/Transaction';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-import { PartOfCity } from '../models/PartOfCity';
-import { PartOfCityService } from '../service/part-of-city.service';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatSnackBar } from '@angular/material';
+
 import { AdvertisingRequest } from '../models/AdvertisingRequest';
-import { User } from '../models/User';
-import { UserInfo } from '../models/UserInfo';
-import { Location } from '../models/Location';
 import { AdvertisingRequestService } from '../service/advertising-request.service';
 import { AfterViewChecked } from '@angular/core';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { City } from '../models/CIty';
+import { CityService } from '../service/city.service';
+import { Estate } from '../models/Estate';
+import { EstateCategory } from '../models/EstateCategory';
+import { EstateCategoryService } from '../service/estate-category.service';
+import { EstateService } from '../service/estate.service';
+import { EstateSubCategory } from '../models/EstateSubCategory';
+import { EstateSubCategoryService } from '../service/estate-sub-category.service';
+import { ImageModel } from "src/app/models/ImageModel"
+import { Location } from '../models/Location';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { PartOfCity } from '../models/PartOfCity';
+import { PartOfCityService } from '../service/part-of-city.service';
+import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
+import { Router } from '@angular/router';
+import { SwiperOptions } from 'swiper';
+import { Transaction } from '../models/Transaction';
+import { TransactionService } from '../service/transaction.service';
+import { User } from '../models/User';
+import { UserInfo } from '../models/UserInfo';
+import { error } from 'protractor';
+
 declare var $: any;
 
 @Component({
@@ -34,7 +37,7 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit,AfterViewChecked  {
+export class HomeComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
@@ -44,7 +47,8 @@ export class HomeComponent implements OnInit,AfterViewChecked  {
     id_transaction_type: new FormControl("", Validators.required),
     id_city: new FormControl("", Validators.required),
     id_estate_category: new FormControl("", Validators.required),
-    id_estate_sub_category: new FormControl("", Validators.required)
+    priceFrom: new FormControl(0),
+    priceTo: new FormControl(0)
   })
 
   userInfoForm = new FormGroup({
@@ -102,17 +106,13 @@ export class HomeComponent implements OnInit,AfterViewChecked  {
     this.getPartsOfCities()
     this.getCities();
     this.setResponsiveSlider();
-    // setTimeout(() => {
-    //   this.wm.nativeElement.click();
-    //   }, 1000);
-
   }
 
 
   ngAfterViewChecked(): void {
     this.watermark()
   }
-  watermark(){
+  watermark() {
     setTimeout(() => {
       $('.watermark').watermark({
         path: 'assets/img/small_watermark.png',
@@ -193,8 +193,7 @@ export class HomeComponent implements OnInit,AfterViewChecked  {
     {
       id_city: this.searchForm.get("id_city").value,
       id_transaction_type: { id: 1 },
-      id_estate_category: this.searchForm.get("id_estate_category").value,
-      id_estate_sub_category: this.searchForm.get("id_estate_sub_category").value
+      id_estate_category: this.searchForm.get("id_estate_category").value
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
@@ -222,7 +221,8 @@ export class HomeComponent implements OnInit,AfterViewChecked  {
       id_city: this.searchForm.get("id_city").value,
       id_transaction_type: this.searchForm.get("id_transaction_type").value,
       id_estate_category: this.searchForm.get("id_estate_category").value,
-      id_estate_sub_category: this.searchForm.get("id_estate_sub_category").value
+      priceFrom: this.searchForm.get("priceFrom").value,
+      priceTo: Number.parseInt(this.searchForm.get("priceTo").value)
     }
 
     localStorage.setItem("filter", JSON.stringify(filter));

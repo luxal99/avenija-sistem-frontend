@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
-import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
-import { RegistrationDialogComponent } from '../home/registration-dialog/registration-dialog.component';
+
 import { City } from '../models/CIty';
-import { Estate } from '../models/Estate';
-import { Filter } from '../models/Filter';
-import { PartOfCity } from '../models/PartOfCity';
 import { CityService } from '../service/city.service';
+import { Estate } from '../models/Estate';
 import { EstateService } from '../service/estate.service';
+import { Filter } from '../models/Filter';
+import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
+import { PartOfCity } from '../models/PartOfCity';
 import { PartOfCityService } from '../service/part-of-city.service';
+import { RegistrationDialogComponent } from '../home/registration-dialog/registration-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filter-page',
@@ -35,13 +36,13 @@ export class FilterPageComponent implements OnInit {
   listOfCities: Array<City> = []
   listOfPartsOfCities: Array<PartOfCity> = [];
 
-  filteredPartOfCity:Array<PartOfCity> =[]
-  
+  filteredPartOfCity: Array<PartOfCity> = []
+
   constructor(private estateService: EstateService,
     public _snackBar: MatSnackBar,
-    private router:Router,
+    private router: Router,
     private partOfCityService: PartOfCityService,
-    private cityService: CityService,private dialog:MatDialog) { }
+    private cityService: CityService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAllEstates();
@@ -52,7 +53,7 @@ export class FilterPageComponent implements OnInit {
   }
 
 
-  reset(){
+  reset() {
     this.searchForm.get('priceFrom').setValue("");
     this.searchForm.get('priceTo').setValue("");
     this.searchForm.get('id_city').setValue("");
@@ -72,28 +73,37 @@ export class FilterPageComponent implements OnInit {
       id_part_of_city: this.searchForm.get("id_part_of_city").value
     }
 
+    console.log(filter.id_part_of_city.id);
 
-    if (filter.priceFrom === ''){
+
+    if (filter.priceFrom === 0 && filter.priceTo !== 0) {
       this.filteredEstate = estetes.filter(
-        x => x.price >= filter.priceFrom && x.price <= filter.priceTo ||
+        x => x.price <= filter.priceTo ||
           x.id_location.id_part_of_city.id === filter.id_part_of_city.id
       )
-    }else {
+    } else if (filter.id_part_of_city.id === undefined && filter.priceTo !== 0 && filter.priceFrom !== 0) {
       this.filteredEstate = estetes.filter(
-        x => x.price >= filter.priceFrom && x.price <= filter.priceTo &&
-          x.id_location.id_part_of_city.id === filter.id_part_of_city.id
+        x => x.price >= filter.priceFrom && x.price <= filter.priceTo
+      )
+    } else if (filter.id_part_of_city.id !== undefined) {
+      console.log(this.filteredEstate);
+
+      this.filteredEstate = estetes.filter(
+        x => x.price >= filter.priceFrom && x.price <= filter.priceTo
+          && filter.id_part_of_city.id === x.id_location.id_part_of_city.id
       )
     }
-    
+
+
   }
 
-   filterPartOfCity() {
+  filterPartOfCity() {
 
     this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
     const id: number = this.searchForm.get("id_city").value;
-    
+
     this.filteredPartOfCity = this.listOfPartsOfCities.filter(x => x.id_city.id === id)
-    
+
   }
 
 
@@ -120,20 +130,39 @@ export class FilterPageComponent implements OnInit {
   }
 
   getAllEstates() {
-    this.estateService.getAll().subscribe(resp => {
-      localStorage.setItem("estates",JSON.stringify(resp))
-      this.listOfEstates = resp as Array<Estate>
-      var filter: Filter = JSON.parse(localStorage.getItem("filter"))
-      if (JSON.stringify(filter.id_city).length === 2) {
 
-        this.filteredEstate = this.listOfEstates.filter(x => x.id_transaction_type.id === filter.id_transaction_type.id)
-      } else {
-        this.filteredEstate = this.listOfEstates.filter(x =>
-          x.id_location.id_part_of_city.id_city.id === filter.id_city.id &&
-          x.id_transaction_type.id === filter.id_transaction_type.id &&
-          x.id_estate_sub_category.id === filter.id_estate_sub_category.id
-        )
+    var filter: Filter = JSON.parse(localStorage.getItem("filter"))
+
+    this.searchForm.get("priceFrom").setValue(filter.priceFrom)
+
+    this.searchForm.get("priceTo").setValue(filter.priceTo)
+
+
+
+    this.estateService.getAll().subscribe(resp => {
+      localStorage.setItem("estates", JSON.stringify(resp))
+      this.listOfEstates = resp as Array<Estate>
+
+      this.filteredEstate = this.listOfEstates.filter(x =>
+        x.id_location.id_part_of_city.id_city.id === filter.id_city.id
+        && x.id_transaction_type.id === filter.id_transaction_type.id
+        && x.id_estate_sub_category.id_estate_category.id === filter.id_estate_category.id);
+
+
+      if (filter.priceFrom < filter.priceTo) {
+        this.filteredEstate = this.filteredEstate.filter(x => x.price >= filter.priceFrom && x.price <= filter.priceTo)
+      } else if (filter.priceFrom > filter.priceTo) {
+
+        this.filteredEstate = this.filteredEstate.filter(x => x.price >= filter.priceFrom)
+      } else if (filter.priceFrom === 0 && filter.priceTo > 0) {
+
+        this.filteredEstate = this.filteredEstate.filter(x => x.price <= filter.priceTo)
+      } else if (filter.priceFrom === filter.priceTo) {
+
       }
+
+
+
     })
 
 
@@ -145,11 +174,11 @@ export class FilterPageComponent implements OnInit {
     });
   }
 
-  searchOnSell(){
+  searchOnSell() {
     let filter =
     {
       id_city: "",
-      id_transaction_type: {id:1},
+      id_transaction_type: { id: 1 },
       id_estate_category: "",
       id_estate_sub_category: ""
     }
@@ -158,11 +187,11 @@ export class FilterPageComponent implements OnInit {
     location.reload()
   }
 
-  searchOnRent (){
+  searchOnRent() {
     let filter =
     {
       id_city: "",
-      id_transaction_type: {id:2},
+      id_transaction_type: { id: 2 },
       id_estate_category: "",
       id_estate_sub_category: ""
     }

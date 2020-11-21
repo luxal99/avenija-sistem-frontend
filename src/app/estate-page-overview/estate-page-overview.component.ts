@@ -1,11 +1,13 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SwiperOptions } from 'swiper';
-import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
-import { RegistrationDialogComponent } from '../home/registration-dialog/registration-dialog.component';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+
 import { Estate } from '../models/Estate';
 import { EstateService } from '../service/estate.service';
+import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
+import { MatDialog } from '@angular/material';
+import { RegistrationDialogComponent } from '../home/registration-dialog/registration-dialog.component';
+import { SwiperOptions } from 'swiper';
+
 declare var $: any;
 
 @Component({
@@ -26,7 +28,10 @@ export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
-    }
+    },navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
   }
 
   constructor(private route: ActivatedRoute, private router :Router,private dialog: MatDialog, private estateService: EstateService) { }

@@ -295,6 +295,11 @@ export class AddEstateDialogComponent implements OnInit {
       estate.listOfAccessories = Array.from(this.listOfSelectedAccessories);
 
 
+      console.log(estate.listOfAccessories);
+      console.log(this.listOfSelectedAccessories);
+      
+      
+
       this.estateService.save(estate).subscribe(resp => {
         this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
       }, err => {
