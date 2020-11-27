@@ -225,6 +225,14 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       priceTo: Number.parseInt(this.searchForm.get("priceTo").value)
     }
 
+    let key = Object.keys(filter);
+    let values = Object.values(filter);
+
+    if (filter.priceFrom === 0) delete filter.priceFrom
+    if (filter.priceTo === 0) delete filter.priceTo
+
+    console.log(filter);
+
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
   }
