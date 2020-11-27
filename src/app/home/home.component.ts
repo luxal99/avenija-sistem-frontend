@@ -191,9 +191,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   searchOnSell() {
     let filter =
     {
-      id_city: this.searchForm.get("id_city").value,
-      id_transaction_type: { id: 1 },
-      id_estate_category: this.searchForm.get("id_estate_category").value
+      basic: { id_transaction_type:"Prodaja"}
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
@@ -202,11 +200,10 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   searchOnRent() {
     let filter =
     {
-      id_city: this.searchForm.get("id_city").value,
-      id_transaction_type: { id: 2 },
-      id_estate_category: this.searchForm.get("id_estate_category").value,
-      id_estate_sub_category: this.searchForm.get("id_estate_sub_category").value
+      basic: { id_transaction_type:"Izdavanje"}
     }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
   }
@@ -218,20 +215,18 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   search() {
     let filter =
     {
-      id_city: this.searchForm.get("id_city").value,
-      id_transaction_type: this.searchForm.get("id_transaction_type").value,
-      id_estate_category: this.searchForm.get("id_estate_category").value,
-      priceFrom: this.searchForm.get("priceFrom").value,
+      basic: {
+        id_city: this.searchForm.get("id_city").value,
+        id_transaction_type: this.searchForm.get("id_transaction_type").value,
+        id_estate_category: this.searchForm.get("id_estate_category").value
+      },
+
+      priceFrom: Number.parseInt(this.searchForm.get("priceFrom").value),
       priceTo: Number.parseInt(this.searchForm.get("priceTo").value)
     }
 
-    let key = Object.keys(filter);
-    let values = Object.values(filter);
-
     if (filter.priceFrom === 0) delete filter.priceFrom
     if (filter.priceTo === 0) delete filter.priceTo
-
-    console.log(filter);
 
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])

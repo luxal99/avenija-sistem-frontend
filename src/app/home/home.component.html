@@ -92,7 +92,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Grad</mat-label>
                                 <mat-select formControlName="id_city">
-                                    <mat-option *ngFor="let city of listOfCities" [value]="city">
+                                    <mat-option *ngFor="let city of listOfCities" [value]="city.title">
                                         {{city.title}}
                                     </mat-option>
                                 </mat-select>
@@ -102,7 +102,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Usluga</mat-label>
                                 <mat-select formControlName="id_transaction_type">
-                                    <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction">
+                                    <mat-option *ngFor="let transaction of listOfTransaction" [value]="transaction.title">
                                         {{transaction.title}}
                                     </mat-option>
                                 </mat-select>
@@ -112,7 +112,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Tip nekretnine</mat-label>
                                 <mat-select formControlName="id_estate_category">
-                                    <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory">
+                                    <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory.title">
                                         {{estateCategory.title}}
                                     </mat-option>
                                 </mat-select>

@@ -180,15 +180,15 @@
             <mat-divider></mat-divider>
             <div class="row">
                 <div class="col-sm-6 estate-card" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
-                    <img [src]="estate.listOfImages[0].url" width="100%" height="60%" alt="" class="estate-img watermark">
+                    <img [src]="estate._image" width="100%" height="60%" alt="" class="estate-img watermark">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="text-left">{{estate.title}}</h3>
+                            <h3 class="text-left">{{estate._title}}</h3>
                             <div style="display: inline-flex;">
-                                <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_location.id_part_of_city.id_city.title}} | {{estate.id_location.id_part_of_city.title}}</h5>
-                                <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.id_location.address}}</h5>
+                                <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_city.title}} | {{estate.id_part_of_city.title}}</h5>
+                                <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate._address}}</h5>
                             </div>
-                            <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate.price}}€</h4>
+                            <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate._price}}€</h4>
                         </div>
                         <div class="col-sm"></div>
                     </div>

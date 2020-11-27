@@ -13,6 +13,10 @@ nav {
     padding: 3em;
 }
 
+.menu-div h5:hover {
+    cursor: pointer;
+}
+
 .header {
     background: linear-gradient( rgba(0, 0, 0, .8), rgba(0, 0, 0, 0.5)), url('../../assets/img/header_wall.png');
     background-attachment: fixed;

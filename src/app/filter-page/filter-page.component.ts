@@ -31,7 +31,7 @@ export class FilterPageComponent implements OnInit {
   selectedCity;
 
   listOfEstates: Array<Estate> = [];
-  filteredEstate: Array<Estate> = [];
+  filteredEstate: Array<Filter> = [];
 
   listOfCities: Array<City> = []
   listOfPartsOfCities: Array<PartOfCity> = [];
@@ -65,35 +65,6 @@ export class FilterPageComponent implements OnInit {
 
   filter() {
 
-    let estetes = JSON.parse(localStorage.getItem("estates"));
-
-    let filter = {
-      priceFrom: this.searchForm.get("priceFrom").value,
-      priceTo: this.searchForm.get("priceTo").value,
-      id_part_of_city: this.searchForm.get("id_part_of_city").value
-    }
-
-    console.log(filter.id_part_of_city.id);
-
-
-    if (filter.priceFrom === 0 && filter.priceTo !== 0) {
-      this.filteredEstate = estetes.filter(
-        x => x.price <= filter.priceTo ||
-          x.id_location.id_part_of_city.id === filter.id_part_of_city.id
-      )
-    } else if (filter.id_part_of_city.id === undefined && filter.priceTo !== 0 && filter.priceFrom !== 0) {
-      this.filteredEstate = estetes.filter(
-        x => x.price >= filter.priceFrom && x.price <= filter.priceTo
-      )
-    } else if (filter.id_part_of_city.id !== undefined) {
-      console.log(this.filteredEstate);
-
-      this.filteredEstate = estetes.filter(
-        x => x.price >= filter.priceFrom && x.price <= filter.priceTo
-          && filter.id_part_of_city.id === x.id_location.id_part_of_city.id
-      )
-    }
-
 
   }
 
@@ -125,46 +96,44 @@ export class FilterPageComponent implements OnInit {
   }
 
   setValue() {
-    var filter: Filter = JSON.parse(localStorage.getItem("filter"));
-    this.selectedCity = filter.id_city.id
+    // var filter: Filter = JSON.parse(localStorage.getItem("filter"));
+    // this.selectedCity = filter.id_city.id
   }
 
   getAllEstates() {
 
     var filter: Filter = JSON.parse(localStorage.getItem("filter"))
-
     this.searchForm.get("priceFrom").setValue(filter.priceFrom)
-
     this.searchForm.get("priceTo").setValue(filter.priceTo)
 
 
+    let map = new Map(Object.entries(filter))
 
     this.estateService.getAll().subscribe(resp => {
-      localStorage.setItem("estates", JSON.stringify(resp))
       this.listOfEstates = resp as Array<Estate>
-
-      this.filteredEstate = this.listOfEstates.filter(x =>
-        x.id_location.id_part_of_city.id_city.id === filter.id_city.id
-        && x.id_transaction_type.id === filter.id_transaction_type.id
-        && x.id_estate_sub_category.id_estate_category.id === filter.id_estate_category.id);
+      let estateFilterList: Array<Filter> = this.listOfEstates.map(estate => (new Filter(estate.id, estate.price, estate.quadrature, estate.id_location.id_part_of_city.id_city.title, estate.id_location.id_part_of_city.title,
+        estate.id_transaction_type.title, estate.id_estate_sub_category.id_estate_category.title, estate.listOfImages[0].url, estate.title, estate.id_location.address)))
 
 
-      if (filter.priceFrom < filter.priceTo) {
-        this.filteredEstate = this.filteredEstate.filter(x => x.price >= filter.priceFrom && x.price <= filter.priceTo)
-      } else if (filter.priceFrom > filter.priceTo) {
+      let v1 = Object.values(filter['basic']);
 
-        this.filteredEstate = this.filteredEstate.filter(x => x.price >= filter.priceFrom)
-      } else if (filter.priceFrom === 0 && filter.priceTo > 0) {
+      for (let estate of estateFilterList) {
+        let v2 = Object.values(estate);
 
-        this.filteredEstate = this.filteredEstate.filter(x => x.price <= filter.priceTo)
-      } else if (filter.priceFrom === filter.priceTo) {
+        if (v1.every(x => v2.includes(x))) {
+          this.filteredEstate.push(estate)
+        }
+
+        console.log(filter);
+        
+        if (filter.priceTo !== undefined && filter.priceFrom !== undefined) {
+          this.filteredEstate = this.filteredEstate.filter(x => x._price >= filter.priceFrom && x._price <= filter.priceTo)
+        }
+
+
 
       }
-
-
-
     })
-
 
   }
 
