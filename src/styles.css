@@ -1,23 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
 @import "assets/css/sidenav.css";
-mat-drawer-content{
+mat-drawer-content {
     background-color: #f3f4f7 !important;
 }
 
 mat-step-header .mat-step-icon-selected {
     background-color: #00c3f6 !important;
     color: #282828 !important;
-
     font-family: 'Poppins', sans-serif;
 }
 
 .mat-step-header .mat-step-icon {
-     background-color: #00c3f6 !important;
-
+    background-color: #00c3f6 !important;
     font-family: 'Poppins', sans-serif !important;
-     color: #282828 !important;
+    color: #282828 !important;
 }
-.mat-radio-button.mat-accent .mat-radio-inner-circle{
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
     background-color: #00c3f6 !important;
 }
 
@@ -25,15 +24,15 @@ mat-step-header .mat-step-icon-selected {
     border-color: #00c3f6 !important;
 }
 
-.big-blue-btn{
+.big-blue-btn {
     background-color: #00c3f6;
     border: 0 !important;
     color: #fff;
     padding: 1em 2em 1em 2em;
-    -webkit-box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 28px -16px rgba(0,0,0,0.75);
- }
+    -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+}
 
 .mat-form-field-ripple {
     background-color: #eee !important;
@@ -43,12 +42,13 @@ mat-step-header .mat-step-icon-selected {
     color: #282828 !important;
 }
 
-.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background: #00c3f6 !important;
-    height: 2px !important; 
-  }
+    height: 2px !important;
+}
 
-  ::-webkit-scrollbar {
+ ::-webkit-scrollbar {
     height: 1em;
     background-color: #121212;
 }
@@ -56,25 +56,40 @@ mat-step-header .mat-step-icon-selected {
  ::-webkit-scrollbar-thumb {
     background: #00c3f6;
     border-radius: 10px;
-}/* You can add global styles to this file, and also import other style files */
+}
 
-.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background{
+
+/* You can add global styles to this file, and also import other style files */
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: #00c3f6 !important;
 }
 
-
-.mat-progress-spinner circle, .mat-spinner circle{
+.mat-progress-spinner circle,
+.mat-spinner circle {
     stroke: #00c3f6 !important;
 }
 
-
-h1,h2,h3,h4,h5,h6,p,button{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button {
     font-family: 'Poppins', sans-serif !important;
 }
 
 img {
-     pointer-events: none;
+    pointer-events: none;
 }
+
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #00c3f6!important;
+}
+
+.reg-btn {
+    display: none;
 }

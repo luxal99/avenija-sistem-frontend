@@ -193,7 +193,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   searchOnSell() {
     let filter =
     {
-      basic: { id_transaction_type: "Prodaja" }
+      estateProperty: { id_transaction_type: "Prodaja" }
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
@@ -202,10 +202,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   searchOnRent() {
     let filter =
     {
-      basic: { id_transaction_type: "Izdavanje" }
+      estateProperty: { id_transaction_type: "Izdavanje" }
     }
-    localStorage.setItem("filter", JSON.stringify(filter));
-    this.router.navigate(['/filter'])
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
   }

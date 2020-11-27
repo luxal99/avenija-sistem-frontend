@@ -8,6 +8,7 @@ import { Estate } from '../models/Estate';
 import { EstateCategory } from '../models/EstateCategory';
 import { EstateCategoryService } from '../service/estate-category.service';
 import { EstateDTO } from '../models/EstateDTO';
+import { EstateProperty } from '../models/EstateProperty';
 import { EstateService } from '../service/estate.service';
 import { EstateSubCategoryService } from '../service/estate-sub-category.service';
 import { Filter } from '../models/Filter';
@@ -67,6 +68,7 @@ export class FilterPageComponent implements OnInit {
     this.searchForm.get('id_city').setValue("");
     this.searchForm.get('id_part_of_city').setValue("");
 
+
     this.getAllEstates();
   }
 
@@ -81,18 +83,47 @@ export class FilterPageComponent implements OnInit {
 
   filter() {
 
+    let oldFilter: Filter = JSON.parse(localStorage.getItem("filter"))
     let filter = new Filter()
     filter.priceTo = Number.parseInt(this.searchForm.get("priceTo").value)
-    filter.priceFrom = Number.parseInt(this.searchForm.get("priceFrom").value)
+    filter.priceFrom = Number.parseInt(this.searchForm.get("priceFrom").value);
+    filter.quadratureFrom = Number.parseInt(this.searchForm.get("quadratureFrom").value);
+    filter.quadratureTo = Number.parseInt(this.searchForm.get("quadratureTo").value);
+    let estateProperty = new EstateProperty()
+    estateProperty.id_estate_category = this.searchForm.get("id_estate_category").value
+    estateProperty.id_city = this.searchForm.get("id_city").value
+    estateProperty.id_part_of_city = this.searchForm.get("id_part_of_city").value
+
+    filter.estateProperty = estateProperty
+    for (const [k1, v1] of Object.entries(filter.estateProperty)) {
+
+      if (!v1 || v1 === "undefinded") {
+        delete filter.estateProperty[k1]
+      }
+    }
+    for (const [k2, v2] of Object.entries(filter)) {
+      if (!v2) {
+        delete filter[k2]
+      }
+    }
+
+    localStorage.removeItem("filter")
+
+    filter.estateProperty.id_transaction_type = oldFilter.estateProperty.id_transaction_type
+
+    localStorage.setItem("filter", JSON.stringify(filter))
+
+    this.getAllEstates();
+
 
   }
 
   filterPartOfCity() {
 
     this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
-    const id: number = this.searchForm.get("id_city").value;
+    const title: string = this.searchForm.get("id_city").value;
 
-    this.filteredPartOfCity = this.listOfPartsOfCities.filter(x => x.id_city.id === id)
+    this.filteredPartOfCity = this.listOfPartsOfCities.filter(x => x.id_city.title === title)
 
   }
 
@@ -117,6 +148,7 @@ export class FilterPageComponent implements OnInit {
 
   getAllEstates() {
 
+    this.filteredEstate = []
     let filter: Filter = JSON.parse(localStorage.getItem("filter"))
 
     this.estateService.getAll().subscribe(resp => {
@@ -140,6 +172,18 @@ export class FilterPageComponent implements OnInit {
 
         if (filter.priceTo !== undefined && filter.priceFrom !== undefined) {
           this.filteredEstate = this.filteredEstate.filter(x => x._price >= filter.priceFrom && x._price <= filter.priceTo)
+        } else if (filter.priceTo !== undefined && filter.priceFrom === undefined) {
+          this.filteredEstate = this.filteredEstate.filter(x => x._price <= filter.priceTo)
+        } else if (filter.priceTo === undefined && filter.priceFrom !== undefined) {
+          this.filteredEstate = this.filteredEstate.filter(x => x._price >= filter.priceFrom)
+        }
+
+        if (filter.quadratureTo !== undefined && filter.quadratureFrom !== undefined) {
+          this.filteredEstate = this.filteredEstate.filter(x => x._quadrature >= filter.quadratureFrom && x._quadrature <= filter.quadratureTo)
+        } else if (filter.quadratureTo !== undefined && filter.quadratureFrom === undefined) {
+          this.filteredEstate = this.filteredEstate.filter(x => x._quadrature <= filter.quadratureTo)
+        } else if (filter.quadratureTo === undefined && filter.quadratureFrom !== undefined) {
+          this.filteredEstate = this.filteredEstate.filter(x => x._quadrature >= filter.quadratureFrom)
         }
       }
     })

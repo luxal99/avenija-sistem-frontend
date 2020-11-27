@@ -112,7 +112,7 @@
                                 <mat-label>Grad</mat-label>
                                 <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
 
-                                    <mat-option *ngFor="let city of listOfCities" [value]="city.id">
+                                    <mat-option *ngFor="let city of listOfCities" [value]="city.title">
                                         {{city.title}}
                                     </mat-option>
                                 </mat-select>
@@ -126,7 +126,7 @@
                                     <mat-option value="undefinded">
                                         Sve
                                     </mat-option>
-                                    <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity">
+                                    <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity.title">
                                         {{partOfCity.title}}
                                     </mat-option>
                                 </mat-select>
@@ -139,8 +139,8 @@
                         <div class="col-sm">
                             <mat-form-field appearance="fill">
                                 <mat-label>Kategorija</mat-label>
-                                <mat-select>
-                                    <mat-option value="undefinded">
+                                <mat-select formControlName="id_estate_category">
+                                    <mat-option value="">
                                         Sve
                                     </mat-option>
                                     <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory.title">
