@@ -2,8 +2,18 @@
     display: inline-flex;
 }
 
-h1,
-p {}
+h5 {
+    margin-left: 1em;
+    padding-top: .5em;
+}
+
+nav {
+    padding: 3em;
+}
+
+.menu-div h5:hover {
+    cursor: pointer;
+}
 
 .nav-li {
     margin-left: 1em;
@@ -52,7 +62,7 @@ nav {
     padding: .6em 0 .6em 0;
 }
 
-img {
+.estate-img {
     -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);

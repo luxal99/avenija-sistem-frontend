@@ -67,18 +67,6 @@ export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
     this.estate = JSON.parse(localStorage.getItem("estate"))
   }
 
-  searchOnSell(){
-    let filter =
-    {
-      id_city: "",
-      id_transaction_type: {id:1},
-      id_estate_category: "",
-      id_estate_sub_category: ""
-    }
-    localStorage.setItem("filter", JSON.stringify(filter));
-    this.router.navigate(['/filter'])
-    
-  }
 
   setResponsiveSlider(){
     if (window.screen.width <= 570) {
@@ -87,17 +75,22 @@ export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
       this.config.slidesPerGroup = 1
     }
   }
-  searchOnRent (){
+  searchOnSell() {
     let filter =
     {
-      id_city: "",
-      id_transaction_type: {id:2},
-      id_estate_category: "",
-      id_estate_sub_category: ""
+      estateProperty: { id_transaction_type: "Prodaja" }
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
-    
+  }
+
+  searchOnRent() {
+    let filter =
+    {
+      estateProperty: { id_transaction_type: "Izdavanje" }
+    }
+    localStorage.setItem("filter", JSON.stringify(filter));
+    this.router.navigate(['/filter'])
   }
 
   scrollToElement($element): void {

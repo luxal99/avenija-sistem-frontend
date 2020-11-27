@@ -3,13 +3,22 @@
     padding-right: 5em;
 }
 
-table{
+table {
     width: 100%;
     margin-top: 2em;
-    
 }
 
-.row{
+.row {
     margin-left: 0 !important;
     margin-right: 0 !important;
+}
+
+.custom-row {
+    display: inline-flex;
+    width: 100%;
+}
+
+.custom-col {
+    width: 49%;
+    margin: 1em;
 }

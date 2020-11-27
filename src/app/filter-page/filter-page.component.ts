@@ -199,27 +199,19 @@ export class FilterPageComponent implements OnInit {
   searchOnSell() {
     let filter =
     {
-      id_city: "",
-      id_transaction_type: { id: 1 },
-      id_estate_category: "",
-      id_estate_sub_category: ""
+      estateProperty: { id_transaction_type: "Prodaja" }
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
-    location.reload()
   }
 
   searchOnRent() {
     let filter =
     {
-      id_city: "",
-      id_transaction_type: { id: 2 },
-      id_estate_category: "",
-      id_estate_sub_category: ""
+      estateProperty: { id_transaction_type: "Izdavanje" }
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
-    location.reload()
   }
 
   scrollToElement($element): void {

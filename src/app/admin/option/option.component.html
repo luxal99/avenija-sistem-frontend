@@ -78,8 +78,8 @@
 
         </mat-tab>
         <mat-tab label="Kateorije">
-            <div class="row">
-                <div class="col-sm">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div style="margin-top: 2em;">
                         <button class="big-blue-btn" (click)="openAddEstateCategoryDialog({})">Dodaj kategoriju nekretnine</button>
                     </div>
@@ -112,9 +112,45 @@
                         <tr mat-row *matRowDef="let row; columns: estateCategoryColumns;"></tr>
                     </table>
 
+                    <div>
+                        <div style="margin-top: 2em;">
+                            <button class="big-blue-btn" (click)="openAddEstateTypeDialog({})">Dodaj tip izgradnje</button>
+                        </div>
+
+                        <table mat-table [dataSource]="listOfEstateTypes" class="mat-elevation-z8">
+
+                            <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef> Id </th>
+                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="title">
+                                <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="option">
+                                <th mat-header-cell *matHeaderCellDef> Naziv grada </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button mat-icon-button (click)="openAddEstateTypeDialog(element)"><mat-icon>edit</mat-icon> </button>
+                                    <button mat-icon-button style="margin-left: 1em;color: red;" (click)="deleteEstateType(element.id)"><mat-icon>close</mat-icon></button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="estateTypeColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: estateTypeColumns;"></tr>
+                        </table>
+
+                    </div>
+
 
                 </div>
-                <div class="col-sm">
+                <div class="custom-col">
                     <div style="margin-top: 2em;">
                         <button class="big-blue-btn" (click)="openAddEstateSubCategoryDialog({})">Dodaj potkategoriju nekretnine</button>
                     </div>
@@ -154,51 +190,12 @@
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="col-sm">
-                        <div style="margin-top: 2em;">
-                            <button class="big-blue-btn" (click)="openAddEstateTypeDialog({})">Dodaj tip izgradnje</button>
-                        </div>
-
-                        <table mat-table [dataSource]="listOfEstateTypes" class="mat-elevation-z8">
-
-                            <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
-
-                            <!-- Position Column -->
-                            <ng-container matColumnDef="id">
-                                <th mat-header-cell *matHeaderCellDef> Id </th>
-                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                            </ng-container>
-
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="title">
-                                <th mat-header-cell *matHeaderCellDef> Naziv </th>
-                                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="option">
-                                <th mat-header-cell *matHeaderCellDef> Naziv grada </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <button mat-icon-button (click)="openAddEstateTypeDialog(element)"><mat-icon>edit</mat-icon> </button>
-                                    <button mat-icon-button style="margin-left: 1em;color: red;" (click)="deleteEstateType(element.id)"><mat-icon>close</mat-icon></button>
-                                </td>
-                            </ng-container>
-
-                            <tr mat-header-row *matHeaderRowDef="estateTypeColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: estateTypeColumns;"></tr>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
 
         </mat-tab>
         <mat-tab label="Opremljenost">
 
-            <div class="row">
-                <div class="col-sm">
+            <div class="custom-row">
+                <div class="custom-col">
                     <div style="margin-top: 2em;">
                         <button class="big-blue-btn" (click)="openAddEquipmentDialog({})">Dodaj nivo opremljenosti</button>
                     </div>
@@ -229,8 +226,41 @@
                         <tr mat-header-row *matHeaderRowDef="eqColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: eqColumns;"></tr>
                     </table>
+                    <div>
+                        <div style="margin-top: 2em;">
+                            <button class="big-blue-btn" (click)="openAddHeatingDialog({})">Dodaj tip grejanja</button>
+                        </div>
+                        <table mat-table [dataSource]="listOfHeating" class="mat-elevation-z8" style="margin-bottom: 4em;">
+
+                            <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef> Id </th>
+                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="title">
+                                <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="option">
+                                <th mat-header-cell *matHeaderCellDef> Naziv grada </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button mat-icon-button (click)="openAddHeatingDialog(element)"><mat-icon>edit</mat-icon> </button>
+                                    <button mat-icon-button style="margin-left: 1em;color: red;" (click)="deleteHeating(element.id)"><mat-icon>close</mat-icon></button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="heatingColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: heatingColumns;"></tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-sm">
+                <div class="custom-col">
                     <div style="margin-top: 2em;">
                         <button class="big-blue-btn" (click)="openAddAccessoriesDialog({})">Dodaj opremu</button>
                     </div>
@@ -261,42 +291,6 @@
 
                         <tr mat-header-row *matHeaderRowDef="accColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: accColumns;"></tr>
-                    </table>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-sm-6">
-                    <div style="margin-top: 2em;">
-                        <button class="big-blue-btn" (click)="openAddHeatingDialog({})">Dodaj tip grejanja</button>
-                    </div>
-                    <table mat-table [dataSource]="listOfHeating" class="mat-elevation-z8" style="margin-bottom: 4em;">
-
-                        <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="id">
-                            <th mat-header-cell *matHeaderCellDef> Id </th>
-                            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                        </ng-container>
-
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="title">
-                            <th mat-header-cell *matHeaderCellDef> Naziv </th>
-                            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="option">
-                            <th mat-header-cell *matHeaderCellDef> Naziv grada </th>
-                            <td mat-cell *matCellDef="let element">
-                                <button mat-icon-button (click)="openAddHeatingDialog(element)"><mat-icon>edit</mat-icon> </button>
-                                <button mat-icon-button style="margin-left: 1em;color: red;" (click)="deleteHeating(element.id)"><mat-icon>close</mat-icon></button>
-                            </td>
-                        </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="heatingColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: heatingColumns;"></tr>
                     </table>
                 </div>
             </div>

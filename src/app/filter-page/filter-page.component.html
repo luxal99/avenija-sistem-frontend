@@ -47,26 +47,27 @@
     </mat-drawer>
     <mat-drawer-content>
         <nav>
-
             <div class="row">
-                <div class="col-sm-7">
-                    <a [routerLink]="['/']" routerLinkActive="router-link-active">
-                        <img src="../../assets/img/logo.png" width="400px" style="padding-top: 1em;" alt=""></a>
+                <div class="col-5" [routerLink]="['/']" routerLinkActive="router-link-active">
+                    <img src="../../assets/img/logo.png" width="300px" style="padding-top: 1em;" alt="" class="img-fluid">
                 </div>
-                <div class="col-sm">
+                <div class="col-7 text-right">
 
-                    <div class="text-right" style="padding-right: 3em;">
-                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 257018</h5>
+                    <div class="text-right" style="display: inline-flex;padding-left: 3.5em;">
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 8243238</h5>
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 062 715220</h5>
+                        <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 064 6411898</h5>
                     </div>
                     <div class="menu-div">
                         <a>
-                            <h5 (click)="searchOnRent()" class="nav-li">Izdavanje</h5>
+                            <h5 (click)="searchOnRent()">Izdavanje</h5>
                         </a>
                         <a (click)="searchOnSell()">
-                            <h5 class="nav-li">Prodaja</h5>
+                            <h5>Prodaja</h5>
                         </a>
-                        <a>
-                            <h5 class="nav-li" (click)="scrollToElement(contact)">Kontakt</h5>
+                        <a (click)="scrollToElement(contact)">
+                            <h5>Kontakt</h5>
                         </a>
                         <button class="reg-btn" (click)="openRegistrationDialog()">Registracija</button>
 
