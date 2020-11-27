@@ -294,18 +294,9 @@ export class AddEstateDialogComponent implements OnInit {
       estate.listOfImages = this.listOfImages;
       estate.listOfAccessories = Array.from(this.listOfSelectedAccessories);
 
-
-      console.log(estate.listOfAccessories);
-      console.log(this.listOfSelectedAccessories);
-      
-      
-
       this.estateService.save(estate).subscribe(resp => {
         this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
       }, err => {
-        console.log(err);
-        console.log(estate);
-
         this.openSnackBar("Dogodila se greska", "AGAIN")
       })
     });
