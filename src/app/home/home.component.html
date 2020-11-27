@@ -53,10 +53,10 @@
             </div>
             <nav>
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-2">
                         <img src="../../assets/img/white_logo.png" width="300px" style="padding-top: 1em;" alt="" class="img-fluid">
                     </div>
-                    <div class="col">
+                    <div class="col-9 text-right">
 
                         <div class="text-right" style="display: inline-flex;padding-left: 3.5em;">
                             <h5><i class="fa fa-phone-square" aria-hidden="true" style="color: #00c3f6;"></i> 018 564666</h5>
@@ -133,13 +133,13 @@
                             </mat-form-field>
                         </div>
 
-
-                        <div class="col-sm">
-                            <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>
-                        </div>
-
                     </form>
 
+                </div>
+
+
+                <div>
+                    <button class="search-btn" (click)="search()" [disabled]="!searchForm.valid">Pretrazi</button>
                 </div>
 
             </div>

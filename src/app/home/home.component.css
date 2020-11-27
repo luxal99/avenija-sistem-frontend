@@ -225,7 +225,7 @@ h5 {}
 
 /* Responsive */
 
-@media screen and (max-width:1870px) {
+@media screen and (max-width:1670px) {
     nav {
         display: none;
     }
