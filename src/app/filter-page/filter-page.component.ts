@@ -5,7 +5,11 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { City } from '../models/CIty';
 import { CityService } from '../service/city.service';
 import { Estate } from '../models/Estate';
+import { EstateCategory } from '../models/EstateCategory';
+import { EstateCategoryService } from '../service/estate-category.service';
+import { EstateDTO } from '../models/EstateDTO';
 import { EstateService } from '../service/estate.service';
+import { EstateSubCategoryService } from '../service/estate-sub-category.service';
 import { Filter } from '../models/Filter';
 import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
 import { PartOfCity } from '../models/PartOfCity';
@@ -22,16 +26,20 @@ export class FilterPageComponent implements OnInit {
 
 
   searchForm = new FormGroup({
-    priceFrom: new FormControl("", Validators.required),
-    priceTo: new FormControl("", Validators.required),
-    id_city: new FormControl("", Validators.required),
-    id_part_of_city: new FormControl("", Validators.required)
+    priceFrom: new FormControl(""),
+    priceTo: new FormControl(""),
+    id_city: new FormControl(""),
+    quadratureFrom: new FormControl(""),
+    quadratureTo: new FormControl(""),
+    id_part_of_city: new FormControl(""),
+    id_estate_category: new FormControl("")
   })
 
   selectedCity;
 
   listOfEstates: Array<Estate> = [];
-  filteredEstate: Array<Filter> = [];
+  filteredEstate: Array<EstateDTO> = [];
+  listOfEstateCategories: Array<EstateCategory> = []
 
   listOfCities: Array<City> = []
   listOfPartsOfCities: Array<PartOfCity> = [];
@@ -42,13 +50,13 @@ export class FilterPageComponent implements OnInit {
     public _snackBar: MatSnackBar,
     private router: Router,
     private partOfCityService: PartOfCityService,
-    private cityService: CityService, private dialog: MatDialog) { }
+    private cityService: CityService, private dialog: MatDialog, private estateCategoryService: EstateCategoryService) { }
 
   ngOnInit() {
     this.getAllEstates();
     this.getCities();
+    this.getEstateCategories();
     this.getPartsOfCities();
-    this.setValue();
     this.filterPartOfCity();
   }
 
@@ -62,9 +70,20 @@ export class FilterPageComponent implements OnInit {
     this.getAllEstates();
   }
 
+  getEstateCategories() {
+    this.estateCategoryService.getAll().subscribe(resp => {
+      this.listOfEstateCategories = resp as Array<EstateCategory>
+    }, err => {
+      this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
 
   filter() {
 
+    let filter = new Filter()
+    filter.priceTo = Number.parseInt(this.searchForm.get("priceTo").value)
+    filter.priceFrom = Number.parseInt(this.searchForm.get("priceFrom").value)
 
   }
 
@@ -95,43 +114,33 @@ export class FilterPageComponent implements OnInit {
     })
   }
 
-  setValue() {
-    // var filter: Filter = JSON.parse(localStorage.getItem("filter"));
-    // this.selectedCity = filter.id_city.id
-  }
 
   getAllEstates() {
 
-    var filter: Filter = JSON.parse(localStorage.getItem("filter"))
-    this.searchForm.get("priceFrom").setValue(filter.priceFrom)
-    this.searchForm.get("priceTo").setValue(filter.priceTo)
-
-
-    let map = new Map(Object.entries(filter))
+    let filter: Filter = JSON.parse(localStorage.getItem("filter"))
 
     this.estateService.getAll().subscribe(resp => {
       this.listOfEstates = resp as Array<Estate>
-      let estateFilterList: Array<Filter> = this.listOfEstates.map(estate => (new Filter(estate.id, estate.price, estate.quadrature, estate.id_location.id_part_of_city.id_city.title, estate.id_location.id_part_of_city.title,
-        estate.id_transaction_type.title, estate.id_estate_sub_category.id_estate_category.title, estate.listOfImages[0].url, estate.title, estate.id_location.address)))
+      let estateFilterList: Array<EstateDTO>
+        = this.listOfEstates.map
+          (estate =>
+            (new EstateDTO(
+              estate.id,
+              estate.price, estate.quadrature, estate.id_location.id_part_of_city.id_city.title,
+              estate.id_location.id_part_of_city.title,
+              estate.id_transaction_type.title, estate.id_estate_sub_category.id_estate_category.title,
+              estate.listOfImages[0].url, estate.title, estate.id_location.address)))
 
-
-      let v1 = Object.values(filter['basic']);
+      let filterValues = Object.values(filter.estateProperty);
 
       for (let estate of estateFilterList) {
-        let v2 = Object.values(estate);
-
-        if (v1.every(x => v2.includes(x))) {
+        if (filterValues.every(x => Object.values(estate).includes(x))) {
           this.filteredEstate.push(estate)
         }
 
-        console.log(filter);
-        
         if (filter.priceTo !== undefined && filter.priceFrom !== undefined) {
           this.filteredEstate = this.filteredEstate.filter(x => x._price >= filter.priceFrom && x._price <= filter.priceTo)
         }
-
-
-
       }
     })
 

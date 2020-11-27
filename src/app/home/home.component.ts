@@ -13,9 +13,11 @@ import { CityService } from '../service/city.service';
 import { Estate } from '../models/Estate';
 import { EstateCategory } from '../models/EstateCategory';
 import { EstateCategoryService } from '../service/estate-category.service';
+import { EstateProperty } from '../models/EstateProperty';
 import { EstateService } from '../service/estate.service';
 import { EstateSubCategory } from '../models/EstateSubCategory';
 import { EstateSubCategoryService } from '../service/estate-sub-category.service';
+import { Filter } from '../models/Filter';
 import { ImageModel } from "src/app/models/ImageModel"
 import { Location } from '../models/Location';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
@@ -191,7 +193,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   searchOnSell() {
     let filter =
     {
-      basic: { id_transaction_type:"Prodaja"}
+      basic: { id_transaction_type: "Prodaja" }
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
@@ -200,7 +202,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   searchOnRent() {
     let filter =
     {
-      basic: { id_transaction_type:"Izdavanje"}
+      basic: { id_transaction_type: "Izdavanje" }
     }
     localStorage.setItem("filter", JSON.stringify(filter));
     this.router.navigate(['/filter'])
@@ -213,17 +215,12 @@ export class HomeComponent implements OnInit, AfterViewChecked {
 
   }
   search() {
-    let filter =
-    {
-      basic: {
-        id_city: this.searchForm.get("id_city").value,
-        id_transaction_type: this.searchForm.get("id_transaction_type").value,
-        id_estate_category: this.searchForm.get("id_estate_category").value
-      },
 
-      priceFrom: Number.parseInt(this.searchForm.get("priceFrom").value),
-      priceTo: Number.parseInt(this.searchForm.get("priceTo").value)
-    }
+    let filter = new Filter()
+    filter.priceFrom = Number.parseInt(this.searchForm.get("priceFrom").value);
+    filter.priceTo = Number.parseInt(this.searchForm.get("priceTo").value)
+    filter.estateProperty = new EstateProperty(this.searchForm.get("id_city").value, this.searchForm.get("id_estate_category").value, this.searchForm.get("id_transaction_type").value)
+
 
     if (filter.priceFrom === 0) delete filter.priceFrom
     if (filter.priceTo === 0) delete filter.priceTo

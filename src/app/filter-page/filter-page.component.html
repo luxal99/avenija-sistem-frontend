@@ -138,28 +138,28 @@
                     <div class="row">
                         <div class="col-sm">
                             <mat-form-field appearance="fill">
-                                <mat-label>Deo grada</mat-label>
+                                <mat-label>Kategorija</mat-label>
                                 <mat-select>
                                     <mat-option value="undefinded">
                                         Sve
                                     </mat-option>
-                                    <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity">
-                                        {{partOfCity.title}}
+                                    <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory.title">
+                                        {{estateCategory.title}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
                         <div class="col-sm">
                             <mat-form-field appearance="fill">
-                                <mat-label>Cena od</mat-label>
-                                <input inputmode="numeric" matInput>
+                                <mat-label>Kvadaratura od</mat-label>
+                                <input inputmode="numeric" formControlName="quadratureFrom" matInput>
                                 <mat-icon matSuffix>attach_money</mat-icon>
                             </mat-form-field>
                         </div>
                         <div class="col-sm">
                             <mat-form-field appearance="fill">
-                                <mat-label>Cena do</mat-label>
-                                <input inputmode="numeric" matInput>
+                                <mat-label>Kvadratura do</mat-label>
+                                <input inputmode="numeric" formControlName="quadratureTo" matInput>
                                 <mat-icon matSuffix>attach_money</mat-icon>
                             </mat-form-field>
                         </div>
@@ -185,7 +185,7 @@
                         <div class="col-sm-6">
                             <h3 class="text-left">{{estate._title}}</h3>
                             <div style="display: inline-flex;">
-                                <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_city.title}} | {{estate.id_part_of_city.title}}</h5>
+                                <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_city}} | {{estate.id_part_of_city}}</h5>
                                 <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate._address}}</h5>
                             </div>
                             <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate._price}}€</h4>
