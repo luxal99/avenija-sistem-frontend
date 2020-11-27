@@ -1,28 +1,27 @@
 .menu-div {
     display: inline-flex;
 }
-h1,p{
 
-}
+h1,
+p {}
+
 .nav-li {
     margin-left: 1em;
     padding-top: .5em;
     color: #282828;
 }
 
-
 nav {
     padding: 3em 2em 3em 2em;
     background-color: #fff !important;
 }
 
-
 .estate-info h5 {
     margin-left: 0 !important;
 }
 
-
-.reg-btn, .login-btn {
+.reg-btn,
+.login-btn {
     border: 0 !important;
     -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
@@ -42,9 +41,8 @@ nav {
     color: #fff;
 }
 
-
 .estate-container {
-    padding: 1% 10% 5% 10%;
+    padding: 10% 10% 5% 10%;
 }
 
 .estate-btn {
@@ -60,7 +58,8 @@ img {
     box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
 }
 
-h1, h3 {
+h1,
+h3 {
     font-weight: bold;
 }
 
@@ -90,7 +89,8 @@ mat-form-field {
     box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
 }
 
-.search-btn, .reset-btn {
+.search-btn,
+.reset-btn {
     width: 100%;
     padding-top: .7em;
     color: #fff;
@@ -112,7 +112,7 @@ mat-form-field {
 }
 
 @media screen and (max-width:1870px) {
-    ::ng-deep nav {
+     ::ng-deep nav {
         display: none;
     }
     .header {
@@ -138,17 +138,19 @@ mat-form-field {
     .login-btn {
         background-color: #fff;
         color: #282828;
-        margin: 2em 0 0 0 ;
+        margin: 2em 0 0 0;
     }
     .search-div {
         margin: 2em;
         padding: 2em;
-    }.filter-h1 {
+    }
+    .filter-h1 {
         padding-top: 3em;
     }
     .estate-container {
-        padding-bottom: 10em;   
-    } .estate-card {
+        padding-bottom: 10em;
+    }
+    .estate-card {
         margin-bottom: 5em;
     }
 }

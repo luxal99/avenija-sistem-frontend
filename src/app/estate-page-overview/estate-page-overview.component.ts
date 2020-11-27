@@ -49,7 +49,7 @@ export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
   watermark(){
     setTimeout(() => {
       $('.watermark').watermark({
-        path: 'assets/img/small_watermark.png',
+        path: 'assets/img/bw_logo.png',
         gravity: 'c'
       });
     }, 300);

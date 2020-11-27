@@ -136,6 +136,35 @@
 
                     </div>
                     <div class="row">
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Deo grada</mat-label>
+                                <mat-select>
+                                    <mat-option value="undefinded">
+                                        Sve
+                                    </mat-option>
+                                    <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity">
+                                        {{partOfCity.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Cena od</mat-label>
+                                <input inputmode="numeric" matInput>
+                                <mat-icon matSuffix>attach_money</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Cena do</mat-label>
+                                <input inputmode="numeric" matInput>
+                                <mat-icon matSuffix>attach_money</mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-8">
                             <button mat-button class="search-btn" (click)="filter()">Pretraži</button>
                         </div>
