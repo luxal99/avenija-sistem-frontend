@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, Component, OnInit } from '@angular/core';
 
 import { Estate } from '../models/Estate';
 import { EstateService } from '../service/estate.service';
@@ -35,6 +35,7 @@ export class EstatePageOverviewComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private router :Router,private dialog: MatDialog, private estateService: EstateService) { }
+
 
   ngOnInit() {
     window.scrollTo(0,0)
