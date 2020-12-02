@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Estate } from 'src/app/models/Estate';
-import { EstateService } from 'src/app/service/estate.service';
+import { FormControl, FormGroup } from '@angular/forms';
+
 import { AddEstateDialogComponent } from './add-estate-dialog/add-estate-dialog.component';
 import { EditEstateDialogComponent } from './edit-estate-dialog/edit-estate-dialog.component';
+import { Estate } from 'src/app/models/Estate';
+import { EstateService } from 'src/app/service/estate.service';
+import { MatDialog } from '@angular/material';
 import { OverviewEstateDialogComponent } from './overview-estate-dialog/overview-estate-dialog.component';
 
 @Component({
@@ -14,6 +16,7 @@ import { OverviewEstateDialogComponent } from './overview-estate-dialog/overview
 export class EstateOverviewComponent implements OnInit {
 
   listOfEstates: Array<Estate> = [];
+  searchText = '';
   constructor(private dialog: MatDialog, private estateService: EstateService) { }
 
   async ngOnInit(): Promise<void> {
@@ -21,10 +24,14 @@ export class EstateOverviewComponent implements OnInit {
 
   }
 
+  searchForm = new FormGroup({
+    search: new FormControl("")
+  })
+
   errorHandler(event) {
     console.debug(event);
     event.target.src = "https://cdn.browshot.com/static/images/not-found.png";
- }
+  }
 
   deleteEstate(estate: Estate) {
     this.estateService.delete(estate.id).subscribe(resp => {

@@ -15,7 +15,7 @@ declare var $: any;
   templateUrl: './estate-page-overview.component.html',
   styleUrls: ['./estate-page-overview.component.css']
 })
-export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
+export class EstatePageOverviewComponent implements OnInit {
 
   estate = new Estate();
 
@@ -41,18 +41,6 @@ export class EstatePageOverviewComponent implements OnInit,AfterViewChecked {
     this.findEstate();
     this.setResponsiveSlider();
 
-  }
-
-  ngAfterViewChecked(): void {
-    this.watermark()
-  }
-  watermark(){
-    setTimeout(() => {
-      $('.watermark').watermark({
-        path: 'assets/img/bw_logo.png',
-        gravity: 'c'
-      });
-    }, 300);
   }
 
   

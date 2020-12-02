@@ -40,6 +40,7 @@ import { OverviewEstateDialogComponent } from './admin/estate-overview/overview-
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 import { UserInfoComponent } from './admin/user-info/user-info.component';
+import { EstateSearchPipe } from './pipe/estate-search.pipe';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { UserInfoComponent } from './admin/user-info/user-info.component';
     AdvertisingRequestComponent,
     AdvertisingRequestOverviewComponent,
     AdvertisingDialogOverviewComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    EstateSearchPipe
     
   ],
   imports: [

@@ -1,38 +1,43 @@
- h1,h4,h6,h5{
- 
- }
-
+ h1,
+ h4,
+ h6,
+ h5 {}
  
  .estate {
-      padding-left: 5em;
-      padding-right: 5em;
+     padding-left: 5em;
+     padding-right: 5em;
  }
-
-.estate-container {
-    padding-top: 3em;
-    padding-bottom: 3em;
-}
-
-.estate-item{
-    margin-top: 2em;
-}
-
-.overview-btn {
-    padding: .5em 3em .5em 3em;
-    color: #fff;
-    margin-top: 1.5em;
-    border: 0 !important;
-    background-color: #00c3f6;
-
-}
-
-.edit-btn {
-    padding: .5em 3em .5em 3em;
-    margin-right: 1em;
-    color: #fff;
-    margin-top: 1.5em;
-    border: 0 !important;
-    background-color: #282828;
-
-}
-
+ 
+ .estate-container {
+     padding-top: 3em;
+     padding-bottom: 3em;
+ }
+ 
+ .estate-item {
+     margin-top: 2em;
+ }
+ 
+ .overview-btn {
+     padding: .5em 3em .5em 3em;
+     color: #fff;
+     margin-top: 1.5em;
+     border: 0 !important;
+     background-color: #00c3f6;
+ }
+ 
+ .edit-btn {
+     padding: .5em 3em .5em 3em;
+     margin-right: 1em;
+     color: #fff;
+     margin-top: 1.5em;
+     border: 0 !important;
+     background-color: #282828;
+ }
+ 
+ ::ng-deep.mat-form-field-appearance-fill .mat-form-field-underline::before {
+     background: none
+ }
+ 
+ mat-form-field {
+     width: 100% !important;
+ }

@@ -1,15 +1,21 @@
 <div class="estate">
     <div class="row">
         <div class="col-sm">
-            <h1>Nekretnine</h1>    
+            <h1>Nekretnine</h1>
         </div>
         <div class="col-sm text-right">
             <button class="big-blue-btn" (click)="openAddEstateDialog()">Dodaj nekretninu</button>
-            
+
         </div>
     </div>
     <div class="estate-container">
-        <div class="estate-item text-left" *ngFor="let estate of listOfEstates">
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Naziv nekretnine</mat-label>
+                <input matInput [(ngModel)]="searchText" formControlName="search" placeholder="Placeholder">
+            </mat-form-field>
+        </form>
+        <div class="estate-item text-left" *ngFor="let estate of listOfEstates|estateSearch:searchText">
             <div class="text-right">
                 <button mat-icon-button (click)="deleteEstate(estate)"><mat-icon>close</mat-icon></button></div>
             <div class="row">
@@ -29,16 +35,16 @@
                     <div>
                         <div class="row">
                             <div class="col-sm">
-                               <h6> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_location.id_part_of_city.id_city.title}} | {{estate.id_location.id_part_of_city.title}}</h6>
+                                <h6> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_location.id_part_of_city.id_city.title}} | {{estate.id_location.id_part_of_city.title}}</h6>
                                 <h6><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.id_location.address}}</h6>
                                 <h6><i class="fa fa-building-o" aria-hidden="true" style="color: #00c3f6;"></i> {{estate.quadrature}}m2</h6>
                             </div>
                             <div class="col-sm text-right">
 
-                            <div style="display: inline-flex;">
-                                <button class="edit-btn" (click)="openEstateEditDiloag(estate)">Izmeni</button>
-                                <button class="overview-btn" (click)="openEstateOverviewDialog(estate)">Pregled</button>
-                            </div>
+                                <div style="display: inline-flex;">
+                                    <button class="edit-btn" (click)="openEstateEditDiloag(estate)">Izmeni</button>
+                                    <button class="overview-btn" (click)="openEstateOverviewDialog(estate)">Pregled</button>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -22,3 +22,8 @@ table {
     width: 49%;
     margin: 1em;
 }
+
+mat-spinner {
+    left: 45%;
+    top: 5%;
+}

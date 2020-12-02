@@ -1,21 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
+
 import { Accessories } from 'src/app/models/Accessories';
-import { City } from 'src/app/models/CIty';
-import { Equipment } from 'src/app/models/Equipment';
-import { EstateCategory } from 'src/app/models/EstateCategory';
-import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
-import { EstateType } from 'src/app/models/EstateType';
-import { Heating } from 'src/app/models/Heating';
-import { PartOfCity } from 'src/app/models/PartOfCity';
 import { AccessoriesService } from 'src/app/service/accessories.service';
-import { CityService } from 'src/app/service/city.service';
-import { EquipmentService } from 'src/app/service/equipment.service';
-import { EstateCategoryService } from 'src/app/service/estate-category.service';
-import { EstateSubCategoryService } from 'src/app/service/estate-sub-category.service';
-import { EstateTypeService } from 'src/app/service/estate-type.service';
-import { HeatingService } from 'src/app/service/heating.service';
-import { PartOfCityService } from 'src/app/service/part-of-city.service';
 import { AddAccessoriesDialogComponent } from './add-accessories-dialog/add-accessories-dialog.component';
 import { AddCityDialogComponent } from './add-city-dialog/add-city-dialog.component';
 import { AddEquipmentDialogComponent } from './add-equipment-dialog/add-equipment-dialog.component';
@@ -24,6 +11,20 @@ import { AddEstateSubCategoryDialogComponent } from './add-estate-sub-category-d
 import { AddEstateTypeDialogComponent } from './add-estate-type-dialog/add-estate-type-dialog.component';
 import { AddHeatingDialogComponent } from './add-heating-dialog/add-heating-dialog.component';
 import { AddPartOfCityDialogComponent } from './add-part-of-city-dialog/add-part-of-city-dialog.component';
+import { City } from 'src/app/models/CIty';
+import { CityService } from 'src/app/service/city.service';
+import { Equipment } from 'src/app/models/Equipment';
+import { EquipmentService } from 'src/app/service/equipment.service';
+import { EstateCategory } from 'src/app/models/EstateCategory';
+import { EstateCategoryService } from 'src/app/service/estate-category.service';
+import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
+import { EstateSubCategoryService } from 'src/app/service/estate-sub-category.service';
+import { EstateType } from 'src/app/models/EstateType';
+import { EstateTypeService } from 'src/app/service/estate-type.service';
+import { Heating } from 'src/app/models/Heating';
+import { HeatingService } from 'src/app/service/heating.service';
+import { PartOfCity } from 'src/app/models/PartOfCity';
+import { PartOfCityService } from 'src/app/service/part-of-city.service';
 
 @Component({
   selector: 'app-option',

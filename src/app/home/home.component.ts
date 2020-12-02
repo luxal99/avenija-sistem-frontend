@@ -39,7 +39,7 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewChecked {
+export class HomeComponent implements OnInit {
 
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
@@ -109,20 +109,6 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     this.getCities();
     this.setResponsiveSlider();
   }
-
-
-  ngAfterViewChecked(): void {
-    this.watermark()
-  }
-  watermark() {
-    setTimeout(() => {
-      $('.watermark').watermark({
-        path: 'assets/img/small_watermark.png',
-        gravity: 'c'
-      });
-    }, 300);
-  }
-
 
   setResponsiveSlider() {
     if (window.screen.width <= 570) {
