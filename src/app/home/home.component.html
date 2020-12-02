@@ -155,10 +155,10 @@
                 <div class="col-sm-8 text-center">
                     <swiper [config]="config">
                         <div class="swiper-wrapper text-left">
-                            <div class="swiper-slide" *ngFor="let estate of listOfEstates">
+                            <div class="swiper-slide" *ngFor="let estate of listOfFavoriteEstates">
                                 <a routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">
 
-                                    <img *ngIf="estate.listOfImages.length !== 0" class="swiper-slide slider-img watermark" [src]="estate.listOfImages[0].url" />
+                                    <img class="swiper-slide slider-img watermark" [src]="estate.coverImage" />
 
                                 </a>
                                 <div>
@@ -429,13 +429,13 @@
                 </div>
             </div>
         </div>
-        <div class="big-estate text-center" *ngFor="let estate of listOfEstates|slice:3:4;let i = index" [attr.data-index]="i">
+        <div class="big-estate text-center" *ngFor="let estate of listOfPromotedEstates">
             <div>
                 <button mat-button class="big-estate-btn" routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">Specijalno</button>
                 <h1 style="font-weight: bold;">{{estate.title}}</h1>
                 <p style="color: #999;padding: 0 30em 0 30em;" [innerHTML]="estate.description"></p>
             </div>
-            <img [src]="estate.listOfImages[0].url" style="margin-top: 2em;" width="1280" class="img-fluid watermark" alt="">
+            <img [src]="estate.coverImage" style="margin-top: 2em;" width="1280" class="img-fluid watermark" alt="">
         </div>
         <div class="about-div">
             <div class="row">

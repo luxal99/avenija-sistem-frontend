@@ -44,6 +44,9 @@ export class AddEstateDialogComponent implements OnInit {
   @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
 
+  @ViewChild('isFavoriteCheckbox', { static: false }) isFavoriteCheckbox: MatCheckboxChange
+  @ViewChild('isPromotedCheckbox', { static: false }) isPromotedCheckbox: MatCheckboxChange
+
 
   editorData = '';
   description = '';
@@ -66,7 +69,7 @@ export class AddEstateDialogComponent implements OnInit {
 
   firstFormGroup = new FormGroup({
     id_transaction_type: new FormControl("", Validators.required),
-    id_estate_sub_category: new FormControl("", Validators.required)
+    id_estate_sub_category: new FormControl("", Validators.required),
   })
 
   locationForm = new FormGroup({
@@ -288,6 +291,8 @@ export class AddEstateDialogComponent implements OnInit {
     estate.id_heating = this.accessoriesForm.get("id_heating").value;
     estate.id_estate_type = this.thirdStepForm.get("id_estate_type").value;
     estate.id_equipment = this.accessoriesForm.get("id_equipment").value;
+    estate.isFavorite = this.isFavoriteCheckbox.checked
+    estate.isPromoted = this.isPromotedCheckbox.checked;
 
     this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe(resp => {
       estate.id_location = resp as Location
@@ -300,6 +305,11 @@ export class AddEstateDialogComponent implements OnInit {
         this.openSnackBar("Dogodila se greska", "AGAIN")
       })
     });
+
+  }
+
+  test() {
+    console.log(this.isFavoriteCheckbox.checked);
 
   }
 

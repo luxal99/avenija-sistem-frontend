@@ -78,7 +78,9 @@ export class HomeComponent implements OnInit {
   listOfEstateSubCategories: Array<EstateSubCategory> = [];
   listOfCities: Array<City> = []
   listOfTransaction: Array<Transaction> = [];
+  listOfFavoriteEstates: Array<any> = [];
   listOfPartsOfCities: Array<PartOfCity> = [];
+  listOfPromotedEstates: Array<any> = [];
 
   constructor(private dialog: MatDialog, private estateService: EstateService,
     private cityService: CityService, private transactionTypeService: TransactionService,
@@ -101,7 +103,8 @@ export class HomeComponent implements OnInit {
 
   list: [{ n: 'a' }, { n: 'a' }, { n: 'a' }]
   ngOnInit() {
-    this.getAllEstates();
+    this.getFavoriteEstates();
+    this.getPromotedEstates();
     this.getAllTransaction();
     this.getEstateCategories();
     this.getEstateSubCategories();
@@ -141,6 +144,18 @@ export class HomeComponent implements OnInit {
       this.listOfEstateCategories = resp as Array<EstateCategory>
     }, err => {
       this.openSnackBar("Dogodila se greska", "AGAIN")
+    })
+  }
+
+  getFavoriteEstates() {
+    this.estateService.getFavorites().subscribe(resp => {
+      this.listOfFavoriteEstates = resp;
+    })
+  }
+
+  getPromotedEstates() {
+    this.estateService.getPromoted().subscribe(resp => {
+      this.listOfPromotedEstates = resp;
     })
   }
 

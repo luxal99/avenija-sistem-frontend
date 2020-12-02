@@ -7,17 +7,29 @@
 
 
                 <h4>Tip</h4>
-                <div class="divider"></div>
+                <mat-divider></mat-divider>
                 <div class="radio-button-div">
                     <mat-radio-group aria-label="Select an option" *ngFor="let transaction of listOfTransaction" formControlName="id_transaction_type">
                         <mat-radio-button [value]="transaction">{{transaction.title}}</mat-radio-button>
                     </mat-radio-group>
                 </div>
+                <div style="width: 100%;">
 
-                <div>
+                    <h4>Promocija/Favorit</h4>
+                    <mat-divider></mat-divider>
+
+                    <div style="padding-top: 2em;">
+                        <mat-checkbox class="example-margin" #isFavoriteCheckbox>Favorit</mat-checkbox>
+                    </div>
+                    <div>
+                        <mat-checkbox class="example-margin" #isPromotedCheckbox>Promocija</mat-checkbox>
+                    </div>
+                </div>
+
+                <div style="width: 100%;">
 
                     <h4>Kategorija</h4>
-                    <div class="divider"></div>
+                    <mat-divider></mat-divider>
                     <mat-form-field appearance="fill" style="margin-top: 1em;width: 100%;">
 
                         <mat-label>Kategorija</mat-label>
@@ -212,6 +224,7 @@
                     <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
 
                     <button mat-button class="blue-btn" mat-dialog-close style="margin-left: 2em;" (click)="save()" [disabled]="!firstFormGroup.valid || !firstFormGroup.valid || !locationForm.valid || !thirdStepForm.valid  || !titleForm.valid  || !(editorComponent.editorInstance.getData().length >0) ">Sačuvaj</button>
+
                 </div>
             </form>
         </mat-step>

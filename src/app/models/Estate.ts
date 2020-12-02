@@ -4,8 +4,8 @@ import { EstateSubCategory } from './EstateSubCategory';
 import { EstateType } from './EstateType';
 import { Heating } from './Heating';
 import { ImageModel } from './ImageModel';
-import { Transaction } from './Transaction';
 import {Location} from './Location'
+import { Transaction } from './Transaction';
 
 export class Estate {
 
@@ -20,6 +20,9 @@ export class Estate {
     max_floor: number;
     rooms: number;
     parking: boolean;
+    isFavorite: boolean;
+    isPromoted: boolean;
+
 
     id_estate_sub_category: EstateSubCategory;
     id_transaction_type: Transaction;

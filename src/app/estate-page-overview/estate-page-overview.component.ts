@@ -48,11 +48,9 @@ export class EstatePageOverviewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.estateService.findById(Number.parseInt(params.id)).subscribe(resp => {
         this.estate = resp as Estate;
-        localStorage.setItem("estate",JSON.stringify(this.estate))
       })
     })
 
-    this.estate = JSON.parse(localStorage.getItem("estate"))
   }
 
 

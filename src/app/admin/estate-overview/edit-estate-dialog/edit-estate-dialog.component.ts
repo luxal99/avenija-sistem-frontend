@@ -41,7 +41,8 @@ export class EditEstateDialogComponent implements OnInit {
 
   @ViewChild('checkBox', { static: false }) checkBox: MatCheckbox;
 
-
+  @ViewChild('isFavoriteCheckbox', { static: false }) isFavoriteCheckbox: MatCheckboxChange
+  @ViewChild('isPromotedCheckbox', { static: false }) isPromotedCheckbox: MatCheckboxChange
 
   firstFormGroup = new FormGroup({
     id_transaction_type: new FormControl("", Validators.required),
@@ -390,6 +391,8 @@ export class EditEstateDialogComponent implements OnInit {
     estate.listOfImages = this.listOfImages;
     estate.listOfAccessories = this.listOfSelectedAccessories;
     estate.id_location = id_location
+    estate.isFavorite = this.isFavoriteCheckbox.checked
+    estate.isPromoted = this.isPromotedCheckbox.checked;
     estate.id = this.data.id
 
     estate.listOfImages.forEach(img => {
