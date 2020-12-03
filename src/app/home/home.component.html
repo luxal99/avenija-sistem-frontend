@@ -158,7 +158,7 @@
                             <div class="swiper-slide" *ngFor="let estate of listOfFavoriteEstates">
                                 <a (click)="openEstate(estate.id)">
 
-                                    <img class="swiper-slide slider-img watermark" [src]="estate.coverImage" />
+                                    <img (click)="openEstate(estate.id)" class="swiper-slide slider-img watermark" [src]="estate.coverImage" />
 
                                 </a>
                                 <div>
@@ -431,7 +431,7 @@
         </div>
         <div class="big-estate text-center" *ngFor="let estate of listOfPromotedEstates">
             <div>
-                <button mat-button class="big-estate-btn" routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">Specijalno</button>
+                <button mat-button class="big-estate-btn" (click)="openEstate(estate.id)">Specijalno</button>
                 <h1 style="font-weight: bold;">{{estate.title}}</h1>
                 <p style="color: #999;padding: 0 30em 0 30em;" [innerHTML]="estate.description"></p>
             </div>

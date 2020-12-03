@@ -80,6 +80,10 @@ export class FilterPageComponent implements OnInit {
     })
   }
 
+  openEstate(id:number){
+    this.router.navigate(['/estate'],{queryParams:{id:id}})
+  }
+
 
   filter() {
 

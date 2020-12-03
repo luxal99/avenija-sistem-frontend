@@ -199,7 +199,7 @@
                                 <div class="col-sm"></div>
                             </div>
                             <div class="text-left">
-                                <button mat-button routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active" class="estate-btn">Pogledaj više</button>
+                                <button mat-button (click)="openEstate(estate.id)" class="estate-btn">Pogledaj više</button>
                             </div>
                         </div>
                     </div>
