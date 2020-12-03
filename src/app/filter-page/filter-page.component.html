@@ -89,116 +89,124 @@
                     </div>
                 </div>
             </div>
-            <div class="search-div">
-                <h3>Napredna pretraga</h3>
-                <mat-divider></mat-divider>
-                <form [formGroup]="searchForm">
-                    <div class="row" style="margin-top: 1em;">
-                        <div class="col-sm">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Cena od</mat-label>
-                                <input inputmode="numeric" matInput formControlName="priceFrom">
-                                <mat-icon matSuffix>attach_money</mat-icon>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Cena do</mat-label>
-                                <input inputmode="numeric" matInput formControlName="priceTo">
-                                <mat-icon matSuffix>attach_money</mat-icon>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Grad</mat-label>
-                                <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
-
-                                    <mat-option *ngFor="let city of listOfCities" [value]="city.title">
-                                        {{city.title}}
-                                    </mat-option>
-                                </mat-select>
-
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Deo grada</mat-label>
-                                <mat-select formControlName="id_part_of_city">
-                                    <mat-option value="undefinded">
-                                        Sve
-                                    </mat-option>
-                                    <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity.title">
-                                        {{partOfCity.title}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Kategorija</mat-label>
-                                <mat-select formControlName="id_estate_category">
-                                    <mat-option value="">
-                                        Sve
-                                    </mat-option>
-                                    <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory.title">
-                                        {{estateCategory.title}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Kvadaratura od</mat-label>
-                                <input inputmode="numeric" formControlName="quadratureFrom" matInput>
-                                <mat-icon matSuffix>attach_money</mat-icon>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Kvadratura do</mat-label>
-                                <input inputmode="numeric" formControlName="quadratureTo" matInput>
-                                <mat-icon matSuffix>attach_money</mat-icon>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <button mat-button class="search-btn" (click)="filter()">Pretraži</button>
-                        </div>
-                        <div class="col" style="padding-left: 0 !important;">
-                            <button mat-button class="reset-btn" (click)="reset()">Reset</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
-        <div class="estate-container">
-            <h1 class="filter-h1">Filtrirane nekretnine</h1>
-            <mat-divider></mat-divider>
-            <div class="row">
-                <div class="col-sm-6 estate-card" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
-                    <img [src]="estate._image" width="100%" height="60%" alt="" class="estate-img watermark">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3 class="text-left">{{estate._title}}</h3>
-                            <div style="display: inline-flex;">
-                                <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_city}} | {{estate.id_part_of_city}}</h5>
-                                <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate._address}}</h5>
+
+        <div class="row filter-estate-row">
+            <div class="col-sm-3">
+                <div class="search-div">
+                    <h3>Napredna pretraga</h3>
+                    <mat-divider></mat-divider>
+                    <form [formGroup]="searchForm">
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-sm">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Cena od</mat-label>
+                                    <input inputmode="numeric" matInput formControlName="priceFrom">
+                                    <mat-icon matSuffix>attach_money</mat-icon>
+                                </mat-form-field>
                             </div>
-                            <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate._price}}€</h4>
+                            <div class="col-sm">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Cena do</mat-label>
+                                    <input inputmode="numeric" matInput formControlName="priceTo">
+                                    <mat-icon matSuffix>attach_money</mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Grad</mat-label>
+                                    <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
+
+                                        <mat-option *ngFor="let city of listOfCities" [value]="city.title">
+                                            {{city.title}}
+                                        </mat-option>
+                                    </mat-select>
+
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Deo grada</mat-label>
+                                    <mat-select formControlName="id_part_of_city">
+                                        <mat-option value="undefinded">
+                                            Sve
+                                        </mat-option>
+                                        <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity.title">
+                                            {{partOfCity.title}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+
                         </div>
-                        <div class="col-sm"></div>
-                    </div>
-                    <div class="text-left">
-                        <button mat-button routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active" class="estate-btn">Pogledaj više</button>
+                        <div class="row">
+                            <div class="col-sm">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Kategorija</mat-label>
+                                    <mat-select formControlName="id_estate_category">
+                                        <mat-option value="">
+                                            Sve
+                                        </mat-option>
+                                        <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory.title">
+                                            {{estateCategory.title}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Kvadaratura od</mat-label>
+                                    <input inputmode="numeric" formControlName="quadratureFrom" matInput>
+                                    <mat-icon matSuffix>attach_money</mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Kvadratura do</mat-label>
+                                    <input inputmode="numeric" formControlName="quadratureTo" matInput>
+                                    <mat-icon matSuffix>attach_money</mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <button mat-button class="search-btn" (click)="filter()">Pretraži</button>
+                            </div>
+                            <div class="col" style="padding-left: 0 !important;">
+                                <button mat-button class="reset-btn" (click)="reset()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="estate-container">
+                    <h1 class="filter-h1">Filtrirane nekretnine</h1>
+                    <mat-divider></mat-divider>
+                    <div class="row">
+                        <div class="col-sm-4 estate-card" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
+                            <img [src]="estate._image" width="100%" height="40%" alt="" class="estate-img watermark">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="text-left">{{estate._title}}</h3>
+                                    <div>
+                                        <h5> <i class="fa fa-home" style="color: #00c3f6;"></i> {{estate.id_city}} | {{estate.id_part_of_city}}</h5>
+                                        <h5 style="margin-left: 1em;"><i class="fa fa-map-marker" aria-hidden="true" style="color: #00c3f6;"></i> {{estate._address}}</h5>
+                                    </div>
+                                    <h4 style="font-weight: bold;padding:.5em 0 .5em 0;">{{estate._price}}€</h4>
+                                </div>
+                                <div class="col-sm"></div>
+                            </div>
+                            <div class="text-left">
+                                <button mat-button routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active" class="estate-btn">Pogledaj više</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div #contact></div>
         <app-footer></app-footer>

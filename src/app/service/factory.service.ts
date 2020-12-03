@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class FactoryService<T> {
     return this.http.delete(`/${this.route}/` + id, { responseType: 'text' })
   }
 
-  findById(id) {
-    return this.http.get(`/${this.route}/` + id, { responseType: 'json' })
+  findById(id):Observable<T> {
+    return this.http.get<T>(`/${this.route}/` + id, { responseType: 'json' })
   }
 
   update(entity: T) {

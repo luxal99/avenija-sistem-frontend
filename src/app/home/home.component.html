@@ -156,7 +156,7 @@
                     <swiper [config]="config">
                         <div class="swiper-wrapper text-left">
                             <div class="swiper-slide" *ngFor="let estate of listOfFavoriteEstates">
-                                <a routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">
+                                <a (click)="openEstate(estate.id)">
 
                                     <img class="swiper-slide slider-img watermark" [src]="estate.coverImage" />
 
@@ -164,7 +164,7 @@
                                 <div>
                                     <h4 style="color: #282828;margin-top: 1em;">{{estate.title}}</h4>
                                     <h4 class="blue">{{estate.price}}€</h4>
-                                    <button mat-button class="slider-btn" routerLink="/estate/{{estate.id}}" routerLinkActive="router-link-active">Pogledaj više</button>
+                                    <button (click)="openEstate(estate.id)" mat-button class="slider-btn">Pogledaj više</button>
                                 </div>
                             </div>
 

@@ -31,6 +31,7 @@ import { TransactionService } from '../service/transaction.service';
 import { User } from '../models/User';
 import { UserInfo } from '../models/UserInfo';
 import { error } from 'protractor';
+import { query } from '@angular/animations';
 
 declare var $: any;
 
@@ -251,6 +252,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  openEstate(id:number){
+    this.router.navigate(['/estate'],{queryParams:{id:id}})
+  }
   sendAdvertisingRequset() {
     let advertisingRequest = new AdvertisingRequest();
 

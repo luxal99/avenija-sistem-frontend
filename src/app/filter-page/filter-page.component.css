@@ -21,6 +21,11 @@ nav {
     color: #282828;
 }
 
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
 nav {
     padding: 3em 2em 3em 2em;
     background-color: #fff !important;
@@ -51,8 +56,14 @@ nav {
     color: #fff;
 }
 
+.filter-estate-row {
+    padding: 2em 4em;
+}
+
 .estate-container {
-    padding: 10% 10% 5% 10%;
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .estate-btn {
@@ -77,26 +88,14 @@ h3 {
     padding-top: 1em;
 }
 
-.header {
-    background-image: url('../../assets/img/filter.png');
-    height: 60vh;
-    background-size: cover;
-    background-position: center;
-    padding-top: 25%;
-}
+.header {}
 
 mat-form-field {
     width: 100%;
 }
 
-.search-div {
-    margin-top: 50%;
-    background-color: #fff;
-    padding: 2em 10em 2em 10em;
-    margin: 0 10em 0 10em;
-    -webkit-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background: none
 }
 
 .search-btn,
@@ -111,10 +110,6 @@ mat-form-field {
 
 .reset-btn {
     background-color: #282828 !important;
-}
-
-.filter-h1 {
-    padding-top: 6em;
 }
 
 .hamburger-menu {
@@ -141,10 +136,6 @@ mat-form-field {
 }
 
 @media screen and (max-width:570px) {
-    .header {
-        height: 100vh;
-        padding-top: 0 !important;
-    }
     .login-btn {
         background-color: #fff;
         color: #282828;
@@ -162,5 +153,18 @@ mat-form-field {
     }
     .estate-card {
         margin-bottom: 5em;
+    }
+    .search-div {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .filter-estate-row .col-sm-9 {
+        margin-top: 2em;
+    }
+     ::-webkit-scrollbar {
+        display: none;
+    }
+     ::-webkit-scrollbar-thumb {
+        display: none;
     }
 }

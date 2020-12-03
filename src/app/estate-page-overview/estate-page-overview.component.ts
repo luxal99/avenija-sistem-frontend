@@ -28,34 +28,35 @@ export class EstatePageOverviewComponent implements OnInit {
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
-    },navigation: {
+    }, navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
   }
 
-  constructor(private route: ActivatedRoute, private router :Router,private dialog: MatDialog, private estateService: EstateService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private dialog: MatDialog, private estateService: EstateService) { }
 
 
   ngOnInit() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     this.findEstate();
     this.setResponsiveSlider();
 
   }
 
-  
+
   findEstate() {
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
+
       this.estateService.findById(Number.parseInt(params.id)).subscribe(resp => {
-        this.estate = resp as Estate;
+        this.estate = resp;
       })
     })
 
   }
 
 
-  setResponsiveSlider(){
+  setResponsiveSlider() {
     if (window.screen.width <= 570) {
       this.config.slidesPerView = 1
       this.config.spaceBetween = 50
