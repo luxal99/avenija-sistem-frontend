@@ -161,6 +161,9 @@ mat-form-field {
     .filter-estate-row .col-sm-9 {
         margin-top: 2em;
     }
+    .filter-estate-row {
+        padding: 0 !important;
+    }
      ::-webkit-scrollbar {
         display: none;
     }
