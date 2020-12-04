@@ -3,7 +3,7 @@
     padding: 5em 10em 5em 10em;
 }
 
-h4{
+h4 {
     color: #fff;
 }
 
@@ -12,11 +12,13 @@ h5 {
     font-weight: 300;
 }
 
-h4, h5 {  font-family: 'Poppins', sans-serif;}
+h4,
+h5 {
+    font-family: 'Poppins', sans-serif;
+}
 
-
-@media screen and (max-width:570px){
-    .contact{
-        padding: 5em;
+@media screen and (max-width:570px) {
+    .contact {
+        padding: 1em;
     }
 }

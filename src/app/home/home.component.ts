@@ -157,6 +157,7 @@ export class HomeComponent implements OnInit {
   getPromotedEstates() {
     this.estateService.getPromoted().subscribe(resp => {
       this.listOfPromotedEstates = resp;
+
     })
   }
 
@@ -252,8 +253,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  openEstate(id:number){
-    this.router.navigate(['/estate'],{queryParams:{id:id}})
+  openEstate(id: number) {
+    this.router.navigate(['/estate'], { queryParams: { id: id } })
   }
   sendAdvertisingRequset() {
     let advertisingRequest = new AdvertisingRequest();

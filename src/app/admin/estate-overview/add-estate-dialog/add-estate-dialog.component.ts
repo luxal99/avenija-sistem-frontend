@@ -309,7 +309,6 @@ export class AddEstateDialogComponent implements OnInit {
   }
 
   test() {
-    console.log(this.isFavoriteCheckbox.checked);
 
   }
 

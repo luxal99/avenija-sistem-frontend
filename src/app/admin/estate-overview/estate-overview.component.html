@@ -15,7 +15,10 @@
                 <input matInput [(ngModel)]="searchText" formControlName="search" placeholder="Placeholder">
             </mat-form-field>
         </form>
-        <div class="estate-item text-left" *ngFor="let estate of listOfEstates|estateSearch:searchText">
+        <div>
+            <mat-spinner id="estate-spinner" style="left: 50%;top: 30%;"></mat-spinner>
+        </div>
+        <div class="estate-item text-left" id="estate" *ngFor="let estate of listOfEstates|estateSearch:searchText">
             <div class="text-right">
                 <button mat-icon-button (click)="deleteEstate(estate)"><mat-icon>close</mat-icon></button></div>
             <div class="row">

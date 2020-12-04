@@ -70,6 +70,12 @@ mat-divider {
     box-shadow: 10px 10px 28px -16px rgba(0, 0, 0, 0.75);
 }
 
+.col-sm-8 {
+    height: 60vh;
+    overflow-x: hidden;
+    overflow: scroll;
+}
+
 .search-btn {
     width: 100%;
     padding-top: .7em;

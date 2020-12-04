@@ -156,6 +156,7 @@ export class FilterPageComponent implements OnInit {
     let filter: Filter = JSON.parse(localStorage.getItem("filter"))
 
     this.estateService.getAll().subscribe(resp => {
+      
       this.listOfEstates = resp as Array<Estate>
       let estateFilterList: Array<EstateDTO>
         = this.listOfEstates.map
@@ -165,7 +166,7 @@ export class FilterPageComponent implements OnInit {
               estate.price, estate.quadrature, estate.id_location.id_part_of_city.id_city.title,
               estate.id_location.id_part_of_city.title,
               estate.id_transaction_type.title, estate.id_estate_sub_category.id_estate_category.title,
-              estate.listOfImages[0].url, estate.title, estate.id_location.address)))
+              estate.listOfImages[0], estate.title, estate.id_location.address)))
 
       let filterValues = Object.values(filter.estateProperty);
 
@@ -190,6 +191,8 @@ export class FilterPageComponent implements OnInit {
           this.filteredEstate = this.filteredEstate.filter(x => x._quadrature >= filter.quadratureFrom)
         }
       }
+
+      
     })
 
   }

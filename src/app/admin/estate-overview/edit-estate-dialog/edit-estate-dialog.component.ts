@@ -189,7 +189,6 @@ export class EditEstateDialogComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.listOfImages, event.previousIndex, event.currentIndex);
   }
-
   disableSpinner(timeOut) {
     document.getElementById('spinner').style.display = 'block'
 

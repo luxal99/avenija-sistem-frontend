@@ -41,6 +41,7 @@ export class EstateOverviewComponent implements OnInit {
   getAllEstates() {
     this.estateService.getAll().subscribe(resp => {
       this.listOfEstates = resp as Array<Estate>
+      document.getElementById('estate-spinner').style.display ='none'
     })
   }
 

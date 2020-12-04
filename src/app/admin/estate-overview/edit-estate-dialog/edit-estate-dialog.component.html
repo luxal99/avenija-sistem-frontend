@@ -218,11 +218,11 @@
 
                 <div class="row image-row">
 
-                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div cdkDropList class="example-list" cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
                         <div class="example-box" *ngFor="let image of listOfImages" cdkDrag>
-                            <img *ngIf="listOfImages.length !== 0" [src]="image.url" (error)="errorHandler($event)" height="200px" alt="" class="img-fluid">
+                            <img *ngIf="listOfImages.length !== 0" [src]="image.url" (error)="errorHandler($event)" alt="" class="img-fluid">
                             <div class="text-center">
-                                <button class="silver-btn" mat-button style="margin-top: 1em;width: 90%;" (click)="deletePhoto(image)">Obrisi</button>
+                                <button mat-icon-button (click)="deletePhoto(image)"><mat-icon>close</mat-icon></button>
                             </div>
                         </div>
                     </div>
