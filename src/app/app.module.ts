@@ -41,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 import { UserInfoComponent } from './admin/user-info/user-info.component';
 import { EstateSearchPipe } from './pipe/estate-search.pipe';
+import { PartOfCityPipe } from './pipe/part-of-city.pipe';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { EstateSearchPipe } from './pipe/estate-search.pipe';
     AdvertisingRequestOverviewComponent,
     AdvertisingDialogOverviewComponent,
     UserInfoComponent,
-    EstateSearchPipe
+    EstateSearchPipe,
+    PartOfCityPipe
     
   ],
   imports: [

@@ -96,6 +96,10 @@ mat-form-field {
     background: none
 }
 
+.filter-estate-row .col-sm-3 {
+    border-right: 1px solid #eee;
+}
+
 .search-btn,
 .reset-btn {
     width: 100%;

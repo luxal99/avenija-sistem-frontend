@@ -26,10 +26,12 @@ import { Router } from '@angular/router';
 export class FilterPageComponent implements OnInit {
 
 
+  searchText = ''
   searchForm = new FormGroup({
     priceFrom: new FormControl(""),
     priceTo: new FormControl(""),
     id_city: new FormControl(""),
+    searchPartOfCity:new FormControl(""),
     quadratureFrom: new FormControl(""),
     quadratureTo: new FormControl(""),
     id_part_of_city: new FormControl(""),
@@ -54,6 +56,7 @@ export class FilterPageComponent implements OnInit {
     private cityService: CityService, private dialog: MatDialog, private estateCategoryService: EstateCategoryService) { }
 
   ngOnInit() {
+    this.setValue();
     this.getAllEstates();
     this.getCities();
     this.getEstateCategories();
@@ -69,6 +72,7 @@ export class FilterPageComponent implements OnInit {
     this.searchForm.get('id_part_of_city').setValue("");
 
 
+    this.searchOnSell();
     this.getAllEstates();
   }
 
@@ -87,6 +91,7 @@ export class FilterPageComponent implements OnInit {
 
   filter() {
 
+    document.getElementById('filter-spinner').style.display = 'block'
     let oldFilter: Filter = JSON.parse(localStorage.getItem("filter"))
     let filter = new Filter()
     filter.priceTo = Number.parseInt(this.searchForm.get("priceTo").value)
@@ -149,12 +154,21 @@ export class FilterPageComponent implements OnInit {
     })
   }
 
+  setValue(){
+
+
+    let filter: Filter = JSON.parse(localStorage.getItem("filter"))
+    this.searchForm.get('id_estate_category').setValue(filter.estateProperty.id_estate_category);
+    this.selectedCity = filter.estateProperty.id_city
+  }
+
 
   getAllEstates() {
 
     this.filteredEstate = []
     let filter: Filter = JSON.parse(localStorage.getItem("filter"))
 
+  
     this.estateService.getAll().subscribe(resp => {
       
       this.listOfEstates = resp as Array<Estate>
@@ -192,7 +206,7 @@ export class FilterPageComponent implements OnInit {
         }
       }
 
-      
+      document.getElementById('filter-spinner').style.display ='none' 
     })
 
   }

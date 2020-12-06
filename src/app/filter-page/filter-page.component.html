@@ -95,7 +95,6 @@
             <div class="col-sm-3">
                 <div class="search-div">
                     <h3>Napredna pretraga</h3>
-                    <mat-divider></mat-divider>
                     <form [formGroup]="searchForm">
                         <div class="row" style="margin-top: 1em;">
                             <div class="col-sm">
@@ -128,10 +127,14 @@
                                 <mat-form-field appearance="fill">
                                     <mat-label>Deo grada</mat-label>
                                     <mat-select formControlName="id_part_of_city">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Pretraži</mat-label>
+                                            <input inputmode="text" matInput [(ngModel)]="searchText" formControlName="searchPartOfCity">
+                                        </mat-form-field>
                                         <mat-option value="undefinded">
                                             Sve
                                         </mat-option>
-                                        <mat-option *ngFor="let partOfCity of filteredPartOfCity" [value]="partOfCity.title">
+                                        <mat-option *ngFor="let partOfCity of filteredPartOfCity|partOfCity:searchText" [value]="partOfCity.title">
                                             {{partOfCity.title}}
                                         </mat-option>
                                     </mat-select>
@@ -182,8 +185,9 @@
             </div>
             <div class="col-sm-9">
                 <div class="estate-container">
-                    <h1 class="filter-h1">Filtrirane nekretnine</h1>
-                    <mat-divider></mat-divider>
+                    <div>
+                        <mat-spinner style="left: 40%" id="filter-spinner"></mat-spinner>
+                    </div>
                     <div class="row">
                         <div class="col-sm-4 estate-card" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
                             <img src="{{estate._image.url}}" *ngIf="estate._image" width="100%" height="40%" alt="" class="estate-img watermark">
