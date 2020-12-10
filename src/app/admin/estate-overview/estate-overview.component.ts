@@ -20,7 +20,7 @@ export class EstateOverviewComponent implements OnInit {
   constructor(private dialog: MatDialog, private estateService: EstateService) { }
 
   async ngOnInit(): Promise<void> {
-    this.getAllEstates();
+    this.getAllEstates(false);
 
   }
 
@@ -35,14 +35,22 @@ export class EstateOverviewComponent implements OnInit {
 
   deleteEstate(estate: Estate) {
     this.estateService.delete(estate.id).subscribe(resp => {
-      this.getAllEstates();
+      this.getAllEstates(true);
     })
   }
-  getAllEstates() {
-    this.estateService.getAll().subscribe(resp => {
-      this.listOfEstates = resp as Array<Estate>
+  getAllEstates(callApi :boolean) {
+
+    if (!localStorage.getItem("listOfEstates") || callApi) {
+      this.estateService.getAll().subscribe(resp => {
+        this.listOfEstates = resp as Array<Estate>
+        localStorage.setItem("listOfEstates",JSON.stringify(resp))
+
       document.getElementById('estate-spinner').style.display ='none'
-    })
+      }) 
+    }else {
+      document.getElementById('estate-spinner').style.display ='none'
+      this.listOfEstates = JSON.parse(localStorage.getItem("listOfEstates"))
+    }
   }
 
   openAddEstateDialog() {
@@ -54,7 +62,7 @@ export class EstateOverviewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllEstates();
+      this.getAllEstates(true);
     });
   }
 
@@ -78,7 +86,7 @@ export class EstateOverviewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllEstates();
+      this.getAllEstates(true);
     });
   }
 
