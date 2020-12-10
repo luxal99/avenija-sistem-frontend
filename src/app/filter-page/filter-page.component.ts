@@ -12,6 +12,7 @@ import { EstateProperty } from '../models/EstateProperty';
 import { EstateService } from '../service/estate.service';
 import { EstateSubCategoryService } from '../service/estate-sub-category.service';
 import { Filter } from '../models/Filter';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import { LoginDialogComponent } from '../home/login-dialog/login-dialog.component';
 import { PartOfCity } from '../models/PartOfCity';
 import { PartOfCityService } from '../service/part-of-city.service';
@@ -31,7 +32,7 @@ export class FilterPageComponent implements OnInit {
     priceFrom: new FormControl(""),
     priceTo: new FormControl(""),
     id_city: new FormControl(""),
-    searchPartOfCity:new FormControl(""),
+    searchPartOfCity: new FormControl(""),
     quadratureFrom: new FormControl(""),
     quadratureTo: new FormControl(""),
     id_part_of_city: new FormControl(""),
@@ -84,8 +85,8 @@ export class FilterPageComponent implements OnInit {
     })
   }
 
-  openEstate(id:number){
-    this.router.navigate(['/estate'],{queryParams:{id:id}})
+  openEstate(id: number) {
+    this.router.navigate(['/estate'], { queryParams: { id: id } })
   }
 
 
@@ -154,7 +155,7 @@ export class FilterPageComponent implements OnInit {
     })
   }
 
-  setValue(){
+  setValue() {
 
 
     let filter: Filter = JSON.parse(localStorage.getItem("filter"))
@@ -168,9 +169,9 @@ export class FilterPageComponent implements OnInit {
     this.filteredEstate = []
     let filter: Filter = JSON.parse(localStorage.getItem("filter"))
 
-  
+
     this.estateService.getAll().subscribe(resp => {
-      
+
       this.listOfEstates = resp as Array<Estate>
       let estateFilterList: Array<EstateDTO>
         = this.listOfEstates.map
@@ -206,7 +207,7 @@ export class FilterPageComponent implements OnInit {
         }
       }
 
-      document.getElementById('filter-spinner').style.display ='none' 
+      document.getElementById('filter-spinner').style.display = 'none'
     })
 
   }
@@ -222,8 +223,9 @@ export class FilterPageComponent implements OnInit {
     {
       estateProperty: { id_transaction_type: "Prodaja" }
     }
+    localStorage.removeItem("filter")
     localStorage.setItem("filter", JSON.stringify(filter));
-    this.router.navigate(['/filter'])
+   location.reload();
   }
 
   searchOnRent() {
@@ -231,8 +233,9 @@ export class FilterPageComponent implements OnInit {
     {
       estateProperty: { id_transaction_type: "Izdavanje" }
     }
+    localStorage.removeItem("filter")
     localStorage.setItem("filter", JSON.stringify(filter));
-    this.router.navigate(['/filter'])
+   location.reload();
   }
 
   scrollToElement($element): void {
@@ -256,5 +259,19 @@ export class FilterPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  // ('100%', { bottom: '0' }, '82vh', data)
+
+  openFilterDialog() {
+    this.dialog.open(FilterDialogComponent, {
+      minWidth: '100%',
+      position: { bottom: '0' },
+      maxHeight: '80vh'
+    }).afterClosed().subscribe(() => {
+      this.getAllEstates();
+    })
+
+
   }
 }

@@ -24,6 +24,9 @@ import { ClientComponent } from './client/client.component';
 import { EditEstateDialogComponent } from './admin/estate-overview/edit-estate-dialog/edit-estate-dialog.component';
 import { EstateOverviewComponent } from './admin/estate-overview/estate-overview.component';
 import { EstatePageOverviewComponent } from './estate-page-overview/estate-page-overview.component';
+import { EstateSearchPipe } from './pipe/estate-search.pipe';
+import { Filter } from './models/Filter';
+import { FilterDialogComponent } from './filter-page/filter-dialog/filter-dialog.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -37,11 +40,10 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { NgxWatermarkModule } from 'ngx-watermark';
 import { OptionComponent } from './admin/option/option.component';
 import { OverviewEstateDialogComponent } from './admin/estate-overview/overview-estate-dialog/overview-estate-dialog.component';
+import { PartOfCityPipe } from './pipe/part-of-city.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationDialogComponent } from './home/registration-dialog/registration-dialog.component';
 import { UserInfoComponent } from './admin/user-info/user-info.component';
-import { EstateSearchPipe } from './pipe/estate-search.pipe';
-import { PartOfCityPipe } from './pipe/part-of-city.pipe';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { PartOfCityPipe } from './pipe/part-of-city.pipe';
     AdvertisingDialogOverviewComponent,
     UserInfoComponent,
     EstateSearchPipe,
-    PartOfCityPipe
+    PartOfCityPipe,
+    FilterDialogComponent
     
   ],
   imports: [
@@ -103,7 +106,7 @@ import { PartOfCityPipe } from './pipe/part-of-city.pipe';
   ],
   entryComponents: [AddAccessoriesDialogComponent, AddEquipmentDialogComponent, AddHeatingDialogComponent, AddCityDialogComponent, AddEstateTypeDialogComponent, AddEstateCategoryDialogComponent, AddEstateSubCategoryDialogComponent,
     AddPartOfCityDialogComponent,UserInfoComponent,AdvertisingDialogOverviewComponent,AdvertisingRequestOverviewComponent,
-    AddEstateDialogComponent, OverviewEstateDialogComponent, EditEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
+    AddEstateDialogComponent, OverviewEstateDialogComponent,FilterDialogComponent, EditEstateDialogComponent, LoginDialogComponent, OptionComponent, RegistrationDialogComponent, EstateOverviewComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

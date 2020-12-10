@@ -100,9 +100,13 @@ mat-form-field {
     border-right: 1px solid #eee;
 }
 
+.col-sm-3 {
+    display: none;
+}
+
 .search-btn,
 .reset-btn {
-    width: 100%;
+    width: 30%;
     padding-top: .7em;
     color: #fff;
     border: 0 !important;
@@ -171,5 +175,11 @@ mat-form-field {
     }
      ::-webkit-scrollbar-thumb {
         display: none;
+    }
+    .search-div {
+        display: none;
+    }
+    .search-btn {
+        width: 50%;
     }
 }

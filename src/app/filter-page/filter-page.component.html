@@ -93,6 +93,7 @@
 
         <div class="row filter-estate-row">
             <div class="col-sm-3">
+
                 <div class="search-div">
                     <h3>Napredna pretraga</h3>
                     <form [formGroup]="searchForm">
@@ -183,12 +184,14 @@
                     </form>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-12">
+
+                <button mat-button class="search-btn" (click)="openFilterDialog()">Napredna pretraga </button>
                 <div class="estate-container">
                     <div>
                         <mat-spinner style="left: 40%" id="filter-spinner"></mat-spinner>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-top: 2em;">
                         <div class="col-sm-4 estate-card" style="padding-top: 5em;" *ngFor="let estate of filteredEstate">
                             <img src="{{estate._image.url}}" *ngIf="estate._image" width="100%" height="40%" alt="" class="estate-img watermark">
                             <div class="row">

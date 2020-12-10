@@ -1,0 +1,89 @@
+<div class="search-div">
+    <h3>Napredna pretraga</h3>
+    <form [formGroup]="searchForm">
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-sm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Cena od</mat-label>
+                    <input inputmode="numeric" matInput formControlName="priceFrom">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-sm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Cena do</mat-label>
+                    <input inputmode="numeric" matInput formControlName="priceTo">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-sm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Grad</mat-label>
+                    <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
+
+                        <mat-option *ngFor="let city of listOfCities" [value]="city.title">
+                            {{city.title}}
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+            </div>
+            <div class="col-sm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Deo grada</mat-label>
+                    <mat-select formControlName="id_part_of_city">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Pretraži</mat-label>
+                            <input inputmode="text" matInput [(ngModel)]="searchText" formControlName="searchPartOfCity">
+                        </mat-form-field>
+                        <mat-option value="undefinded">
+                            Sve
+                        </mat-option>
+                        <mat-option *ngFor="let partOfCity of filteredPartOfCity|partOfCity:searchText" [value]="partOfCity.title">
+                            {{partOfCity.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Kategorija</mat-label>
+                    <mat-select formControlName="id_estate_category">
+                        <mat-option value="">
+                            Sve
+                        </mat-option>
+                        <mat-option *ngFor="let estateCategory of listOfEstateCategories" [value]="estateCategory.title">
+                            {{estateCategory.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Kvadaratura od</mat-label>
+                    <input inputmode="numeric" formControlName="quadratureFrom" matInput>
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-sm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Kvadratura do</mat-label>
+                    <input inputmode="numeric" formControlName="quadratureTo" matInput>
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <button mat-button class="search-btn" (click)="filter()" mat-dialog-close>Pretraži</button>
+            </div>
+            <div class="col" style="padding-left: 0 !important;">
+                <button mat-button class="reset-btn" (click)="reset()">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>

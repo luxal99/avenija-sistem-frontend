@@ -1,0 +1,17 @@
+mat-form-field {
+    width: 100%;
+}
+
+.search-btn,
+.reset-btn {
+    width: 100%;
+    padding-top: .7em;
+    color: #fff;
+    border: 0 !important;
+    background-color: #00c3f6 !important;
+    padding-bottom: .7em;
+}
+
+.reset-btn {
+    background-color: #282828 !important;
+}
