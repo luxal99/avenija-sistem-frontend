@@ -91,14 +91,13 @@ import { UserInfoComponent } from './admin/user-info/user-info.component';
     CKEditorModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyAz8PX_PdPZo7WmWuxLYVMDiJUOozl0Fn4",
-      authDomain: "soy-smile-249718.firebaseapp.com",
-      databaseURL: "https://soy-smile-249718.firebaseio.com",
-      projectId: "soy-smile-249718",
-      storageBucket: "soy-smile-249718.appspot.com",
-      messagingSenderId: "870517553704",
-      appId: "1:870517553704:web:d238ce266071d519f8131d",
-      measurementId: "G-JGV7HTSL0B"
+   apiKey: "AIzaSyAoLHtaNEdG8XNGoSUBJ_11MOy__5Tv3TA",
+    authDomain: "sistem-nekretnine.firebaseapp.com",
+    projectId: "sistem-nekretnine",
+    storageBucket: "sistem-nekretnine.appspot.com",
+    messagingSenderId: "593559377107",
+    appId: "1:593559377107:web:aa58dff23bc3ebe17cf026",
+    measurementId: "G-P6QZQ0KCKX"
     }),
   ],
   providers: [HttpClientModule, NgxImageCompressService,
