@@ -1,20 +1,22 @@
-[{
+[
+  {
     "context": [
-        "/advertising",
-        "/user",
-        "/estateCategory",
-        "/estateSubCategory",
-        "/city",
-        "/estate",
-        "/partOfCity",
-        "/estateType",
-        "/transaction",
-        "/equipment",
-        "/heating",
-        "/location",
-        "/accessories"
-
+      "/advertising",
+      "/user",
+      "/estateCategory",
+      "/estateSubCategory",
+      "/city",
+      "/estate",
+      "/partOfCity",
+      "/estateType",
+      "/transaction",
+      "/equipment",
+      "/heating",
+      "/location",
+      "/image",
+      "/accessories"
     ],
     "target": "http://localhost:8080",
     "secure": false
-}]
+  }
+]

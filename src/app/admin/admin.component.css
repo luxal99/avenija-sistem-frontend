@@ -11,7 +11,7 @@ mat-icon {
 mat-drawer {
     padding: 10em 2em 0 2em;
     width: 15%;
-    background-color: #282828;
+    background-color: #121212 !important;
 }
 
 .option-menu {

@@ -1,36 +1,37 @@
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as imageCompression from 'browser-image-compression'
 
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatCheckboxChange, MatDialog, MatSlideToggle, MatSnackBar } from '@angular/material';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatCheckboxChange, MatDialog, MatSlideToggle, MatSnackBar} from '@angular/material';
 
-import { Accessories } from 'src/app/models/Accessories';
-import { AccessoriesService } from 'src/app/service/accessories.service';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-import { City } from 'src/app/models/CIty';
-import { CityService } from 'src/app/service/city.service';
-import { Equipment } from 'src/app/models/Equipment';
-import { EquipmentService } from 'src/app/service/equipment.service';
-import { Estate } from 'src/app/models/Estate';
-import { EstateCategory } from 'src/app/models/EstateCategory';
-import { EstateCategoryService } from 'src/app/service/estate-category.service';
-import { EstateService } from 'src/app/service/estate.service';
-import { EstateSubCategory } from 'src/app/models/EstateSubCategory';
-import { EstateSubCategoryService } from 'src/app/service/estate-sub-category.service';
-import { EstateType } from 'src/app/models/EstateType';
-import { EstateTypeService } from 'src/app/service/estate-type.service';
-import { Heating } from 'src/app/models/Heating';
-import { HeatingService } from 'src/app/service/heating.service';
-import { ImageModel } from 'src/app/models/ImageModel';
-import { Location } from 'src/app/models/Location';
-import { LocationService } from 'src/app/service/location.service';
-import { PartOfCity } from 'src/app/models/PartOfCity';
-import { PartOfCityService } from 'src/app/service/part-of-city.service';
-import { Transaction } from 'src/app/models/Transaction';
-import { TransactionService } from 'src/app/service/transaction.service';
-import { async } from '@angular/core/testing';
+import {Accessories} from 'src/app/models/Accessories';
+import {AccessoriesService} from 'src/app/service/accessories.service';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {CKEditorComponent} from '@ckeditor/ckeditor5-angular';
+import {City} from 'src/app/models/CIty';
+import {CityService} from 'src/app/service/city.service';
+import {Equipment} from 'src/app/models/Equipment';
+import {EquipmentService} from 'src/app/service/equipment.service';
+import {Estate} from 'src/app/models/Estate';
+import {EstateCategory} from 'src/app/models/EstateCategory';
+import {EstateCategoryService} from 'src/app/service/estate-category.service';
+import {EstateService} from 'src/app/service/estate.service';
+import {EstateSubCategory} from 'src/app/models/EstateSubCategory';
+import {EstateSubCategoryService} from 'src/app/service/estate-sub-category.service';
+import {EstateType} from 'src/app/models/EstateType';
+import {EstateTypeService} from 'src/app/service/estate-type.service';
+import {Heating} from 'src/app/models/Heating';
+import {HeatingService} from 'src/app/service/heating.service';
+import {ImageModel} from 'src/app/models/ImageModel';
+import {Location} from 'src/app/models/Location';
+import {LocationService} from 'src/app/service/location.service';
+import {PartOfCity} from 'src/app/models/PartOfCity';
+import {PartOfCityService} from 'src/app/service/part-of-city.service';
+import {Transaction} from 'src/app/models/Transaction';
+import {TransactionService} from 'src/app/service/transaction.service';
+import {async} from '@angular/core/testing';
+import {ImageService} from "../../../service/image.service";
 
 const Compress = require('compress.js')
 
@@ -41,11 +42,11 @@ const Compress = require('compress.js')
 })
 export class AddEstateDialogComponent implements OnInit {
 
-  @ViewChild('editor', { static: false }) editorComponent: CKEditorComponent;
+  @ViewChild('editor', {static: false}) editorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
 
-  @ViewChild('isFavoriteCheckbox', { static: false }) isFavoriteCheckbox: MatCheckboxChange
-  @ViewChild('isPromotedCheckbox', { static: false }) isPromotedCheckbox: MatCheckboxChange
+  @ViewChild('isFavoriteCheckbox', {static: false}) isFavoriteCheckbox: MatCheckboxChange
+  @ViewChild('isPromotedCheckbox', {static: false}) isPromotedCheckbox: MatCheckboxChange
 
 
   editorData = '';
@@ -101,21 +102,23 @@ export class AddEstateDialogComponent implements OnInit {
   imageForm = new FormGroup({
     isUploaded: new FormControl("", Validators.required)
   })
+  fileUploadIndex = 0;
 
   constructor(private transactionService: TransactionService,
-    private cityService: CityService,
-    private equipmentService: EquipmentService,
-    private heatingService: HeatingService,
-    private locationService: LocationService,
-    private estateService: EstateService,
-    public _snackBar: MatSnackBar,
-    private afStorage: AngularFireStorage,
-    private accessoriesService: AccessoriesService,
-    private partOfCityService: PartOfCityService,
-    private estateTypeService: EstateTypeService,
-    private dialog: MatDialog,
-    private estateCategoryService: EstateCategoryService,
-    private estateSubCategoryService: EstateSubCategoryService) { }
+              private cityService: CityService,
+              private equipmentService: EquipmentService,
+              private heatingService: HeatingService,
+              private locationService: LocationService,
+              private estateService: EstateService, private imageService: ImageService,
+              public _snackBar: MatSnackBar,
+              private afStorage: AngularFireStorage,
+              private accessoriesService: AccessoriesService,
+              private partOfCityService: PartOfCityService,
+              private estateTypeService: EstateTypeService,
+              private dialog: MatDialog,
+              private estateCategoryService: EstateCategoryService,
+              private estateSubCategoryService: EstateSubCategoryService) {
+  }
 
   ngOnInit() {
     this.getAllTransaction()
@@ -130,56 +133,21 @@ export class AddEstateDialogComponent implements OnInit {
   }
 
   async addFiles(event) {
-    for (let index = 0; index < event.length; index++) {
-
-      const element = event[index];
-
-      var elementIndex = this.fileUploadList.indexOf(element);
-      if (elementIndex === -1) {
-        this.fileUploadList.push(element)
+    if (event.length > 0 && this.fileUploadList.indexOf(event) === -1) {
+      for (const file of event) {
+        this.fileUploadList.push(file);
       }
     }
-
-
-    await this.uploadFiles();
   }
 
   addAccessories($event: MatCheckboxChange, accessories: Accessories) {
     var c = (($event.checked)) ? this.listOfSelectedAccessories.add(accessories) : this.listOfSelectedAccessories.delete(accessories);
   }
 
-  async uploadFiles() {
-
-
-    document.getElementById('spinner').style.display = 'block'
-
-    for (const file of this.fileUploadList) {
-      this.afStorage.upload(file.name, file)
-        .then(async () => {
-          const downloadUrl = await this.afStorage.ref(file.name).getDownloadURL().subscribe(async data => {
-
-            document.getElementById('spinner').style.display = 'none'
-            this.listOfImages.push(new ImageModel(file.name, data));
-
-          });
-        })
-    }
-
-    this.fileUploadList = []
-
-  }
-
-
-  async disableSpinner() {
-    document.getElementById('spinner').style.display = 'none'
-  }
-
   async filterPartOfCity() {
-
     this.listOfPartsOfCities = JSON.parse(localStorage.getItem("POC"))
     let city: City = this.locationForm.get("id_city").value;
     this.listOfPartsOfCities = this.listOfPartsOfCities.filter(x => x.id_city.id === city.id)
-
   }
 
   getCities() {
@@ -294,12 +262,24 @@ export class AddEstateDialogComponent implements OnInit {
     estate.isFavorite = this.isFavoriteCheckbox.checked
     estate.isPromoted = this.isPromotedCheckbox.checked;
 
-    this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe(resp => {
+    this.locationService.save(new Location(this.locationForm.get("address").value, this.locationForm.get("id_part_of_city").value)).subscribe((resp) => {
       estate.id_location = resp as Location
       estate.listOfImages = this.listOfImages;
       estate.listOfAccessories = Array.from(this.listOfSelectedAccessories);
 
-      this.estateService.save(estate).subscribe(resp => {
+      this.estateService.save(estate).subscribe((resp) => {
+        for (const image of this.fileUploadList) {
+          const formData = new FormData();
+          formData.append('idEstate', JSON.stringify(resp.id));
+          formData.append('file', image);
+          this.imageService.save(formData).subscribe((resp) => {
+            this.openSnackBar("Uspesno ste dodali sliku", "DONE")
+            this.fileUploadIndex++
+          }, (err) => {
+            console.log(err)
+            this.openSnackBar("Grešla prilikom dodavana slike", "DONE")
+          })
+        }
         this.openSnackBar("Uspesno ste sacuvali oglas", "DONE")
       }, err => {
         this.openSnackBar("Dogodila se greska", "AGAIN")
@@ -307,10 +287,4 @@ export class AddEstateDialogComponent implements OnInit {
     });
 
   }
-
-  test() {
-
-  }
-
-
 }

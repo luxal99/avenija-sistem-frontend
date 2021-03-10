@@ -16,7 +16,14 @@ h4,
 h5 {
     font-family: 'Poppins', sans-serif;
 }
-
+a {
+  color: #00c3f6;
+}
+a:hover {
+  text-decoration: none;
+  color: #00c3f6;
+  transition: .5s;
+}
 @media screen and (max-width:570px) {
     .contact {
         padding: 1em;

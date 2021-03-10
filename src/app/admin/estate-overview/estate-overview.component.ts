@@ -46,7 +46,7 @@ export class EstateOverviewComponent implements OnInit {
         localStorage.setItem("listOfEstates",JSON.stringify(resp))
 
       document.getElementById('estate-spinner').style.display ='none'
-      }) 
+      })
     }else {
       document.getElementById('estate-spinner').style.display ='none'
       this.listOfEstates = JSON.parse(localStorage.getItem("listOfEstates"))
