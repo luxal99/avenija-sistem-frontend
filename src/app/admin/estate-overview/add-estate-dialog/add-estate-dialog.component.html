@@ -216,10 +216,6 @@
                             [value]="fileUploadIndex * 100/fileUploadList.length"></mat-progress-bar>
           <h4 *ngIf="fileUploadIndex>0">Uspešno poslatih {{fileUploadIndex}}/{{fileUploadList.length}}</h4>
         </div>
-        <div style="padding: 2em 0 2em 0;display: none;" id="spinner">
-          <mat-spinner></mat-spinner>
-        </div>
-
         <div class="row">
           <div class="col-sm-2" *ngFor="let image of listOfImages" style="margin-top: 2em;">
             <img src="{{image.url}}" alt="" class="img-fluid">

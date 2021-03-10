@@ -1,241 +1,256 @@
 <div class="add-estate-dialog">
-    <div class="row">
-        <div class="col-sm">
-            <h1>Izmena nekretnine</h1>
-        </div>
-        <div class="col-sm text-right">
-            <button mat-button class="blue-btn" mat-dialog-close style="margin-left: 2em;width: 50%;" (click)="update()">Sačuvaj</button>
-        </div>
+  <div class="row">
+    <div class="col-sm">
+      <h1>Izmena nekretnine</h1>
     </div>
-    <mat-horizontal-stepper #stepper animationDuration="30">
-        <mat-step>
-            <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Tip i kategorija</ng-template>
+    <div class="col-sm text-right">
+      <button mat-button class="blue-btn" mat-dialog-close style="margin-left: 2em;width: 50%;" (click)="update()">
+        Sačuvaj
+      </button>
+    </div>
+  </div>
+  <mat-horizontal-stepper #stepper animationDuration="30">
+    <mat-step>
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Tip i kategorija</ng-template>
 
 
-                <h4>Tip</h4>
-                <div class="divider"></div>
-                <div class="radio-button-div">
-                    <mat-radio-group aria-label="Select an option" *ngFor="let transaction of listOfTransaction" formControlName="id_transaction_type">
-                        <mat-radio-button [value]="transaction">{{transaction.title}}</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div style="width: 100%;">
+        <h4>Tip</h4>
+        <div class="divider"></div>
+        <div class="radio-button-div">
+          <mat-radio-group aria-label="Select an option" *ngFor="let transaction of listOfTransaction"
+                           formControlName="id_transaction_type">
+            <mat-radio-button [value]="transaction">{{transaction.title}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div style="width: 100%;">
 
-                    <h4>Promocija/Favorit</h4>
-                    <mat-divider></mat-divider>
+          <h4>Promocija/Favorit</h4>
+          <mat-divider></mat-divider>
 
-                    <div style="padding-top: 2em;">
-                        <mat-checkbox class="example-margin" #isFavoriteCheckbox [checked]="data.isFavorite">Favorit</mat-checkbox>
-                    </div>
-                    <div>
-                        <mat-checkbox class="example-margin" #isPromotedCheckbox [checked]="data.isPromoted">Promocija</mat-checkbox>
-                    </div>
-                </div>
-                <div>
+          <div style="padding-top: 2em;">
+            <mat-checkbox class="example-margin" #isFavoriteCheckbox [checked]="data.isFavorite">Favorit</mat-checkbox>
+          </div>
+          <div>
+            <mat-checkbox class="example-margin" #isPromotedCheckbox [checked]="data.isPromoted">Promocija
+            </mat-checkbox>
+          </div>
+        </div>
+        <div>
 
-                    <h4>Kategorija</h4>
-                    <div class="divider"></div>
-                    <mat-form-field appearance="fill" style="margin-top: 1em;width: 100%;">
+          <h4>Kategorija</h4>
+          <div class="divider"></div>
+          <mat-form-field appearance="fill" style="margin-top: 1em;width: 100%;">
 
-                        <mat-label>Kategorija</mat-label>
-                        <mat-select formControlName="id_estate_sub_category" [(ngModel)]="selectedSubCategory">
-                            <mat-optgroup *ngFor="let estateCategory of listOfEstateCategories" [label]="estateCategory.title">
-                                <mat-option *ngFor="let estateSubCategory of estateCategory.listOfEstateSubCategories" [value]="estateSubCategory.id">
-                                    {{estateSubCategory.title}}
-                                </mat-option>
-                            </mat-optgroup>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button mat-button matStepperNext class="blue-btn">Napred</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step label="Lokacija">
-            <form [formGroup]="locationForm" style="margin-top: 2em;">
-                <div style="display: inline-flex;width: 100%;">
-                    <mat-form-field appearance="fill" style="width: 50%;">
-                        <mat-label>Grad</mat-label>
-                        <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
-                            <mat-option *ngFor="let city of listOfCities" [value]="city.id">
-                                {{city.title}}
-                            </mat-option>
-                        </mat-select>
+            <mat-label>Kategorija</mat-label>
+            <mat-select formControlName="id_estate_sub_category" [(ngModel)]="selectedSubCategory">
+              <mat-optgroup *ngFor="let estateCategory of listOfEstateCategories" [label]="estateCategory.title">
+                <mat-option *ngFor="let estateSubCategory of estateCategory.listOfEstateSubCategories"
+                            [value]="estateSubCategory.id">
+                  {{estateSubCategory.title}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext class="blue-btn">Napred</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Lokacija">
+      <form [formGroup]="locationForm" style="margin-top: 2em;">
+        <div style="display: inline-flex;width: 100%;">
+          <mat-form-field appearance="fill" style="width: 50%;">
+            <mat-label>Grad</mat-label>
+            <mat-select (ngModelChange)="filterPartOfCity()" formControlName="id_city" [(ngModel)]="selectedCity">
+              <mat-option *ngFor="let city of listOfCities" [value]="city.id">
+                {{city.title}}
+              </mat-option>
+            </mat-select>
 
-                    </mat-form-field>
+          </mat-form-field>
 
-                    <mat-form-field appearance="fill" style="width: 50%;margin-left: 1em;">
-                        <mat-label>Deo grada</mat-label>
-                        <mat-select formControlName="id_part_of_city" [(ngModel)]="selectedPartOfCity">
-                            <mat-option *ngFor="let partOfCity of listOfPartsOfCities" [value]="partOfCity.id">
-                                {{partOfCity.title}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Adresa</mat-label>
-                        <input matInput formControlName="address">
-                        <mat-icon matSuffix>location_city</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
-                    <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
-                </div>
-            </form>
-        </mat-step>
+          <mat-form-field appearance="fill" style="width: 50%;margin-left: 1em;">
+            <mat-label>Deo grada</mat-label>
+            <mat-select formControlName="id_part_of_city" [(ngModel)]="selectedPartOfCity">
+              <mat-option *ngFor="let partOfCity of listOfPartsOfCities" [value]="partOfCity.id">
+                {{partOfCity.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Adresa</mat-label>
+            <input matInput formControlName="address">
+            <mat-icon matSuffix>location_city</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
+          <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+        </div>
+      </form>
+    </mat-step>
 
 
-        <mat-step>
-            <ng-template matStepLabel>Podaci o ceni,povrsini i namestenosti</ng-template>
-            <form [formGroup]="thirdStepForm">
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;margin-top: 2em;">
-                        <mat-label>Cena</mat-label>
-                        <input matInput formControlName="price">
-                        <mat-icon matSuffix>attach_money</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Površina</mat-label>
-                        <input matInput formControlName="quadrature">
-                        <mat-icon matSuffix>crop_din</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Tip izgradjenosti</mat-label>
-                        <mat-select formControlName="id_estate_type" [(ngModel)]="selectedEstateType">
-                            <mat-option *ngFor="let estateType of listOfEstateTypes" [(value)]="estateType.id">
-                                {{estateType.title}}
-                            </mat-option>
-                        </mat-select>
+    <mat-step>
+      <ng-template matStepLabel>Podaci o ceni,povrsini i namestenosti</ng-template>
+      <form [formGroup]="thirdStepForm">
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;margin-top: 2em;">
+            <mat-label>Cena</mat-label>
+            <input matInput formControlName="price">
+            <mat-icon matSuffix>attach_money</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Površina</mat-label>
+            <input matInput formControlName="quadrature">
+            <mat-icon matSuffix>crop_din</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Tip izgradjenosti</mat-label>
+            <mat-select formControlName="id_estate_type" [(ngModel)]="selectedEstateType">
+              <mat-option *ngFor="let estateType of listOfEstateTypes" [(value)]="estateType.id">
+                {{estateType.title}}
+              </mat-option>
+            </mat-select>
 
-                    </mat-form-field>
-                </div>
-            </form>
-            <div>
-                <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
-                <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+          </mat-form-field>
+        </div>
+      </form>
+      <div>
+        <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
+        <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <form [formGroup]="accessoriesForm">
+        <ng-template matStepLabel>Opremljenost</ng-template>
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Tip opremljenost</mat-label>
+          <mat-select formControlName="id_equipment" [(ngModel)]="selectedEquipment">
+            <mat-option *ngFor="let equipment of listOfEquipment" [value]="equipment.id">
+              {{equipment.title}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Broj kupatila</mat-label>
+            <input matInput formControlName="num_of_bathrooms">
+            <mat-icon matSuffix>pool</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Sprat</mat-label>
+            <input matInput formControlName="floor">
+            <mat-icon matSuffix>format_list_numbered</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Broj soba</mat-label>
+            <input matInput formControlName="rooms">
+            <mat-icon matSuffix>king_bed</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Broj spratova u zgradi</mat-label>
+            <input matInput formControlName="max_floor">
+            <mat-icon matSuffix>format_list_numbered</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Tip grejanja</mat-label>
+            <mat-select formControlName="id_heating" [(ngModel)]="selectedHeating">
+              <mat-option *ngFor="let heating of listOfHeating" [value]="heating.id">
+                {{heating.title}}
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+
+        </div>
+      </form>
+      <section *ngFor="let acc of selectedAccessories">
+        <mat-checkbox class="example-margin" [checked]="acc.checked"
+                      (change)="addAccessories($event,acc.accessories)">{{acc.accessories.title}}</mat-checkbox>
+      </section>
+      <div style="margin-top: 2em;">
+        <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
+
+        <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+      </div>
+
+    </mat-step>
+    <mat-step label="Naziv i opis">
+      <div>
+        <form [formGroup]="titleForm">
+          <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-label>Naziv</mat-label>
+              <input matInput formControlName="title">
+              <mat-icon matSuffix>format_align_right</mat-icon>
+            </mat-form-field>
+          </div>
+        </form>
+        <ckeditor #editor [editor]="Editor"></ckeditor>
+        <div style="margin-top: 2em;">
+          <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
+
+          <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step label="Slike">
+      <form [formGroup]="imageForm">
+        <div class="custom-file">
+          <input type="file" name="file" class="custom-file-input" multiple id="customFile"
+                 (change)="addFiles($event.target.files)">
+          <label class="custom-file-label" for="customFile">Izabei fajl</label>
+          <h6 style="margin-top: 1em">{{this.fileUploadList.length}} slika za slanje</h6>
+          <mat-progress-bar style="margin-top: 1em" mode="determinate"
+                            [value]="fileUploadIndex * 100/fileUploadList.length"></mat-progress-bar>
+          <h4 *ngIf="fileUploadIndex>0">Uspešno poslatih {{fileUploadIndex}}/{{fileUploadList.length}}</h4>
+        </div>
+        <div style="padding: 2em 0 2em 0;display: none;" id="spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="row image-row">
+
+          <div cdkDropList class="example-list" cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let image of listOfImages" cdkDrag>
+              <img *ngIf="listOfImages.length !== 0" [src]="image.url" (error)="errorHandler($event)" alt=""
+                   class="img-fluid">
+              <div class="text-center">
+                <button mat-icon-button (click)="deletePhoto(image)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
             </div>
-        </mat-step>
-        <mat-step>
-            <form [formGroup]="accessoriesForm">
-                <ng-template matStepLabel>Opremljenost</ng-template>
-                <mat-form-field appearance="fill" style="width: 100%;">
-                    <mat-label>Tip opremljenost</mat-label>
-                    <mat-select formControlName="id_equipment" [(ngModel)]="selectedEquipment">
-                        <mat-option *ngFor="let equipment of listOfEquipment" [value]="equipment.id">
-                            {{equipment.title}}
-                        </mat-option>
-                    </mat-select>
-
-                </mat-form-field>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Broj kupatila</mat-label>
-                        <input matInput formControlName="num_of_bathrooms">
-                        <mat-icon matSuffix>pool</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Sprat</mat-label>
-                        <input matInput formControlName="floor">
-                        <mat-icon matSuffix>format_list_numbered</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Broj soba</mat-label>
-                        <input matInput formControlName="rooms">
-                        <mat-icon matSuffix>king_bed</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Broj spratova u zgradi</mat-label>
-                        <input matInput formControlName="max_floor">
-                        <mat-icon matSuffix>format_list_numbered</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Tip grejanja</mat-label>
-                        <mat-select formControlName="id_heating" [(ngModel)]="selectedHeating">
-                            <mat-option *ngFor="let heating of listOfHeating" [value]="heating.id">
-                                {{heating.title}}
-                            </mat-option>
-                        </mat-select>
-
-                    </mat-form-field>
-
-                </div>
-            </form>
-            <section *ngFor="let acc of selectedAccessories">
-                <mat-checkbox class="example-margin" [checked]="acc.checked" (change)="addAccessories($event,acc.accessories)">{{acc.accessories.title}}</mat-checkbox>
-            </section>
-            <div style="margin-top: 2em;">
-                <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
-
-                <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
-            </div>
-
-        </mat-step>
-        <mat-step label="Naziv i opis">
-            <div>
-                <form [formGroup]="titleForm">
-                    <div>
-                        <mat-form-field appearance="fill" style="width: 100%;">
-                            <mat-label>Naziv</mat-label>
-                            <input matInput formControlName="title">
-                            <mat-icon matSuffix>format_align_right</mat-icon>
-                        </mat-form-field>
-                    </div>
-                </form>
-                <ckeditor #editor [editor]="Editor"></ckeditor>
-                <div style="margin-top: 2em;">
-                    <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
-
-                    <button mat-button matStepperNext class="blue-btn" style="margin-left: 2em;">Napred</button>
-                </div>
-            </div>
-        </mat-step>
-        <mat-step label="Slike">
-            <form [formGroup]="imageForm">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" multiple id="customFile" (change)="addFiles($event.target.files)">
-                    <label class="custom-file-label" for="customFile">Izabei fajl</label>
-                </div>
-                <div style="padding: 2em 0 2em 0;display: none;" id="spinner">
-                    <mat-spinner></mat-spinner>
-                </div>
-
-                <div class="row image-row">
-
-                    <div cdkDropList class="example-list" cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let image of listOfImages" cdkDrag>
-                            <img *ngIf="listOfImages.length !== 0" [src]="image.url" (error)="errorHandler($event)" alt="" class="img-fluid">
-                            <div class="text-center">
-                                <button mat-icon-button (click)="deletePhoto(image)"><mat-icon>close</mat-icon></button>
-                            </div>
-                        </div>
-                    </div>
+          </div>
 
 
-                </div>
-                <div style="margin-top: 2em;">
-                    <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
+        </div>
+        <div style="margin-top: 2em;">
+          <button mat-button matStepperPrevious class="silver-btn">Nazad</button>
 
-                    <button mat-button class="blue-btn" mat-dialog-close style="margin-left: 2em;" (click)="update()">Sačuvaj</button>
-                </div>
-            </form>
-        </mat-step>
-    </mat-horizontal-stepper>
+          <button mat-button class="blue-btn" style="margin-left: 2em;" (click)="update()">Sačuvaj
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
 
 </div>
